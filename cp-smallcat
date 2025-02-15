@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+rm -rf ~/qmk_firmware/keyboards/smallcat/
+cp -r ./keyboards/smallcat ~/qmk_firmware/keyboards/smallcat
