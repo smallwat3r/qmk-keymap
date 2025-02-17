@@ -72,55 +72,137 @@ enum custom_keycodes {
 // keycodes in combos.def
 #include "g/keymap_combo.h"
 
+// base
+#define  ___BASE_L1___  CK_1,   CK_2,   CK_3
+#define  ___BASE_R1___  CK_14,  CK_15,  CK_16
+#define  ___BASE_L2___  CK_4,   CK_5,   CK_6,   CK_7,   CK_8
+#define  ___BASE_R2___  CK_17,  CK_18,  CK_19,  CK_20,  CK_21
+#define  ___BASE_L3___  CK_9,   CK_10,  CK_11
+#define  ___BASE_R3___  CK_22,  CK_23,  CK_24
+#define  ___BASE_L4___  CK_12,  CK_13
+#define  ___BASE_R4___  CK_25,  CK_26
+
+// num
+#define  ___NUM__L1___  KC_7,     KC_8,   KC_9
+#define  ___NUM__R1___  KC_7,     KC_8,   KC_9
+#define  ___NUM__L2___  KC_0,     KC_4,   KC_5,  KC_6,  KC_NO
+#define  ___NUM__R2___  KC_NO,    KC_4,   KC_5,  KC_6,  KC_0
+#define  ___NUM__L3___  KC_1,     KC_2,   KC_3
+#define  ___NUM__R3___  KC_1,     KC_2,   KC_3
+#define  ___NUM__L4___  KC_TRNS,  KC_SPC
+#define  ___NUM__R4___  KC_BSPC,  KC_DEL
+
+// sym
+#define  ___SYM__L1___  KC_AT,        S(KC_3),      S(KC_4)
+#define  ___SYM__R1___  KC_BSLS,      KC_SLASH,     S(KC_SLASH)
+#define  ___SYM__L2___  S(KC_8),      S(KC_EQUAL),  KC_EQUAL,    S(KC_QUOTE),  S(KC_5)
+#define  ___SYM__R2___  S(KC_1),      S(KC_SCLN),   RALT(KC_3),  S(KC_GRAVE),  S(KC_BSLS)
+#define  ___SYM__L3___  KC_MINUS,     S(KC_7),      KC_GRAVE
+#define  ___SYM__R3___  S(KC_COMMA),  S(KC_DOT),    C_KC_ARROW
+#define  ___SYM__L4___  KC_TRNS,      KC_TRNS
+#define  ___SYM__R4___  KC_TRNS,      KC_TRNS
+
+// nav
+#define  ___NAV__L1___  KC_TRNS,     KC_TRNS,     KC_TRNS
+#define  ___NAV__R1___  S(KC_LBRC),  S(KC_RBRC),  KC_TRNS
+#define  ___NAV__L2___  KC_TRNS,     KC_TRNS,     MO(NAV2),  KC_TRNS,   KC_TRNS
+#define  ___NAV__R2___  KC_LEFT,     KC_DOWN,     KC_UP,     KC_RIGHT,  KC_TRNS
+#define  ___NAV__L3___  KC_TRNS,     KC_TRNS,     KC_TRNS
+#define  ___NAV__R3___  KC_LBRC,     KC_RBRC,     KC_TRNS
+#define  ___NAV__L4___  KC_TRNS,     KC_TRNS
+#define  ___NAV__R4___  KC_BSPC,     KC_DEL
+
+// nav2
+#define  ___NAV2_L1___  KC_TRNS,     KC_TRNS,   KC_TRNS
+#define  ___NAV2_R1___  KC_TRNS,     KC_TRNS,   KC_TRNS
+#define  ___NAV2_L2___  SELWBAK,     KC_TRNS,   KC_TRNS,  KC_TRNS,      KC_TRNS
+#define  ___NAV2_R2___  A(KC_LEFT),  KC_TRNS,   KC_TRNS,  A(KC_RIGHT),  SELWFWD
+#define  ___NAV2_L3___  KC_TRNS,     KC_TRNS,   KC_TRNS
+#define  ___NAV2_R3___  SELLINE,     KC_TRNS,   KC_TRNS
+#define  ___NAV2_L4___  KC_TRNS,     KC_TRNS
+#define  ___NAV2_R4___  A(KC_BSPC),  A(KC_DEL)
+
+// edit
+#define  ___EDIT_L1___  SGUI(KC_G),  G(KC_F),     G(KC_G)
+#define  ___EDIT_R1___  S(KC_LBRC),  S(KC_RBRC),  KC_TRNS
+#define  ___EDIT_L2___  G(KC_A),     G(KC_X),     G(KC_C),  G(KC_V),   C(KC_C)
+#define  ___EDIT_R2___  KC_LEFT,     KC_DOWN,     KC_UP,    KC_RIGHT,  KC_TRNS
+#define  ___EDIT_L3___  KC_TRNS,     G(KC_Z),     G(KC_Z)
+#define  ___EDIT_R3___  KC_LBRC,     KC_RBRC,     KC_TRNS
+#define  ___EDIT_L4___  KC_TRNS,     KC_TRNS
+#define  ___EDIT_R4___  KC_BSPC,     KC_DEL
+
+// fun
+#define  ___FUN__L1___  KC_TRNS,     KC_TRNS,   KC_TRNS
+#define  ___FUN__R1___  KC_F7,       KC_F8,     KC_F9
+#define  ___FUN__L2___  KC_TRNS,     KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___FUN__R2___  KC_TRNS,     KC_F4,     KC_F5,    KC_F6,    KC_TRNS
+#define  ___FUN__L3___  KC_TRNS,     KC_TRNS,   KC_TRNS
+#define  ___FUN__R3___  KC_F1,       KC_F2,     KC_F3
+#define  ___FUN__L4___  KC_TRNS,     KC_TRNS
+#define  ___FUN__R4___  A(KC_BSPC),  A(KC_DEL)
+
+// sys
+#define  ___SYS__L1___  KC_TRNS,         KC_BTN4,        KC_BTN5
+#define  ___SYS__R1___  KC_VOLD,         KC_VOLU,        KC_MUTE
+#define  ___SYS__L2___  KC_HOME,         KC_WH_R,        KC_WH_U,  KC_WH_D,  KC_WH_L
+#define  ___SYS__R2___  KC_MS_L,         KC_MS_D,        KC_MS_U,  KC_MS_R,  KC_END
+#define  ___SYS__L3___  MS_ACL1,         KC_BRID,        KC_BRIU
+#define  ___SYS__R3___  G(KC_KP_MINUS),  G(KC_KP_PLUS),  KC_TRNS
+#define  ___SYS__L4___  KC_BTN2,         KC_BTN1
+#define  ___SYS__R4___  KC_TRNS,         KC_TRNS
+
+#define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [BASE] = LAYOUT(
-               CK_1,  CK_2,  CK_3,                   CK_14, CK_15, CK_16,
-         CK_4, CK_5,  CK_6,  CK_7,  CK_8,     CK_17, CK_18, CK_19, CK_20, CK_21,
-               CK_9,  CK_10, CK_11,                  CK_22, CK_23, CK_24,
-                             CK_12, CK_13,    CK_25, CK_26
+    [BASE] = LAYOUT_wrapper(
+        ___BASE_L1___, ___BASE_R1___,
+        ___BASE_L2___, ___BASE_R2___,
+        ___BASE_L3___, ___BASE_R3___,
+        ___BASE_L4___, ___BASE_R4___
     ),
-    [NUM] = LAYOUT(
-               KC_7,  KC_8,  KC_9,                   KC_7,  KC_8,  KC_9,
-        KC_0,  KC_4,  KC_5,  KC_6,  KC_NO,    KC_NO, KC_4,  KC_5,  KC_6,  KC_0,
-               KC_1,  KC_2,  KC_3,                   KC_1,  KC_2,  KC_3,
-                          KC_TRNS, KC_SPC,    KC_BSPC, KC_DEL
+    [NUM] = LAYOUT_wrapper(
+        ___NUM__L1___, ___NUM__R1___,
+        ___NUM__L2___, ___NUM__R2___,
+        ___NUM__L3___, ___NUM__R3___,
+        ___NUM__L4___, ___NUM__R4___
     ),
-    [SYM] = LAYOUT(
-                 KC_AT,       S(KC_3),  S(KC_4),                         KC_BSLS,     KC_SLASH,   S(KC_SLASH),
-        S(KC_8), S(KC_EQUAL), KC_EQUAL, S(KC_QUOTE), S(KC_5),   S(KC_1), S(KC_SCLN),  RALT(KC_3), S(KC_GRAVE), S(KC_BSLS),
-                 KC_MINUS,    S(KC_7),  KC_GRAVE,                        S(KC_COMMA), S(KC_DOT),  C_KC_ARROW,
-                                            KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
+    [SYM] = LAYOUT_wrapper(
+        ___SYM__L1___, ___SYM__R1___,
+        ___SYM__L2___, ___SYM__R2___,
+        ___SYM__L3___, ___SYM__R3___,
+        ___SYM__L4___, ___SYM__R4___
     ),
-    [NAV] = LAYOUT(
-                 KC_TRNS, KC_TRNS,  KC_TRNS,                     S(KC_LBRC), S(KC_RBRC), KC_TRNS,
-        KC_TRNS, KC_TRNS, MO(NAV2), KC_TRNS, KC_TRNS,   KC_LEFT, KC_DOWN,    KC_UP,      KC_RIGHT, KC_TRNS,
-                 KC_TRNS, KC_TRNS,  KC_TRNS,                     KC_LBRC,    KC_RBRC,    KC_TRNS,
-                                    KC_TRNS, KC_TRNS,   KC_BSPC, KC_DEL
+    [NAV] = LAYOUT_wrapper(
+        ___NAV__L1___, ___NAV__R1___,
+        ___NAV__L2___, ___NAV__R2___,
+        ___NAV__L3___, ___NAV__R3___,
+        ___NAV__L4___, ___NAV__R4___
     ),
-    [NAV2] = LAYOUT(
-                 KC_TRNS, KC_TRNS, KC_TRNS,                         KC_TRNS, KC_TRNS, KC_TRNS,
-        SELWBAK, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    A(KC_LEFT), KC_TRNS, KC_TRNS, A(KC_RIGHT), SELWFWD,
-                 KC_TRNS, KC_TRNS, KC_TRNS,                         SELLINE, KC_TRNS, KC_TRNS,
-                                   KC_TRNS, KC_TRNS,    A(KC_BSPC), A(KC_DEL)
+    [NAV2] = LAYOUT_wrapper(
+        ___NAV2_L1___, ___NAV2_R1___,
+        ___NAV2_L2___, ___NAV2_R2___,
+        ___NAV2_L3___, ___NAV2_R3___,
+        ___NAV2_L4___, ___NAV2_R4___
     ),
-    [EDIT] = LAYOUT(
-                 SGUI(KC_G), G(KC_F), G(KC_G),                     S(KC_LBRC), S(KC_RBRC), KC_TRNS,
-        G(KC_A), G(KC_X),    G(KC_C), G(KC_V), C(KC_C),   KC_LEFT, KC_DOWN,    KC_UP,      KC_RIGHT, KC_TRNS,
-                 KC_TRNS,    G(KC_Z), G(KC_Z),                     KC_LBRC,    KC_RBRC,    KC_TRNS,
-                                    KC_TRNS, KC_TRNS,   KC_BSPC, KC_DEL
+    [EDIT] = LAYOUT_wrapper(
+        ___EDIT_L1___, ___EDIT_R1___,
+        ___EDIT_L2___, ___EDIT_R2___,
+        ___EDIT_L3___, ___EDIT_R3___,
+        ___EDIT_L4___, ___EDIT_R4___
     ),
-    [FUN] = LAYOUT(
-                 KC_TRNS, KC_TRNS, KC_TRNS,                      KC_F7, KC_F8, KC_F9,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_F4, KC_F5, KC_F6, KC_TRNS,
-                 KC_TRNS, KC_TRNS, KC_TRNS,                      KC_F1, KC_F2, KC_F3,
-                                   KC_TRNS, KC_TRNS,    A(KC_BSPC), A(KC_DEL)
+    [FUN] = LAYOUT_wrapper(
+        ___FUN__L1___, ___FUN__R1___,
+        ___FUN__L2___, ___FUN__R2___,
+        ___FUN__L3___, ___FUN__R3___,
+        ___FUN__L4___, ___FUN__R4___
     ),
-    [SYS] = LAYOUT(
-                 KC_TRNS, KC_BTN4, KC_BTN5,                      KC_VOLD,        KC_VOLU,       KC_MUTE,
-        KC_HOME, KC_WH_R, KC_WH_U, KC_WH_D, KC_WH_L,    KC_MS_L, KC_MS_D,        KC_MS_U,       KC_MS_R, KC_END,
-                 MS_ACL1, KC_BRID, KC_BRIU,                      G(KC_KP_MINUS), G(KC_KP_PLUS), KC_TRNS,
-                                   KC_BTN2, KC_BTN1,    KC_TRNS, KC_TRNS
+    [SYS] = LAYOUT_wrapper(
+        ___SYS__L1___, ___SYS__R1___,
+        ___SYS__L2___, ___SYS__R2___,
+        ___SYS__L3___, ___SYS__R3___,
+        ___SYS__L4___, ___SYS__R4___
     ),
 };
 
