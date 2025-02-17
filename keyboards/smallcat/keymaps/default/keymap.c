@@ -124,51 +124,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
+// clang-format off
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case CK_24:
-            return M_UPDIR;  // . -> ../
-        case CK_23:
-            return M_BUT;  // , -> , but
-        case KC_B:
-            return M_ECAUSE;  // b -> because
-        case CK_11:
-            return M_LASS;  // c -> class
-        case CK_2:
-            return M_EF;  // d -> def
+        case CK_24: return M_UPDIR;  // . -> ..
+        case CK_23: return M_BUT;    // , -> , but
+        case KC_B: return M_ECAUSE;  // b -> because
+        case CK_11: return M_LASS;   // c -> class
+        case CK_2: return M_EF;      // d -> def
         case CK_21:
             if (mods & MOD_MASK_SHIFT) {
-                return M_IAM;  // I -> I'm
+                return M_IAM;       // I -> I'm
             }
-            return M_MPORT;  // i -> import
-        case KC_J:
-            return M_UST;  // j -> just
-        case CK_3:
-            return M_ENT;  // m -> ment
-        case CK_18:
-            return M_ION;  // n -> nion
-        case CK_15:
-            return M_NT;  // o -> o'nt
-        case KC_Q:
-            return M_UEN;  // q -> quen
-        case CK_5:
-            return M_ETURN;  // r -> return
-        case CK_7:
-            return M_ION;  // s -> sion
-        case CK_6:
-            return M_MENT;  // t -> tment
-        case KC_V:
-            return M_ER;  // v -> ver
-        case KC_W:
-            return M_HICH;  // w -> which
-        case CK_17:
-            return M_OU;  // y -> you
-        case KC_EQL:
-            return KC_GT;  // = -> =>
-        case SELWBAK:
-            return SELWFWD;
-        case SELWFWD:
-            return SELWBAK;
+            return M_MPORT;         // i -> import
+        case KC_J: return M_UST;    // j -> just
+        case CK_3: return M_ENT;    // m -> ment
+        case CK_18: return M_ION;   // n -> nion
+        case CK_15: return M_NT;    // o -> o'nt
+        case KC_Q: return M_UEN;    // q -> quen
+        case CK_5: return M_ETURN;  // r -> return
+        case CK_7: return M_ION;    // s -> sion
+        case CK_6: return M_MENT;   // t -> tment
+        case KC_V: return M_ER;     // v -> ver
+        case KC_W: return M_HICH;   // w -> which
+        case CK_17: return M_OU;    // y -> you
+        case KC_EQL: return KC_GT;  // = -> =>
+        case SELWBAK: return SELWFWD;
+        case SELWFWD: return SELWBAK;
         case KC_PLUS:
         case KC_MINS:
         case KC_ASTR:
@@ -188,10 +170,9 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     return KC_TRNS;
 }
 
+// clang-format off
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_select_word(keycode, record)) {
-        return false;
-    }
+    if (!process_select_word(keycode, record)) { return false; }
 
     switch (keycode) {
         case SELWBAK: // backward word selection.
@@ -219,63 +200,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     if (record->event.pressed) {
         switch (keycode) {
-            case C_KC_ARROW:
-                SEND_STRING("->");
-                return false;
-            case M_UPDIR:
-                SEND_STRING("./");
-                break;
-            case M_ION:
-                SEND_STRING("ion");
-                break;
-            case M_ENT:
-                SEND_STRING("ent");
-                break;
-            case M_UEN:
-                SEND_STRING("uen");
-                break;
-            case M_MENT:
-                SEND_STRING("ment");
-                break;
-            case M_OU:
-                SEND_STRING("ou");
-                break;
-            case M_ON:
-                SEND_STRING("on");
-                break;
-            case M_ECAUSE:
-                SEND_STRING("ecause");
-                break;
-            case M_NT:
-                SEND_STRING("n't");
-                break;
-            case M_IAM:
-                SEND_STRING("'m");
-                break;
-            case M_UST:
-                SEND_STRING("ust");
-                break;
-            case M_ER:
-                SEND_STRING("er");
-                break;
-            case M_HICH:
-                SEND_STRING("hich");
-                break;
-            case M_BUT:
-                SEND_STRING(" but");
-                break;
-            case M_ETURN:
-                SEND_STRING("eturn");
-                break;
-            case M_MPORT:
-                SEND_STRING("mport");
-                break;
-            case M_LASS:
-                SEND_STRING("lass");
-                break;
-            case M_EF:
-                SEND_STRING("ef");
-                break;
+            case C_KC_ARROW: SEND_STRING("->"); return false;
+            case M_UPDIR: SEND_STRING("./"); break;
+            case M_ION: SEND_STRING("ion"); break;
+            case M_ENT: SEND_STRING("ent"); break;
+            case M_UEN: SEND_STRING("uen"); break;
+            case M_MENT: SEND_STRING("ment"); break;
+            case M_OU: SEND_STRING("ou"); break;
+            case M_ON: SEND_STRING("on"); break;
+            case M_ECAUSE: SEND_STRING("ecause"); break;
+            case M_NT: SEND_STRING("n't"); break;
+            case M_IAM: SEND_STRING("'m"); break;
+            case M_UST: SEND_STRING("ust"); break;
+            case M_ER: SEND_STRING("er"); break;
+            case M_HICH: SEND_STRING("hich"); break;
+            case M_BUT: SEND_STRING(" but"); break;
+            case M_ETURN: SEND_STRING("eturn"); break;
+            case M_MPORT: SEND_STRING("mport"); break;
+            case M_LASS: SEND_STRING("lass"); break;
+            case M_EF: SEND_STRING("ef"); break;
         }
     }
     return true;
