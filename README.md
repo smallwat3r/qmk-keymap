@@ -18,7 +18,7 @@ qmk flash -kb smallcat -km default
 
 ![keymap](./images/keymap.png)
 
-I'm using an implementation of Magic Key (❖) on the 3 home key combos (<kbd>R</kbd><kbd>S</kbd><kbd>T</kbd> and <kbd>N</kbd><kbd>A</kbd><kbd>E</kbd>).
+I'm using an implementation of Magic Key (❖) on the 3 home key combos (<kbd>R</kbd><kbd>T</kbd><kbd>S</kbd> and <kbd>N</kbd><kbd>A</kbd><kbd>E</kbd>).
 
 | Combo                    | Output |
 |--------------------------|--------|
