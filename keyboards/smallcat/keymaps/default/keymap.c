@@ -57,7 +57,8 @@ enum custom_keycodes {
     M_ON,
     M_UST,
     M_ER,
-    M_HICH,
+    M_ERO,
+    M_HAT,
     M_BUT,
     M_ETURN,
     M_UEN,
@@ -228,7 +229,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case CK_7: return M_ION;    // s -> sion
         case CK_6: return M_MENT;   // t -> tment
         case KC_V: return M_ER;     // v -> ver
-        case KC_W: return M_HICH;   // w -> which
+        case KC_W: return M_HAT;   // w -> what
+        case KC_Z: return M_ERO;   // z -> zero
         case CK_17: return M_OU;    // y -> you
         case KC_EQL: return KC_GT;  // = -> =>
         case SELWBAK: return SELWFWD;
@@ -295,8 +297,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case M_IAM: SEND_STRING("'m"); break;
             case M_UST: SEND_STRING("ust"); break;
             case M_ER: SEND_STRING("er"); break;
-            case M_HICH: SEND_STRING("hich"); break;
+            case M_HAT: SEND_STRING("hat"); break;
             case M_BUT: SEND_STRING(" but"); break;
+            case M_ERO: SEND_STRING("zero"); break;
             case M_ETURN: SEND_STRING("eturn"); break;
             case M_MPORT: SEND_STRING("mport"); break;
             case M_LASS: SEND_STRING("lass"); break;
