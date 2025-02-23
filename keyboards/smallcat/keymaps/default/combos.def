@@ -9,6 +9,7 @@ COMB(C_LB_LBRC,  KC_LBRC,  CK_1,   CK_3)
 COMB(C_LB_LPRN,  KC_LPRN,  CK_9,   CK_11)
 SUBS(C_LB_TH,    "th",     CK_6,   CK_7)
 SUBS(C_LB_SH,    "sh",     CK_5,   CK_7)
+SUBS(C_LB_WH,    "wh",     CK_4,   CK_7)
 COMB(C_LB_AREP,  QK_AREP,  CK_5,   CK_6,   CK_7)
 
 // right base
