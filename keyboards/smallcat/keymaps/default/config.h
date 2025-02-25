@@ -15,7 +15,7 @@
 /* make use of the mounted WS2812 led from the Waveshare RP2040-zero */
 #define RGBLIGHT_LED_COUNT 1
 #define RGBLIGHT_SPLIT
-#define RGBLIGHT_DEFAULT_HUE 110
+#define RGBLIGHT_DEFAULT_HUE 169
 #define RGBLIGHT_LIMIT_VAL 10
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_LAYERS

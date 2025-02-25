@@ -144,7 +144,7 @@ enum custom_keycodes {
 #define  ___FUN__R4___  A(KC_BSPC),  A(KC_DEL)
 
 // sys
-#define  ___SYS__L1___  KC_TRNS,         KC_BTN4,        KC_BTN5
+#define  ___SYS__L1___  MS_ACL0,         KC_BTN4,        KC_BTN5
 #define  ___SYS__R1___  KC_VOLD,         KC_VOLU,        KC_MUTE
 #define  ___SYS__L2___  KC_HOME,         KC_WH_R,        KC_WH_U,  KC_WH_D,  KC_WH_L
 #define  ___SYS__R2___  KC_MS_L,         KC_MS_D,        KC_MS_U,  KC_MS_R,  KC_END
@@ -311,26 +311,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // rgb light
 
+const rgblight_segment_t PROGMEM default_layer[]  = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_PURPLE});
 const rgblight_segment_t PROGMEM capslock_layer[]  = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_RED});
 const rgblight_segment_t PROGMEM osm_shift_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_YELLOW});
 
-const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(capslock_layer, osm_shift_layer);
+const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(default_layer, capslock_layer, osm_shift_layer);
 void keyboard_post_init_user(void) {
     rgblight_layers = rgb_layers;
 }
 
+// default layer
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, BASE));
+    return state;
+}
+
 // light up led in red when caps lock in on
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(0, led_state.caps_lock);
+    rgblight_set_layer_state(1, led_state.caps_lock);
     return true;
 }
 
 // light up led in yellow when sticky shift is activated
 void oneshot_mods_changed_user(uint8_t mods) {
     if (mods & MOD_MASK_SHIFT) {
-        rgblight_set_layer_state(1, true);
+        rgblight_set_layer_state(2, true);
     }
     if (!mods) {
-        rgblight_set_layer_state(1, false);
+        rgblight_set_layer_state(2, false);
     }
 }
