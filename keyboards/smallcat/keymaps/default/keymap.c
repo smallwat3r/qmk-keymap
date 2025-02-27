@@ -229,8 +229,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case CK_7: return M_ION;    // s -> sion
         case CK_6: return M_MENT;   // t -> tment
         case KC_V: return M_ER;     // v -> ver
-        case KC_W: return M_HAT;   // w -> what
-        case KC_Z: return M_ERO;   // z -> zero
+        case KC_W: return M_HAT;    // w -> what
+        case KC_Z: return M_ERO;    // z -> zero
         case CK_17: return M_OU;    // y -> you
         case KC_EQL: return KC_GT;  // = -> =>
         case SELWBAK: return SELWFWD;
@@ -311,9 +311,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // rgb light
 
-const rgblight_segment_t PROGMEM default_layer[]  = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_PURPLE});
+const rgblight_segment_t PROGMEM default_layer[]  = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_WHITE});
 const rgblight_segment_t PROGMEM capslock_layer[]  = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_RED});
-const rgblight_segment_t PROGMEM osm_shift_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_YELLOW});
+const rgblight_segment_t PROGMEM osm_shift_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_GREEN});
 
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(default_layer, capslock_layer, osm_shift_layer);
 void keyboard_post_init_user(void) {
