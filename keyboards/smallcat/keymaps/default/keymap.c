@@ -17,7 +17,7 @@ enum custom_keycodes {
     SELWBAK,
     SELWFWD,
     SELLINE,
-    // macros invoked from magic combo
+    // macros invoked from magic key
     M_POST_DOT,
     M_POST_COMMA,
     M_POST_B,
