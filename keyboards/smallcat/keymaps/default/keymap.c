@@ -34,6 +34,7 @@ enum custom_keycodes {
     M_POST_R,
     M_POST_S,
     M_POST_T,
+    M_POST_U,
     M_POST_V,
     M_POST_W,
     M_POST_Y,
@@ -245,6 +246,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case CK_5: return M_POST_R;
         case CK_7: return M_POST_S;
         case CK_6: return M_POST_T;
+        case CK_16: return M_POST_U;
         case KC_V: return M_POST_V;
         case KC_W: return M_POST_W;
         case KC_Z: return M_POST_Z;
@@ -303,50 +305,58 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
             case C_KC_ARROW: SEND_STRING("->"); return false;
             // alt repeat macros
-            case M_POST_DOT: SEND_STRING("./"); break;  // .->./
-            case M_POST_COMMA: SEND_STRING(" but"); break;  // ,-> but
-            case M_POST_B:
+            case M_POST_DOT:
                 if (get_repeat_key_count() == -1 ) {
-                    SEND_STRING("ecause");  // b->ecause
-                } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("\b\b\b\b\b\before");  // b->efore
+                    SEND_STRING("./");  // .->./
+                } else if (get_repeat_key_count() <= -2) {
+                    // continue to append updir characters
+                    SEND_STRING("../");
                 }
                 break;
-            case M_POST_C: SEND_STRING("lass"); break;  // c->lass
-            case M_POST_D: SEND_STRING("ef"); break;  // d->ef
-            case M_POST_E: SEND_STRING("lse"); break;  // e->lse
-            case M_POST_I: SEND_STRING("mport"); break;  // i->mport
-            case M_POST_I_UP: SEND_STRING("'m"); break;  // I->'m
-            case M_POST_J: SEND_STRING("ust"); break;  // j->ust
-            case M_POST_M: SEND_STRING("ent"); break;  // m->ent
-            case M_POST_N: SEND_STRING("ion"); break;  // n->ion
-            case M_POST_O: SEND_STRING("n't"); break;  // o->n't
+            case M_POST_COMMA: SEND_STRING(" but "); break;  // ,-> but
+            case M_POST_B:
+                if (get_repeat_key_count() == -1 ) {
+                    SEND_STRING("ecause ");  // b->ecause
+                } else if (get_repeat_key_count() == -2) {
+                    SEND_STRING("\b\b\b\b\b\b\before ");  // b->efore
+                }
+                break;
+            case M_POST_C: SEND_STRING("lass "); break;  // c->lass
+            case M_POST_D: SEND_STRING("ef "); break;  // d->ef
+            case M_POST_E: SEND_STRING("lse "); break;  // e->lse
+            case M_POST_I: SEND_STRING("mport "); break;  // i->mport
+            case M_POST_I_UP: SEND_STRING("'m "); break;  // I->'m
+            case M_POST_J: SEND_STRING("ust "); break;  // j->ust
+            case M_POST_M: SEND_STRING("ent "); break;  // m->ent
+            case M_POST_N: SEND_STRING("ion "); break;  // n->ion
+            case M_POST_O: SEND_STRING("n't "); break;  // o->n't
             case M_POST_Q: SEND_STRING("uen"); break;  // q->uen
-            case M_POST_R: SEND_STRING("eturn"); break;  // r->eturn
+            case M_POST_R: SEND_STRING("eturn "); break;  // r->eturn
             case M_POST_S:
                 if (get_repeat_key_count() == -1 ) {
-                    SEND_STRING("ion");  // s->ion
+                    SEND_STRING("ion ");  // s->ion
                 } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("'nt");  // s->'nt
+                    SEND_STRING("\b\b\b\b'nt ");  // s->'nt
                 }
                 break;
             case M_POST_T:
                 if (get_repeat_key_count() == -1 ) {
-                    SEND_STRING("ment");  // t->ment
+                    SEND_STRING("ment ");  // t->ment
                 } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("\b\b\b\bhank");  // t->hank
+                    SEND_STRING("\b\b\b\bhank ");  // t->hank
                 }
                 break;
+            case M_POST_U: SEND_STRING("pdate "); break;  // u->pdate
             case M_POST_V: SEND_STRING("er"); break;  // v->er
             case M_POST_W:
                 if (get_repeat_key_count() == -1 ) {
-                    SEND_STRING("hat");  // w->hat
+                    SEND_STRING("hat ");  // w->hat
                 } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("\b\b\bhich");  // w->hich
+                    SEND_STRING("\b\b\b\bhich ");  // w->hich
                 }
                 break;
             case M_POST_Y: SEND_STRING("ou"); break;  // y->ou
-            case M_POST_Z: SEND_STRING("zero"); break;  // z->ero
+            case M_POST_Z: SEND_STRING("zero "); break;  // z->ero
         }
     }
     return true;

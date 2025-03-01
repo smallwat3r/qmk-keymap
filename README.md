@@ -35,12 +35,13 @@ I'm using an implementation of Magic Key (❖):
 | <kbd>r</kbd><kbd>❖</kbd> | return      |              |
 | <kbd>s</kbd><kbd>❖</kbd> | sion        | sn't         |
 | <kbd>t</kbd><kbd>❖</kbd> | tment       | thank        |
+| <kbd>u</kbd><kbd>❖</kbd> | pdate       |              |
 | <kbd>v</kbd><kbd>❖</kbd> | ver         |              |
 | <kbd>w</kbd><kbd>❖</kbd> | what        | which        |
 | <kbd>y</kbd><kbd>❖</kbd> | you         |              |
 | <kbd>z</kbd><kbd>❖</kbd> | zero        |              |
 | <kbd>,</kbd><kbd>❖</kbd> | , but       |              |
-| <kbd>.</kbd><kbd>❖</kbd> | ../         |              |
+| <kbd>.</kbd><kbd>❖</kbd> | ./          | ../          |
 | <kbd>+</kbd><kbd>❖</kbd> | +=          |              |
 | <kbd>-</kbd><kbd>❖</kbd> | -=          |              |
 | <kbd>=</kbd><kbd>❖</kbd> | =>          |              |
