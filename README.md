@@ -23,24 +23,24 @@ I'm using an implementation of Magic Key (❖):
 | Sequence                 | First ❖ tap | Second ❖ tap |
 |--------------------------|-------------|--------------|
 | <kbd>b</kbd><kbd>❖</kbd> | because␣    | before␣      |
-| <kbd>c</kbd><kbd>❖</kbd> | class␣       |              |
+| <kbd>c</kbd><kbd>❖</kbd> | class␣      |              |
 | <kbd>d</kbd><kbd>❖</kbd> | def␣        |              |
-| <kbd>e</kbd><kbd>❖</kbd> | else␣        |              |
-| <kbd>i</kbd><kbd>❖</kbd> | import␣      |              |
-| <kbd>I</kbd><kbd>❖</kbd> | I'm␣         |              |
-| <kbd>j</kbd><kbd>❖</kbd> | just␣        |              |
-| <kbd>m</kbd><kbd>❖</kbd> | ment␣        |              |
-| <kbd>n</kbd><kbd>❖</kbd> | nion␣        |              |
-| <kbd>o</kbd><kbd>❖</kbd> | on't␣        |              |
-| <kbd>r</kbd><kbd>❖</kbd> | return␣      |              |
-| <kbd>s</kbd><kbd>❖</kbd> | sion␣        | sn't␣         |
-| <kbd>t</kbd><kbd>❖</kbd> | tment␣       | thank␣        |
-| <kbd>u</kbd><kbd>❖</kbd> | update␣      |              |
+| <kbd>e</kbd><kbd>❖</kbd> | else␣       |              |
+| <kbd>i</kbd><kbd>❖</kbd> | import␣     |              |
+| <kbd>I</kbd><kbd>❖</kbd> | I'm␣        |              |
+| <kbd>j</kbd><kbd>❖</kbd> | just␣       |              |
+| <kbd>m</kbd><kbd>❖</kbd> | ment␣       |              |
+| <kbd>n</kbd><kbd>❖</kbd> | nion␣       |              |
+| <kbd>o</kbd><kbd>❖</kbd> | on't␣       |              |
+| <kbd>r</kbd><kbd>❖</kbd> | return␣     |              |
+| <kbd>s</kbd><kbd>❖</kbd> | sion␣       | sn't␣        |
+| <kbd>t</kbd><kbd>❖</kbd> | tment␣      | thank       |
+| <kbd>u</kbd><kbd>❖</kbd> | update␣     |              |
 | <kbd>v</kbd><kbd>❖</kbd> | ver         |              |
-| <kbd>w</kbd><kbd>❖</kbd> | what␣        | which␣        |
+| <kbd>w</kbd><kbd>❖</kbd> | what␣       | which␣       |
 | <kbd>y</kbd><kbd>❖</kbd> | you         |              |
-| <kbd>z</kbd><kbd>❖</kbd> | zero␣        |              |
-| <kbd>,</kbd><kbd>❖</kbd> | ,␣but␣       |              |
+| <kbd>z</kbd><kbd>❖</kbd> | zero␣       |              |
+| <kbd>,</kbd><kbd>❖</kbd> | ,␣but␣      |              |
 | <kbd>.</kbd><kbd>❖</kbd> | ./          | ../          |
 | <kbd>+</kbd><kbd>❖</kbd> | +=          |              |
 | <kbd>-</kbd><kbd>❖</kbd> | -=          |              |
