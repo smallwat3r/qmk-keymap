@@ -12,6 +12,34 @@ enum layers {
     SYS,
 };
 
+enum custom_keycodes {
+    C_KC_ARROW = SAFE_RANGE,
+    SELWBAK,
+    SELWFWD,
+    SELLINE,
+    // macros invoked from magic combo
+    M_POST_DOT,
+    M_POST_COMMA,
+    M_POST_B,
+    M_POST_C,
+    M_POST_D,
+    M_POST_E,
+    M_POST_I,
+    M_POST_I_UP,
+    M_POST_J,
+    M_POST_M,
+    M_POST_N,
+    M_POST_O,
+    M_POST_Q,
+    M_POST_R,
+    M_POST_S,
+    M_POST_T,
+    M_POST_V,
+    M_POST_W,
+    M_POST_Y,
+    M_POST_Z,
+};
+
 // define one alias per key to use on the base layer, this is a
 // useful level of abstraction in order to define combos
 #define CK_1 KC_L
@@ -36,38 +64,11 @@ enum layers {
 #define CK_20 LT(SYM, KC_E)
 #define CK_21 MT(MOD_LSFT, KC_I)
 #define CK_22 MT(MOD_LGUI, KC_P)
-#define CK_23 MT(MOD_LALT, KC_COMM)
+#define CK_23 QK_AREP  // sacrifying ALT for magic key
 #define CK_24 MT(MOD_LCTL, KC_DOT)
 #define CK_25 LT(SYS, KC_BSPC)
 #define CK_26 LT(SYM, KC_ENT)
 #define KC_EURO LSFT(LALT(KC_2))
-
-enum custom_keycodes {
-    C_KC_ARROW = SAFE_RANGE,
-    SELWBAK,
-    SELWFWD,
-    SELLINE,
-    // macros invoked from magic combo
-    M_UPDIR,
-    M_ION,
-    M_MENT,
-    M_ENT,
-    M_OU,
-    M_ECAUSE,
-    M_ON,
-    M_UST,
-    M_ER,
-    M_ERO,
-    M_HAT,
-    M_BUT,
-    M_ETURN,
-    M_UEN,
-    M_MPORT,
-    M_LASS,
-    M_EF,
-    M_NT,
-    M_IAM,
-};
 
 // need to be included after custom keycode definition in order to use the
 // keycodes in combos.def
@@ -207,32 +208,48 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
+uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
+    switch (combo->keycode) {
+        case C_LB_W:
+        case C_LB_B:
+        case C_RB_K:
+        case C_LB_SH:
+        case C_LB_WH:
+        case C_LB_WR:
+            return 50;
+        case C_RB_ESC:
+            return 20;
+    }
+    return COMBO_TERM;  // 35
+}
+
 // clang-format off
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case CK_24: return M_UPDIR;  // . -> ..
-        case CK_23: return M_BUT;    // , -> , but
-        case KC_B: return M_ECAUSE;  // b -> because
-        case CK_11: return M_LASS;   // c -> class
-        case CK_2: return M_EF;      // d -> def
+        case CK_24: return M_POST_DOT;
+        case CK_23: return M_POST_COMMA;
+        case KC_B: return M_POST_B;
+        case CK_11: return M_POST_C;
+        case CK_2: return M_POST_D;
+        case CK_20: return M_POST_E;
         case CK_21:
             if (mods & MOD_MASK_SHIFT) {
-                return M_IAM;       // I -> I'm
+                return M_POST_I_UP;
             }
-            return M_MPORT;         // i -> import
-        case KC_J: return M_UST;    // j -> just
-        case CK_3: return M_ENT;    // m -> ment
-        case CK_18: return M_ION;   // n -> nion
-        case CK_15: return M_NT;    // o -> o'nt
-        case KC_Q: return M_UEN;    // q -> quen
-        case CK_5: return M_ETURN;  // r -> return
-        case CK_7: return M_ION;    // s -> sion
-        case CK_6: return M_MENT;   // t -> tment
-        case KC_V: return M_ER;     // v -> ver
-        case KC_W: return M_HAT;    // w -> what
-        case KC_Z: return M_ERO;    // z -> zero
-        case CK_17: return M_OU;    // y -> you
-        case KC_EQL: return KC_GT;  // = -> =>
+            return M_POST_I;
+        case KC_J: return M_POST_J;
+        case CK_3: return M_POST_M;
+        case CK_18: return M_POST_N;
+        case CK_15: return M_POST_O;
+        case KC_Q: return M_POST_Q;
+        case CK_5: return M_POST_R;
+        case CK_7: return M_POST_S;
+        case CK_6: return M_POST_T;
+        case KC_V: return M_POST_V;
+        case KC_W: return M_POST_W;
+        case KC_Z: return M_POST_Z;
+        case CK_17: return M_POST_Y;
+        case KC_EQL: return KC_GT;
         case SELWBAK: return SELWFWD;
         case SELWFWD: return SELWBAK;
         case KC_PLUS:
@@ -249,7 +266,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_RPRN:
         case KC_UNDS:
         case KC_COLN:
-            return KC_EQL;  // append =
+            return KC_EQL;
     }
     return KC_TRNS;
 }
@@ -285,25 +302,51 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
             case C_KC_ARROW: SEND_STRING("->"); return false;
-            case M_UPDIR: SEND_STRING("./"); break;
-            case M_ION: SEND_STRING("ion"); break;
-            case M_ENT: SEND_STRING("ent"); break;
-            case M_UEN: SEND_STRING("uen"); break;
-            case M_MENT: SEND_STRING("ment"); break;
-            case M_OU: SEND_STRING("ou"); break;
-            case M_ON: SEND_STRING("on"); break;
-            case M_ECAUSE: SEND_STRING("ecause"); break;
-            case M_NT: SEND_STRING("n't"); break;
-            case M_IAM: SEND_STRING("'m"); break;
-            case M_UST: SEND_STRING("ust"); break;
-            case M_ER: SEND_STRING("er"); break;
-            case M_HAT: SEND_STRING("hat"); break;
-            case M_BUT: SEND_STRING(" but"); break;
-            case M_ERO: SEND_STRING("zero"); break;
-            case M_ETURN: SEND_STRING("eturn"); break;
-            case M_MPORT: SEND_STRING("mport"); break;
-            case M_LASS: SEND_STRING("lass"); break;
-            case M_EF: SEND_STRING("ef"); break;
+            // alt repeat macros
+            case M_POST_DOT: SEND_STRING("./"); break;  // .->./
+            case M_POST_COMMA: SEND_STRING(" but"); break;  // ,-> but
+            case M_POST_B:
+                if (get_repeat_key_count() == -1 ) {
+                    SEND_STRING("ecause");  // b->ecause
+                } else if (get_repeat_key_count() == -2) {
+                    SEND_STRING("\b\b\b\b\b\before");  // b->efore
+                }
+                break;
+            case M_POST_C: SEND_STRING("lass"); break;  // c->lass
+            case M_POST_D: SEND_STRING("ef"); break;  // d->ef
+            case M_POST_E: SEND_STRING("lse"); break;  // e->lse
+            case M_POST_I: SEND_STRING("mport"); break;  // i->mport
+            case M_POST_I_UP: SEND_STRING("'m"); break;  // I->'m
+            case M_POST_J: SEND_STRING("ust"); break;  // j->ust
+            case M_POST_M: SEND_STRING("ent"); break;  // m->ent
+            case M_POST_N: SEND_STRING("ion"); break;  // n->ion
+            case M_POST_O: SEND_STRING("n't"); break;  // o->n't
+            case M_POST_Q: SEND_STRING("uen"); break;  // q->uen
+            case M_POST_R: SEND_STRING("eturn"); break;  // r->eturn
+            case M_POST_S:
+                if (get_repeat_key_count() == -1 ) {
+                    SEND_STRING("ion");  // s->ion
+                } else if (get_repeat_key_count() == -2) {
+                    SEND_STRING("'nt");  // s->'nt
+                }
+                break;
+            case M_POST_T:
+                if (get_repeat_key_count() == -1 ) {
+                    SEND_STRING("ment");  // t->ment
+                } else if (get_repeat_key_count() == -2) {
+                    SEND_STRING("\b\b\b\bhank");  // t->hank
+                }
+                break;
+            case M_POST_V: SEND_STRING("er"); break;  // v->er
+            case M_POST_W:
+                if (get_repeat_key_count() == -1 ) {
+                    SEND_STRING("hat");  // w->hat
+                } else if (get_repeat_key_count() == -2) {
+                    SEND_STRING("\b\b\bhich");  // w->hich
+                }
+                break;
+            case M_POST_Y: SEND_STRING("ou"); break;  // y->ou
+            case M_POST_Z: SEND_STRING("zero"); break;  // z->ero
         }
     }
     return true;

@@ -10,7 +10,7 @@ COMB(C_LB_LPRN,  KC_LPRN,  CK_9,   CK_11)
 SUBS(C_LB_TH,    "th",     CK_6,   CK_7)
 SUBS(C_LB_SH,    "sh",     CK_5,   CK_7)
 SUBS(C_LB_WH,    "wh",     CK_4,   CK_7)
-COMB(C_LB_AREP,  QK_AREP,  CK_5,   CK_6,   CK_7)
+SUBS(C_LB_WR,    "wr",     CK_4,   CK_6)
 
 // right base
 COMB(C_RB_J,      KC_J,           CK_14,  CK_15)
@@ -25,7 +25,7 @@ COMB(C_RB_DASH,   KC_MINS,        CK_18,  CK_20)
 SUBS(C_RB_YOU,    "you",          CK_16,  CK_18)
 SUBS(C_RB_ION,    "ion",          CK_22,  CK_20)
 SUBS(C_RB_ING,    "ing",          CK_18,  CK_21)
-COMB(C_RB_AREP,   QK_AREP,        CK_18,  CK_19,  CK_20)
+COMB(C_RB_COMM,   KC_COMM,        CK_22,  CK_23)
 
 // both base
 COMB(C_BB_CAPS,   KC_CAPS,     CK_8,  CK_17)

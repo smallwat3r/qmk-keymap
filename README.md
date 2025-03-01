@@ -18,28 +18,29 @@ qmk flash -kb smallcat -km default
 
 ![keymap](./images/keymap.png)
 
-I'm using an implementation of Magic Key (❖) on the 3 home key combos (<kbd>R</kbd><kbd>T</kbd><kbd>S</kbd> and <kbd>N</kbd><kbd>A</kbd><kbd>E</kbd>).
+I'm using an implementation of Magic Key (❖):
 
-| Combo                    | Output |
-|--------------------------|--------|
-| <kbd>b</kbd><kbd>❖</kbd> | because  |
-| <kbd>c</kbd><kbd>❖</kbd> | class  |
-| <kbd>d</kbd><kbd>❖</kbd> | def    |
-| <kbd>i</kbd><kbd>❖</kbd> | import |
-| <kbd>I</kbd><kbd>❖</kbd> | I'm    |
-| <kbd>j</kbd><kbd>❖</kbd> | just   |
-| <kbd>m</kbd><kbd>❖</kbd> | ment   |
-| <kbd>n</kbd><kbd>❖</kbd> | nion   |
-| <kbd>o</kbd><kbd>❖</kbd> | on't   |
-| <kbd>r</kbd><kbd>❖</kbd> | return |
-| <kbd>s</kbd><kbd>❖</kbd> | sion   |
-| <kbd>t</kbd><kbd>❖</kbd> | tment  |
-| <kbd>v</kbd><kbd>❖</kbd> | ver    |
-| <kbd>w</kbd><kbd>❖</kbd> | what   |
-| <kbd>y</kbd><kbd>❖</kbd> | you    |
-| <kbd>z</kbd><kbd>❖</kbd> | zero   |
-| <kbd>,</kbd><kbd>❖</kbd> | , but  |
-| <kbd>.</kbd><kbd>❖</kbd> | ../    |
-| <kbd>+</kbd><kbd>❖</kbd> | +=     |
-| <kbd>-</kbd><kbd>❖</kbd> | -=     |
-| <kbd>=</kbd><kbd>❖</kbd> | =>     |
+| Combo                    | First tap | Second tap |
+|--------------------------|-----------|------------|
+| <kbd>b</kbd><kbd>❖</kbd> | because   | before     |
+| <kbd>c</kbd><kbd>❖</kbd> | class     |            |
+| <kbd>d</kbd><kbd>❖</kbd> | def       |            |
+| <kbd>e</kbd><kbd>❖</kbd> | else      |            |
+| <kbd>i</kbd><kbd>❖</kbd> | import    |            |
+| <kbd>I</kbd><kbd>❖</kbd> | I'm       |            |
+| <kbd>j</kbd><kbd>❖</kbd> | just      |            |
+| <kbd>m</kbd><kbd>❖</kbd> | ment      |            |
+| <kbd>n</kbd><kbd>❖</kbd> | nion      |            |
+| <kbd>o</kbd><kbd>❖</kbd> | on't      |            |
+| <kbd>r</kbd><kbd>❖</kbd> | return    |            |
+| <kbd>s</kbd><kbd>❖</kbd> | sion      | sn't       |
+| <kbd>t</kbd><kbd>❖</kbd> | tment     | thank      |
+| <kbd>v</kbd><kbd>❖</kbd> | ver       |            |
+| <kbd>w</kbd><kbd>❖</kbd> | what      | which      |
+| <kbd>y</kbd><kbd>❖</kbd> | you       |            |
+| <kbd>z</kbd><kbd>❖</kbd> | zero      |            |
+| <kbd>,</kbd><kbd>❖</kbd> | , but     |            |
+| <kbd>.</kbd><kbd>❖</kbd> | ../       |            |
+| <kbd>+</kbd><kbd>❖</kbd> | +=        |            |
+| <kbd>-</kbd><kbd>❖</kbd> | -=        |            |
+| <kbd>=</kbd><kbd>❖</kbd> | =>        |            |
