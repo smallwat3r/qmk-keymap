@@ -152,7 +152,7 @@ enum custom_keycodes {
 #define  ___SYS__L2___  KC_HOME,         KC_WH_R,        KC_WH_U,  KC_WH_D,  KC_WH_L
 #define  ___SYS__R2___  KC_MS_L,         KC_MS_D,        KC_MS_U,  KC_MS_R,  KC_END
 #define  ___SYS__L3___  MS_ACL1,         KC_BRID,        KC_BRIU
-#define  ___SYS__R3___  G(KC_KP_MINUS),  G(KC_KP_PLUS),  KC_TRNS
+#define  ___SYS__R3___  G(KC_KP_MINUS),  G(KC_KP_PLUS),  RGB_TOG
 #define  ___SYS__L4___  KC_BTN2,         KC_BTN1
 #define  ___SYS__R4___  KC_TRNS,         KC_TRNS
 
@@ -229,8 +229,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case CK_24: return M_POST_DOT;
         case CK_23: return M_POST_COMMA;
-        case CK_3: return M_POST_A;
-        case CK_10: return M_POST_B;
+        case CK_19: return M_POST_A;
+        case KC_B: return M_POST_B;
         case CK_11: return M_POST_C;
         case CK_2: return M_POST_D;
         case CK_20: return M_POST_E;
