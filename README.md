@@ -22,6 +22,7 @@ I'm using an implementation of Magic Key (❖):
 
 | Sequence                 | First ❖ tap | Second ❖ tap |
 |--------------------------|-------------|--------------|
+| <kbd>a</kbd><kbd>❖</kbd> | about␣      |              |
 | <kbd>b</kbd><kbd>❖</kbd> | because␣    | before␣      |
 | <kbd>c</kbd><kbd>❖</kbd> | class␣      |              |
 | <kbd>d</kbd><kbd>❖</kbd> | def␣        |              |
@@ -34,7 +35,7 @@ I'm using an implementation of Magic Key (❖):
 | <kbd>o</kbd><kbd>❖</kbd> | on't␣       |              |
 | <kbd>r</kbd><kbd>❖</kbd> | return␣     |              |
 | <kbd>s</kbd><kbd>❖</kbd> | sion␣       | sn't␣        |
-| <kbd>t</kbd><kbd>❖</kbd> | tment␣      | thank       |
+| <kbd>t</kbd><kbd>❖</kbd> | tment␣      | thank        |
 | <kbd>u</kbd><kbd>❖</kbd> | update␣     |              |
 | <kbd>v</kbd><kbd>❖</kbd> | ver         |              |
 | <kbd>w</kbd><kbd>❖</kbd> | what␣       | which␣       |

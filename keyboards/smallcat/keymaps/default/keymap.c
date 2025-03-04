@@ -20,6 +20,7 @@ enum custom_keycodes {
     // macros invoked from magic key
     M_POST_DOT,
     M_POST_COMMA,
+    M_POST_A,
     M_POST_B,
     M_POST_C,
     M_POST_D,
@@ -45,8 +46,8 @@ enum custom_keycodes {
 // useful level of abstraction in order to define combos
 #define CK_1 KC_L
 #define CK_2 KC_D
-#define CK_3 KC_M
-#define CK_4 MT(MOD_LSFT, KC_H)
+#define CK_3 KC_P
+#define CK_4 MT(MOD_LSFT, KC_M)
 #define CK_5 LT(SYM, KC_R)
 #define CK_6 LT(NUM, KC_T)
 #define CK_7 LT(NAV, KC_S)
@@ -54,7 +55,7 @@ enum custom_keycodes {
 #define CK_9 MT(MOD_LCTL, KC_TAB)
 #define CK_10 MT(MOD_LALT, KC_QUOT)
 #define CK_11 MT(MOD_LGUI, KC_C)
-#define CK_12 MO(EDIT)
+#define CK_12 LT(EDIT, QK_AREP)
 #define CK_13 LT(FUN, KC_SPC)
 #define CK_14 KC_F
 #define CK_15 KC_O
@@ -64,8 +65,8 @@ enum custom_keycodes {
 #define CK_19 LT(NUM, KC_A)
 #define CK_20 LT(SYM, KC_E)
 #define CK_21 MT(MOD_LSFT, KC_I)
-#define CK_22 MT(MOD_LGUI, KC_P)
-#define CK_23 QK_AREP  // sacrifying ALT for magic key
+#define CK_22 MT(MOD_LGUI, KC_H)
+#define CK_23 MT(MOD_LALT, KC_COMMA)
 #define CK_24 MT(MOD_LCTL, KC_DOT)
 #define CK_25 LT(SYS, KC_BSPC)
 #define CK_26 LT(SYM, KC_ENT)
@@ -212,14 +213,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     switch (combo->keycode) {
         case C_LB_W:
-        case C_LB_B:
         case C_RB_K:
         case C_LB_SH:
         case C_LB_WH:
-        case C_LB_WR:
+        case C_LB_B:
             return 50;
         case C_RB_ESC:
-            return 20;
+            return 15;
     }
     return COMBO_TERM;  // 35
 }
@@ -229,7 +229,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case CK_24: return M_POST_DOT;
         case CK_23: return M_POST_COMMA;
-        case KC_B: return M_POST_B;
+        case CK_3: return M_POST_A;
+        case CK_10: return M_POST_B;
         case CK_11: return M_POST_C;
         case CK_2: return M_POST_D;
         case CK_20: return M_POST_E;
@@ -278,6 +279,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_select_word(keycode, record)) { return false; }
 
     switch (keycode) {
+        case CK_12:
+            if (record->tap.count) {
+                process_repeat_key(QK_AREP, record);
+                return false;
+            }
+            return true;
         case SELWBAK: // backward word selection.
             if (record->event.pressed) {
                 select_word_register('B');
@@ -314,6 +321,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 break;
             case M_POST_COMMA: SEND_STRING(" but "); break;  // ,-> but
+            case M_POST_A: SEND_STRING("bout "); break;  // a->bout
             case M_POST_B:
                 if (get_repeat_key_count() == -1 ) {
                     SEND_STRING("ecause ");  // b->ecause
@@ -360,6 +368,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
     return true;
+}
+
+bool remember_last_key_user(uint16_t keycode, keyrecord_t* record, uint8_t* remembered_mods) {
+  switch (keycode) {
+    case CK_12:
+      return false;
+  }
+  return true;
 }
 
 // rgb light
