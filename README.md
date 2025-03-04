@@ -1,6 +1,6 @@
 # Smallwat3r's QMK keymap
 
-Layout heavily inspired from Graphite with some modifications in order to accommodate 26 keys and reduce usage of pinky fingers.
+Layout inspired from Graphite with some modifications in order to accommodate 26 keys and reduce usage of pinky fingers.
 
 Highly relying on combos from the base layer. I'm currently using very light switches (Ambients Nocturnal from Kailh, 20g), which makes using combos very easy.
 
