@@ -402,6 +402,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record, uint8_t* remembered_mods) {
     switch (keycode) {
+        // required in order for AREP to work with layer tap
         case CK_12:
             return false;
     }
