@@ -11,11 +11,6 @@
     "board": "GENERIC_RP_RP2040",
     "bootloader": "rp2040",
     "processor": "RP2040",
-    "features": {
-        "extrakey": true,
-        "mousekey": true,
-        "unicode": true
-    },
     "matrix_pins": {
         "direct": [
             [null,    "GP26",  "GP27",  "GP28",  null],
