@@ -351,8 +351,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("ent ");
                 break; // m->ent
             case M_POST_N:
-                SEND_STRING("ion ");
-                break; // n->ion
+                SEND_STRING("n't ");
+                break; // n->'t
             case M_POST_O:
                 SEND_STRING("n't ");
                 break; // o->n't
@@ -364,9 +364,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break; // r->eturn
             case M_POST_S:
                 if (get_repeat_key_count() == -1) {
-                    SEND_STRING("ion "); // s->ion
-                } else if (get_repeat_key_count() == -2) {
                     SEND_STRING("\b\b\b\b'nt "); // s->'nt
+                } else if (get_repeat_key_count() == -2) {
+                    SEND_STRING("ion "); // s->ion
                 }
                 break;
             case M_POST_T:

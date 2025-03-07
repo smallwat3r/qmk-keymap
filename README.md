@@ -31,10 +31,10 @@ I'm using an implementation of Magic Key (❖):
 | <kbd>I</kbd><kbd>❖</kbd> | I'm␣        |              |
 | <kbd>j</kbd><kbd>❖</kbd> | just␣       |              |
 | <kbd>m</kbd><kbd>❖</kbd> | ment␣       |              |
-| <kbd>n</kbd><kbd>❖</kbd> | nion␣       |              |
+| <kbd>n</kbd><kbd>❖</kbd> | 't␣         |              |
 | <kbd>o</kbd><kbd>❖</kbd> | on't␣       |              |
 | <kbd>r</kbd><kbd>❖</kbd> | return␣     |              |
-| <kbd>s</kbd><kbd>❖</kbd> | sion␣       | sn't␣        |
+| <kbd>s</kbd><kbd>❖</kbd> | sn't␣       | sion␣        |
 | <kbd>t</kbd><kbd>❖</kbd> | tment␣      | thank        |
 | <kbd>u</kbd><kbd>❖</kbd> | update␣     |              |
 | <kbd>v</kbd><kbd>❖</kbd> | ver         |              |
