@@ -74,12 +74,6 @@ enum custom_keycodes {
 #define  CK_25  LT(SYS,       KC_BSPC)
 #define  CK_26  LT(SYM,       KC_ENT)
 
-// additional aliases for 30 keys
-#define CK_ADD_1 KC_W
-#define CK_ADD_2 KC_B
-#define CK_ADD_3 KC_K
-#define CK_ADD_4 KC_ESC
-
 #define KC_EURO LSFT(LALT(KC_2))
 
 // need to be included after custom keycode definition in order to use the
@@ -87,16 +81,16 @@ enum custom_keycodes {
 #include "g/keymap_combo.h"
 
 // base
-#define  ___BASE_L1___  CK_1,      CK_2,   CK_3
-#define  ___BASE_L1_30  CK_ADD_1,  CK_1,   CK_2,   CK_3,   CK_ADD_2
-#define  ___BASE_R1___  CK_14,     CK_15,  CK_16
-#define  ___BASE_R1_30  CK_ADD_3,  CK_14,  CK_15,  CK_16,  CK_ADD_4
-#define  ___BASE_L2___  CK_4,      CK_5,   CK_6,   CK_7,   CK_8
-#define  ___BASE_R2___  CK_17,     CK_18,  CK_19,  CK_20,  CK_21
-#define  ___BASE_L3___  CK_9,      CK_10,  CK_11
-#define  ___BASE_R3___  CK_22,     CK_23,  CK_24
-#define  ___BASE_L4___  CK_12,     CK_13
-#define  ___BASE_R4___  CK_25,     CK_26
+#define  ___BASE_L1___  CK_1,   CK_2,   CK_3
+#define  ___BASE_L1_30  KC_W,   CK_1,   CK_2,   CK_3,   KC_B
+#define  ___BASE_R1___  CK_14,  CK_15,  CK_16
+#define  ___BASE_R1_30  KC_K,   CK_14,  CK_15,  CK_16,  KC_ESC
+#define  ___BASE_L2___  CK_4,   CK_5,   CK_6,   CK_7,   CK_8
+#define  ___BASE_R2___  CK_17,  CK_18,  CK_19,  CK_20,  CK_21
+#define  ___BASE_L3___  CK_9,   CK_10,  CK_11
+#define  ___BASE_R3___  CK_22,  CK_23,  CK_24
+#define  ___BASE_L4___  CK_12,  CK_13
+#define  ___BASE_R4___  CK_25,  CK_26
 
 // num
 #define  ___NUM__L1___  KC_7,     KC_8,   KC_9
@@ -186,14 +180,17 @@ enum custom_keycodes {
 
 uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     switch (combo->keycode) {
-        case C_LB_W:
-        case C_RB_K:
         case C_LB_SH:
         case C_LB_WH:
+            return 50;
+        #ifndef KEY_COUNT_30
+        case C_LB_W:
         case C_LB_B:
+        case C_RB_K:
             return 50;
         case C_RB_ESC:
             return 15;
+        #endif
     }
     return COMBO_TERM; // 35
 }

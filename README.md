@@ -8,12 +8,12 @@ I use `./cp-smallcat` to copy the Smallcat keyboard configs onto my local QMK fi
 
 Compile firmware
 ```
-qmk compile -kb smallcat -km default 
+qmk compile -kb smallcat/26 -km default 
 ```
 
 Flash firmware
 ```
-qmk flash -kb smallcat -km default 
+qmk flash -kb smallcat/26 -km default 
 ```
 
 ![keymap](./images/keymap.png)

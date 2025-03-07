@@ -1,6 +1,6 @@
 {
-    "keyboard_name": "Smallcat",
-    "url": "",
+    "keyboard_name": "smallcat30",
+    "url": "https://github.com/smallwat3r/smallcat",
     "maintainer": "smallwat3r",
     "manufacturer": "smallwat3r",
     "usb": {
@@ -18,7 +18,7 @@
     },
     "matrix_pins": {
         "direct": [
-            [null, "GP26", "GP27", "GP28", null],
+            ["GP8", "GP26", "GP27", "GP28", "GP29"],
             ["GP15", "GP14", "GP13", "GP12", "GP0"],
             [null, "GP5", "GP6", "GP7", null],
             ["GP10", "GP11", null, null, null]
@@ -29,7 +29,7 @@
         "matrix_pins": {
             "right": {
                 "direct": [
-                    [null, "GP28", "GP27", "GP26", null],
+                    ["GP29", "GP28", "GP27", "GP26", "GP8"],
                     ["GP0", "GP12", "GP13", "GP14", "GP15"],
                     [null, "GP7", "GP6", "GP5", null],
                     ["GP11", "GP10", null, null, null]
@@ -41,21 +41,24 @@
             "driver": "vendor"
         }
     },
-    "community_layouts": ["split_3x5_2"],
     "layout_aliases": {
-        "LAYOUT": "LAYOUT_split_3x5_2"
+        "LAYOUT": "LAYOUT_split_thirty"
     },
     "layouts": {
-        "LAYOUT_split_3x5_2": {
+        "LAYOUT_split_thirty": {
             "layout":
             [
+                {"x": 0, "y": 0.93, "matrix": [0, 0]},
                 {"x": 1, "y": 0.31, "matrix": [0, 1]},
                 {"x": 2, "y": 0, "matrix": [0, 2]},
                 {"x": 3, "y": 0.28, "matrix": [0, 3]},
+                {"x": 4, "y": 0.42, "matrix": [0, 4]},
 
+                {"x": 7, "y": 0.42, "matrix": [4, 0]},
                 {"x": 8, "y": 0.28, "matrix": [4, 1]},
                 {"x": 9, "y": 0, "matrix": [4, 2]},
                 {"x": 10, "y": 0.31, "matrix": [4, 3]},
+                {"x": 11, "y": 0.93, "matrix": [4, 4]},
 
                 {"x": 0, "y": 1.93, "matrix": [1, 0]},
                 {"x": 1, "y": 1.31, "matrix": [1, 1]},
