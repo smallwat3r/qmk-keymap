@@ -219,7 +219,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
             return M_POST_I;
         case KC_J:
             return M_POST_J;
-        case CK_3:
+        case CK_4:
             return M_POST_M;
         case CK_18:
             return M_POST_N;
