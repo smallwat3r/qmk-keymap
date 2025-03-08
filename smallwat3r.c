@@ -17,7 +17,7 @@ enum layers {
 
 enum custom_keycodes {
     C_KC_ARROW = SAFE_RANGE,
-    C_KC_TZERO,
+    C_KC_000,
     SELWBAK,
     SELWFWD,
     SELLINE,
@@ -98,8 +98,8 @@ enum custom_keycodes {
 #define  ___NUM__L1_30  KC_NO,       KC_7,   KC_8,  KC_9,  KC_NO
 #define  ___NUM__R1___  KC_7,        KC_8,   KC_9
 #define  ___NUM__R1_30  KC_NO,       KC_7,   KC_8,  KC_9,  KC_TRNS
-#define  ___NUM__L2___  KC_0,        KC_4,   KC_5,  KC_6,  C_KC_TZERO
-#define  ___NUM__R2___  C_KC_TZERO,  KC_4,   KC_5,  KC_6,  KC_0
+#define  ___NUM__L2___  KC_0,        KC_4,   KC_5,  KC_6,  C_KC_000
+#define  ___NUM__R2___  C_KC_000,  KC_4,   KC_5,  KC_6,  KC_0
 #define  ___NUM__L3___  KC_1,        KC_2,   KC_3
 #define  ___NUM__R3___  KC_1,        KC_2,   KC_3
 #define  ___NUM__L4___  KC_TRNS,     KC_SPC
@@ -308,7 +308,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C_KC_ARROW:
                 SEND_STRING("->");
                 return false;
-            case C_KC_TZERO:
+            case C_KC_000:
                 SEND_STRING("000");
                 return false;
             // alt repeat macros
