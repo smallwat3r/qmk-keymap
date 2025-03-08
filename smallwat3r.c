@@ -16,8 +16,8 @@ enum layers {
 };
 
 enum custom_keycodes {
-    C_KC_ARROW = SAFE_RANGE,
-    C_KC_000,
+    M_KC_ARROW = SAFE_RANGE,
+    M_KC_000,
     SELWBAK,
     SELWFWD,
     SELLINE,
@@ -98,8 +98,8 @@ enum custom_keycodes {
 #define  ___NUM__L1_30  KC_NO,     KC_7,   KC_8,  KC_9,  KC_NO
 #define  ___NUM__R1___  KC_7,      KC_8,   KC_9
 #define  ___NUM__R1_30  KC_NO,     KC_7,   KC_8,  KC_9,  KC_TRNS
-#define  ___NUM__L2___  KC_0,      KC_4,   KC_5,  KC_6,  C_KC_000
-#define  ___NUM__R2___  C_KC_000,  KC_4,   KC_5,  KC_6,  KC_0
+#define  ___NUM__L2___  KC_0,      KC_4,   KC_5,  KC_6,  M_KC_000
+#define  ___NUM__R2___  M_KC_000,  KC_4,   KC_5,  KC_6,  KC_0
 #define  ___NUM__L3___  KC_1,      KC_2,   KC_3
 #define  ___NUM__R3___  KC_1,      KC_2,   KC_3
 #define  ___NUM__L4___  KC_TRNS,   KC_SPC
@@ -113,7 +113,7 @@ enum custom_keycodes {
 #define  ___SYM__L2___  S(KC_8),      S(KC_EQUAL),  KC_EQUAL,    S(KC_QUOTE),  S(KC_5)
 #define  ___SYM__R2___  S(KC_1),      S(KC_SCLN),   RALT(KC_3),  S(KC_GRAVE),  S(KC_BSLS)
 #define  ___SYM__L3___  KC_MINUS,     S(KC_7),      KC_GRAVE
-#define  ___SYM__R3___  S(KC_COMMA),  S(KC_DOT),    C_KC_ARROW
+#define  ___SYM__R3___  S(KC_COMMA),  S(KC_DOT),    M_KC_ARROW
 #define  ___SYM__L4___  KC_TRNS,      KC_TRNS
 #define  ___SYM__R4___  KC_TRNS,      KC_TRNS
 
@@ -305,10 +305,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     if (record->event.pressed) {
         switch (keycode) {
-            case C_KC_ARROW:
+            case M_KC_ARROW:
                 SEND_STRING("->");
                 return false;
-            case C_KC_000:
+            case M_KC_000:
                 SEND_STRING("000");
                 return false;
             // alt repeat macros
