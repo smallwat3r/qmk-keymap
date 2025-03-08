@@ -364,9 +364,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break; // r->eturn
             case M_POST_S:
                 if (get_repeat_key_count() == -1) {
-                    SEND_STRING("\b\b\b\b'nt "); // s->'nt
+                    SEND_STRING("'nt "); // s->'nt
                 } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("ion "); // s->ion
+                    SEND_STRING("\b\b\b\bion "); // s->ion
                 }
                 break;
             case M_POST_T:
