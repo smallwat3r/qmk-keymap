@@ -94,16 +94,16 @@ enum custom_keycodes {
 #define  ___BASE_R4___  CK_25,  CK_26
 
 // num
-#define  ___NUM__L1___  KC_7,        KC_8,   KC_9
-#define  ___NUM__L1_30  KC_NO,       KC_7,   KC_8,  KC_9,  KC_NO
-#define  ___NUM__R1___  KC_7,        KC_8,   KC_9
-#define  ___NUM__R1_30  KC_NO,       KC_7,   KC_8,  KC_9,  KC_TRNS
-#define  ___NUM__L2___  KC_0,        KC_4,   KC_5,  KC_6,  C_KC_000
+#define  ___NUM__L1___  KC_7,      KC_8,   KC_9
+#define  ___NUM__L1_30  KC_NO,     KC_7,   KC_8,  KC_9,  KC_NO
+#define  ___NUM__R1___  KC_7,      KC_8,   KC_9
+#define  ___NUM__R1_30  KC_NO,     KC_7,   KC_8,  KC_9,  KC_TRNS
+#define  ___NUM__L2___  KC_0,      KC_4,   KC_5,  KC_6,  C_KC_000
 #define  ___NUM__R2___  C_KC_000,  KC_4,   KC_5,  KC_6,  KC_0
-#define  ___NUM__L3___  KC_1,        KC_2,   KC_3
-#define  ___NUM__R3___  KC_1,        KC_2,   KC_3
-#define  ___NUM__L4___  KC_TRNS,     KC_SPC
-#define  ___NUM__R4___  KC_BSPC,     KC_DEL
+#define  ___NUM__L3___  KC_1,      KC_2,   KC_3
+#define  ___NUM__R3___  KC_1,      KC_2,   KC_3
+#define  ___NUM__L4___  KC_TRNS,   KC_SPC
+#define  ___NUM__R4___  KC_BSPC,   KC_DEL
 
 // sym
 #define  ___SYM__L1___  KC_AT,        S(KC_3),      S(KC_4)
