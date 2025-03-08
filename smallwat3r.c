@@ -252,16 +252,9 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_PLUS:
         case KC_MINS:
         case KC_ASTR:
-        case KC_PERC:
         case KC_PIPE:
-        case KC_CIRC:
         case KC_TILD:
         case KC_EXLM:
-        case KC_DLR:
-        case KC_RABK:
-        case KC_LPRN:
-        case KC_RPRN:
-        case KC_UNDS:
         case KC_COLN:
             return KC_EQL;
     }
