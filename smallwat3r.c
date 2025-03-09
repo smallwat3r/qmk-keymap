@@ -1,8 +1,12 @@
 // smallwat3r's QMK keymap
 
 #include QMK_KEYBOARD_H
+#ifdef SELECT_WORD_ENABLE
 #include "features/select_word.h"
+#endif
+#ifdef AUTOCORRECT_ENABLE
 #include "features/autocorrect_data.h"
+#endif
 
 enum layers {
     BASE,
@@ -179,6 +183,7 @@ enum custom_keycodes {
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
+#ifdef COMBO_ENABLE
 uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     switch (combo->keycode) {
         case C_LB_SH:
@@ -195,7 +200,9 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     }
     return COMBO_TERM; // 35
 }
+#endif
 
+#ifdef REPEAT_KEY_ENABLE
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case CK_24:
@@ -245,10 +252,12 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
             return M_POST_Y;
         case KC_EQL:
             return KC_GT;
+#ifdef SELECT_WORD_ENABLE
         case SELWBAK:
             return SELWFWD;
         case SELWFWD:
             return SELWBAK;
+#endif
         case KC_PLUS:
         case KC_MINS:
         case KC_ASTR:
@@ -260,19 +269,25 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     }
     return KC_TRNS;
 }
+#endif  // end repeat key
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef SELECT_WORD_ENABLE
     if (!process_select_word(keycode, record)) {
         return false;
     }
+#endif
 
     switch (keycode) {
+#ifdef REPEAT_KEY_ENABLE
         case CK_12:
             if (record->tap.count) {
                 process_repeat_key(QK_AREP, record);
                 return false;
             }
             return true;
+#endif
+#ifdef SELECT_WORD_ENABLE
         case SELWBAK: // backward word selection.
             if (record->event.pressed) {
                 select_word_register('B');
@@ -294,6 +309,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 select_word_unregister();
             }
             break;
+#endif
     }
 
     if (record->event.pressed) {
@@ -304,6 +320,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case M_KC_000:
                 SEND_STRING("000");
                 return false;
+#ifdef REPEAT_KEY_ENABLE
             // alt repeat macros
             case M_POST_DOT:
                 if (get_repeat_key_count() == -1) {
@@ -392,22 +409,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case M_POST_Z:
                 SEND_STRING("ero ");
                 break; // z->ero
+#endif  // end repeat key
         }
     }
     return true;
 }
 
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record, uint8_t* remembered_mods) {
+#ifdef REPEAT_KEY_ENABLE
     switch (keycode) {
         // required in order for AREP to work with layer tap
         case CK_12:
             return false;
     }
+#endif
     return true;
 }
 
-// rgb light
-
+#ifdef RGBLIGHT_ENABLE
 const rgblight_segment_t PROGMEM default_layer[]   = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_WHITE});
 const rgblight_segment_t PROGMEM capslock_layer[]  = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_RED});
 const rgblight_segment_t PROGMEM osm_shift_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_GREEN});
@@ -438,3 +457,4 @@ void oneshot_mods_changed_user(uint8_t mods) {
         rgblight_set_layer_state(2, false);
     }
 }
+#endif  // end rgb_light
