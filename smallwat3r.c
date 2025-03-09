@@ -457,4 +457,4 @@ void oneshot_mods_changed_user(uint8_t mods) {
         rgblight_set_layer_state(2, false);
     }
 }
-#endif  // end rgb_light
+#endif  // end rgblight
