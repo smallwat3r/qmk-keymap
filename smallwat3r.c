@@ -273,6 +273,24 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
 }
 #endif  // end repeat key
 
+#ifdef LEADER_ENABLE
+void leader_end_user(void) {
+    if (leader_sequence_one_key(KC_T)) {
+        SEND_STRING("Thank you");
+    } else if (leader_sequence_one_key(KC_L)) {
+        SEND_STRING("Looks good to me!");
+    } else if (leader_sequence_one_key(KC_S)) {
+        SEND_STRING("smallwat3r");
+    } else if (leader_sequence_one_key(KC_M)) {
+        SEND_STRING("Matt Petiteau");
+    } else if (leader_sequence_two_keys(KC_E, KC_W)) {
+        SEND_STRING("matt@apian.aero");
+    } else if (leader_sequence_two_keys(KC_E, KC_P)) {
+        SEND_STRING("mpetiteau.pro@gmail.com");
+    }
+}
+#endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef SELECT_WORD_ENABLE
     if (!process_select_word(keycode, record)) {
