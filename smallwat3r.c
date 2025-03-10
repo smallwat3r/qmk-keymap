@@ -81,9 +81,11 @@ enum custom_keycodes {
 
 #define KC_EURO LSFT(LALT(KC_2))
 
+#ifdef COMBO_ENABLE
 // need to be included after custom keycode definition in order to use the
 // keycodes in combos.def
 #include "g/keymap_combo.h"
+#endif
 
 // base
 #define  ___BASE_L1___  CK_1,   CK_2,   CK_3
