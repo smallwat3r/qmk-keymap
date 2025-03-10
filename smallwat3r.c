@@ -111,9 +111,9 @@ enum custom_keycodes {
 
 // sym
 #define  ___SYM__L1___  KC_AT,        S(KC_3),      S(KC_4)
-#define  ___SYM__L1_30  KC_NO,        KC_AT,        S(KC_3),     S(KC_4),      KC_NO
+#define  ___SYM__L1_30  KC_NO,        KC_AT,        S(KC_3),     S(KC_4),      KC_EURO
 #define  ___SYM__R1___  KC_BSLS,      KC_SLASH,     S(KC_SLASH)
-#define  ___SYM__R1_30  KC_NO,        KC_BSLS,      KC_SLASH,    S(KC_SLASH),  KC_TRNS
+#define  ___SYM__R1_30  KC_NO,        KC_BSLS,      KC_SLASH,    S(KC_SLASH),  KC_CIRC
 #define  ___SYM__L2___  S(KC_8),      S(KC_EQUAL),  KC_EQUAL,    S(KC_QUOTE),  S(KC_5)
 #define  ___SYM__R2___  S(KC_1),      S(KC_SCLN),   RALT(KC_3),  S(KC_GRAVE),  S(KC_BSLS)
 #define  ___SYM__L3___  KC_MINUS,     S(KC_7),      KC_GRAVE

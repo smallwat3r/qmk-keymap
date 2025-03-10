@@ -1,7 +1,7 @@
 #pragma once
 
 #define EXTRA_SHORT_COMBOS
-#define TAPPING_TERM 200
+#define TAPPING_TERM 175
 #define COMBO_TERM 35
 #define COMBO_TERM_PER_COMBO
 #define PERMISSIVE_HOLD
