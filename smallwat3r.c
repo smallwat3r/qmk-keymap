@@ -393,8 +393,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 break;
             case M_POST_U:
-                SEND_STRING("pdate ");
-                break; // u->pdate
+                if (get_repeat_key_count() == -1) {
+                    SEND_STRING("'ve "); // u->'ve
+                } else if (get_repeat_key_count() == -2) {
+                    SEND_STRING("\b\b\b\bpdate "); // u->pdate
+                }
+                break;
             case M_POST_V:
                 SEND_STRING("er");
                 break; // v->er

@@ -36,7 +36,7 @@ I'm using an implementation of Magic Key (❖):
 | <kbd>r</kbd><kbd>❖</kbd> | return␣     |              |
 | <kbd>s</kbd><kbd>❖</kbd> | sn't␣       | sion␣        |
 | <kbd>t</kbd><kbd>❖</kbd> | tment␣      | thank        |
-| <kbd>u</kbd><kbd>❖</kbd> | update␣     |              |
+| <kbd>u</kbd><kbd>❖</kbd> | u've␣       | update␣      |
 | <kbd>v</kbd><kbd>❖</kbd> | ver         |              |
 | <kbd>w</kbd><kbd>❖</kbd> | what␣       | which␣       |
 | <kbd>y</kbd><kbd>❖</kbd> | you         |              |
