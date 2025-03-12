@@ -60,8 +60,8 @@ enum custom_keycodes {
 #define  CK_6   LT(NUM,       KC_T)
 #define  CK_7   LT(NAV,       KC_S)
 #define  CK_8   KC_G
-#define  CK_9   MT(MOD_LCTL,  KC_TAB)
-#define  CK_10  MT(MOD_LALT,  KC_QUOT)
+#define  CK_9   MT(MOD_LCTL,  KC_K)
+#define  CK_10  MT(MOD_LALT,  KC_B)
 #define  CK_11  MT(MOD_LGUI,  KC_C)
 #define  CK_12  LT(EDIT,      QK_AREP)
 #define  CK_13  LT(FUN,       KC_SPC)
@@ -193,8 +193,8 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
             return 50;
         #ifndef KEY_COUNT_30
         case C_LB_W:
-        case C_LB_B:
-        case C_RB_K:
+        case C_LB_TAB:
+        case C_RB_QUOT:
             return 50;
         case C_RB_ESC:
             return 15;

@@ -3,7 +3,7 @@ COMB(C_LB_X,          KC_X,           CK_1,        CK_2)
 COMB(C_LB_Q,          KC_Q,           CK_2,        CK_3)
 #ifndef KEY_COUNT_30
 COMB(C_LB_W,          KC_W,           CK_5,        CK_6)
-COMB(C_LB_B,          KC_B,           CK_6,        CK_11)
+COMB(C_LB_TAB,        KC_TAB,         CK_6,        CK_11)
 #endif
 COMB(C_LB_Z,          KC_Z,           CK_9,        CK_10)
 COMB(C_LB_V,          KC_V,           CK_10,       CK_11)
@@ -17,7 +17,7 @@ SUBS(C_LB_BLE,        "ble",          CK_5,        CK_11)
 // right base
 COMB(C_RB_J,          KC_J,           CK_14,       CK_15)
 #ifndef KEY_COUNT_30
-COMB(C_RB_K,          KC_K,           CK_19,       CK_22)
+COMB(C_RB_QUOT,       KC_QUOT,        CK_19,       CK_22)
 COMB(C_RB_ESC,        KC_ESC,         CK_18,       CK_19,  CK_20)
 #endif
 COMB(C_RB_UNDS,       KC_UNDS,        CK_19,       CK_20)
