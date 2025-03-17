@@ -27,8 +27,7 @@ I'm using an implementation of Magic Key (❖):
 | <kbd>c</kbd><kbd>❖</kbd> | class␣      |              |
 | <kbd>d</kbd><kbd>❖</kbd> | def␣        |              |
 | <kbd>e</kbd><kbd>❖</kbd> | else␣       |              |
-| <kbd>i</kbd><kbd>❖</kbd> | import␣     |              |
-| <kbd>I</kbd><kbd>❖</kbd> | I'm␣        |              |
+| <kbd>i</kbd><kbd>❖</kbd> | I'm␣        |              |
 | <kbd>j</kbd><kbd>❖</kbd> | just␣       |              |
 | <kbd>m</kbd><kbd>❖</kbd> | ment␣       |              |
 | <kbd>n</kbd><kbd>❖</kbd> | 't␣         |              |

@@ -4,9 +4,6 @@
 #ifdef SELECT_WORD_ENABLE
 #include "features/select_word.h"
 #endif
-#ifdef AUTOCORRECT_ENABLE
-#include "features/autocorrect_data.h"
-#endif
 
 enum layers {
     BASE,
@@ -34,7 +31,6 @@ enum custom_keycodes {
     M_POST_D,
     M_POST_E,
     M_POST_I,
-    M_POST_I_UP,
     M_POST_J,
     M_POST_M,
     M_POST_N,
@@ -185,9 +181,9 @@ enum custom_keycodes {
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
-#ifdef COMBO_ENABLE
+#ifdef COMBO_TERM_PER_COMBO
 uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
-    switch (combo->keycode) {
+    switch (combo_index) {
         case C_LB_SH:
         case C_LB_WH:
             return 50;
@@ -196,8 +192,6 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
         case C_LB_TAB:
         case C_RB_QUOT:
             return 50;
-        case C_RB_ESC:
-            return 15;
         #endif
     }
     return COMBO_TERM; // 35
@@ -222,9 +216,6 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case CK_20:
             return M_POST_E;
         case CK_21:
-            if (mods & MOD_MASK_SHIFT) {
-                return M_POST_I_UP;
-            }
             return M_POST_I;
         case KC_J:
             return M_POST_J;
@@ -243,6 +234,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case CK_6:
             return M_POST_T;
         case CK_16:
+        case C_RB_YOU:
             return M_POST_U;
         case KC_V:
             return M_POST_V;
@@ -287,6 +279,10 @@ void leader_end_user(void) {
         SEND_STRING("matt@apian.aero");
     } else if (leader_sequence_two_keys(KC_E, KC_P)) {
         SEND_STRING("mpetiteau.pro@gmail.com");
+    } else if (leader_sequence_two_keys(KC_E, KC_S)) {
+        SEND_STRING("matthieu@smallwatersolutions.com");
+    } else if (leader_sequence_two_keys(KC_E, KC_M)) {
+        SEND_STRING("matt@smallwat3r.com");
     }
 }
 #endif
@@ -373,11 +369,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("lse ");
                 break; // e->lse
             case M_POST_I:
-                SEND_STRING("mport ");
-                break; // i->mport
-            case M_POST_I_UP:
-                SEND_STRING("'m ");
-                break; // I->'m
+                SEND_STRING("\bI'm ");
+                break; // i->I'm
             case M_POST_J:
                 SEND_STRING("ust ");
                 break; // j->ust
@@ -385,7 +378,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("ent ");
                 break; // m->ent
             case M_POST_N:
-                SEND_STRING("n't ");
+                SEND_STRING("'t ");
                 break; // n->'t
             case M_POST_O:
                 SEND_STRING("n't ");
@@ -456,8 +449,14 @@ const rgblight_segment_t PROGMEM capslock_layer[]  = RGBLIGHT_LAYER_SEGMENTS({0,
 const rgblight_segment_t PROGMEM osm_shift_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_GREEN});
 
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(default_layer, capslock_layer, osm_shift_layer);
+
 void keyboard_post_init_user(void) {
     rgblight_layers = rgb_layers;
+#ifdef AUTOCORRECT_ENABLE
+    // ensure autocorrect is turned on
+    if (!autocorrect_is_enabled())
+        autocorrect_enable();
+#endif
 }
 
 // default layer

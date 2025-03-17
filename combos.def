@@ -49,4 +49,5 @@ COMB(C_RF_F10,        KC_F10,         KC_F7,       KC_F8)
 COMB(C_RF_F11,        KC_F11,         KC_F8,       KC_F9)
 COMB(C_RF_F12,        KC_F12,         KC_F7,       KC_F8,    KC_F9)
 // left sys
-COMB(C_LSYS_AC_TOGG,  AC_TOGG,        KC_WH_R,     KC_WH_U,  KC_WH_D)
+COMB(C_LSYS_AC_ON,    AC_ON,          KC_WH_R,     KC_WH_U,  KC_WH_D)
+COMB(C_LSYS_AC_OFF,   AC_OFF,         G(KC_KP_MINUS),  G(KC_KP_PLUS),  RGB_TOG)
