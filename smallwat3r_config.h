@@ -10,7 +10,9 @@
 #define MOUSEKEY_INTERVAL 16
 #define MOUSEKEY_MAX_SPEED 4
 #define MOUSEKEY_TIME_TO_MAX 0
-#define SELECT_WORD_OS_MAC
+/* #define SELECT_WORD_OS_MAC */
+#define SELECT_WORD_OS_WINDOWS
+
 
 /* make use of the mounted WS2812 led from the Waveshare RP2040-zero */
 #define RGBLIGHT_LED_COUNT 1
