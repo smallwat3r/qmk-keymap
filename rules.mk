@@ -11,6 +11,9 @@ VPATH += keyboards/gboards/
 COMMAND_ENABLE = no
 UNICODE_ENABLE = no
 
+#added by maicon
+OS_DETECTION_ENABLE = yes
+
 RGBLIGHT_ENABLE = yes
 WS2812_DRIVER = vendor
 
