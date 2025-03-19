@@ -29,7 +29,7 @@ SUBS(C_RB_YOU,        "you",          CK_16,       CK_18)
 SUBS(C_RB_ION,        "ion",          CK_22,       CK_20)
 SUBS(C_RB_ING,        "ing",          CK_18,       CK_21)
 // both base
-COMB(C_BB_CAPS,       KC_CAPS,        CK_8,        CK_17)
+COMB(C_BB_CAPS,       KC_CAPS,        CK_7,        CK_18)
 COMB(C_BB_PSCRN,      SGUI(KC_4),     CK_1,        CK_16)
 // left sym
 #ifndef KEY_COUNT_30
