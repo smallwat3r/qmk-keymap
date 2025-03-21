@@ -6,6 +6,7 @@ COMB(C_LB_W,          KC_W,           CK_5,        CK_6)
 #endif
 COMB(C_LB_Z,          KC_Z,           CK_9,        CK_10)
 COMB(C_LB_V,          KC_V,           CK_10,       CK_11)
+COMB(C_LB_V_2,        KC_V,           CK_6,       CK_11)
 COMB(C_LB_LBRC,       KC_LBRC,        CK_1,        CK_3)
 COMB(C_LB_LPRN,       KC_LPRN,        CK_9,        CK_11)
 COMB(C_LB_OSM_S,      OSM(MOD_LSFT),  CK_5,        CK_6,   CK_7)
