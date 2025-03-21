@@ -59,7 +59,7 @@ enum custom_keycodes {
 #define  CK_9   MT(MOD_LCTL,  KC_K)
 #define  CK_10  MT(MOD_LALT,  KC_B)
 #define  CK_11  MT(MOD_LGUI,  KC_C)
-#define  CK_12  LT(EDIT,      QK_AREP)
+#define  CK_12  LT(EDIT,      KC_TAB)
 #define  CK_13  LT(FUN,       KC_SPC)
 #define  CK_14  KC_F
 #define  CK_15  KC_O
@@ -186,7 +186,6 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     switch (combo_index) {
         case C_LB_SH:
         case C_LB_WH:
-        case C_LB_TAB:
         case C_RB_QUOT:
             return 50;
         case C_RB_UNDS:
@@ -202,94 +201,6 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
 }
 #endif
 
-#ifdef REPEAT_KEY_ENABLE
-uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case CK_24:
-            return M_POST_DOT;
-        case CK_23:
-            return M_POST_COMMA;
-        case CK_19:
-            return M_POST_A;
-        case KC_B:
-            return M_POST_B;
-        case CK_11:
-            return M_POST_C;
-        case CK_2:
-            return M_POST_D;
-        case CK_20:
-            return M_POST_E;
-        case CK_21:
-            return M_POST_I;
-        case KC_J:
-            return M_POST_J;
-        case CK_4:
-            return M_POST_M;
-        case CK_18:
-            return M_POST_N;
-        case CK_15:
-            return M_POST_O;
-        case KC_Q:
-            return M_POST_Q;
-        case CK_5:
-            return M_POST_R;
-        case CK_7:
-            return M_POST_S;
-        case CK_6:
-            return M_POST_T;
-        case CK_16:
-            return M_POST_U;
-        case KC_V:
-            return M_POST_V;
-        case KC_W:
-            return M_POST_W;
-        case KC_Z:
-            return M_POST_Z;
-        case CK_17:
-            return M_POST_Y;
-        case KC_EQL:
-            return KC_GT;
-#ifdef SELECT_WORD_ENABLE
-        case SELWBAK:
-            return SELWFWD;
-        case SELWFWD:
-            return SELWBAK;
-#endif
-        case KC_PLUS:
-        case KC_MINS:
-        case KC_ASTR:
-        case KC_PIPE:
-        case KC_TILD:
-        case KC_EXLM:
-        case KC_COLN:
-            return KC_EQL;
-    }
-    return KC_TRNS;
-}
-#endif  // end repeat key
-
-#ifdef LEADER_ENABLE
-void leader_end_user(void) {
-    if (leader_sequence_one_key(KC_T)) {
-        SEND_STRING("Thank you");
-    } else if (leader_sequence_one_key(KC_L)) {
-        SEND_STRING("Looks good to me!");
-    } else if (leader_sequence_one_key(KC_S)) {
-        SEND_STRING("smallwat3r");
-    } else if (leader_sequence_one_key(KC_M)) {
-        SEND_STRING("Matt Petiteau");
-    } else if (leader_sequence_two_keys(KC_E, KC_W)) {
-        SEND_STRING("matt@apian.aero");
-    } else if (leader_sequence_two_keys(KC_E, KC_P)) {
-        SEND_STRING("mpetiteau.pro@gmail.com");
-    } else if (leader_sequence_two_keys(KC_E, KC_S)) {
-        SEND_STRING("matthieu@smallwatersolutions.com");
-    } else if (leader_sequence_two_keys(KC_E, KC_M)) {
-        SEND_STRING("matt@smallwat3r.com");
-    }
-}
-#endif
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef SELECT_WORD_ENABLE
     if (!process_select_word(keycode, record)) {
@@ -298,14 +209,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 
     switch (keycode) {
-#ifdef REPEAT_KEY_ENABLE
-        case CK_12:
-            if (record->tap.count) {
-                process_repeat_key(QK_AREP, record);
-                return false;
-            }
-            return true;
-#endif
 #ifdef SELECT_WORD_ENABLE
         case SELWBAK: // backward word selection.
             if (record->event.pressed) {
@@ -339,110 +242,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case M_KC_000:
                 SEND_STRING("000");
                 return false;
-#ifdef REPEAT_KEY_ENABLE
-            // alt repeat macros
-            case M_POST_DOT:
-                if (get_repeat_key_count() == -1) {
-                    SEND_STRING("./"); // .->./
-                } else if (get_repeat_key_count() <= -2) {
-                    // continue to append updir characters
-                    SEND_STRING("../");
-                }
-                break;
-            case M_POST_COMMA:
-                SEND_STRING(" but ");
-                break; // ,-> but
-            case M_POST_A:
-                SEND_STRING("bout ");
-                break; // a->bout
-            case M_POST_B:
-                if (get_repeat_key_count() == -1) {
-                    SEND_STRING("ecause "); // b->ecause
-                } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("\b\b\b\b\b\b\before "); // b->efore
-                }
-                break;
-            case M_POST_C:
-                SEND_STRING("lass ");
-                break; // c->lass
-            case M_POST_D:
-                SEND_STRING("ef ");
-                break; // d->ef
-            case M_POST_E:
-                SEND_STRING("lse ");
-                break; // e->lse
-            case M_POST_I:
-                SEND_STRING("\bI'm ");
-                break; // i->I'm
-            case M_POST_J:
-                SEND_STRING("ust ");
-                break; // j->ust
-            case M_POST_M:
-                SEND_STRING("ent ");
-                break; // m->ent
-            case M_POST_N:
-                SEND_STRING("'t ");
-                break; // n->'t
-            case M_POST_O:
-                SEND_STRING("n't ");
-                break; // o->n't
-            case M_POST_Q:
-                SEND_STRING("uen");
-                break; // q->uen
-            case M_POST_R:
-                SEND_STRING("eturn ");
-                break; // r->eturn
-            case M_POST_S:
-                if (get_repeat_key_count() == -1) {
-                    SEND_STRING("'nt "); // s->'nt
-                } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("\b\b\b\bion "); // s->ion
-                }
-                break;
-            case M_POST_T:
-                if (get_repeat_key_count() == -1) {
-                    SEND_STRING("ment "); // t->ment
-                } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("\b\b\b\b\bhank"); // t->hank
-                }
-                break;
-            case M_POST_U:
-                if (get_repeat_key_count() == -1) {
-                    SEND_STRING("'ve "); // u->'ve
-                } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("\b\b\b\bpdate "); // u->pdate
-                }
-                break;
-            case M_POST_V:
-                SEND_STRING("er");
-                break; // v->er
-            case M_POST_W:
-                if (get_repeat_key_count() == -1) {
-                    SEND_STRING("hat "); // w->hat
-                } else if (get_repeat_key_count() == -2) {
-                    SEND_STRING("\b\b\b\bhich "); // w->hich
-                }
-                break;
-            case M_POST_Y:
-                SEND_STRING("ou");
-                break; // y->ou
-            case M_POST_Z:
-                SEND_STRING("ero ");
-                break; // z->ero
-#endif  // end repeat key
         }
     }
-    return true;
-}
-
-bool remember_last_key_user(uint16_t keycode, keyrecord_t* record, uint8_t* remembered_mods) {
-#ifdef REPEAT_KEY_ENABLE
-    switch (keycode) {
-        // required in order for AREP to work with layer tap
-        case CK_12:
-            return false;
-    }
-#endif
     return true;
 }
 

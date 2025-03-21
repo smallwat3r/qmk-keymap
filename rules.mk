@@ -3,8 +3,6 @@ LTO_ENABLE = yes
 AUTOCORRECT_ENABLE = yes
 MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = yes
-REPEAT_KEY_ENABLE = yes
-LEADER_ENABLE = yes
 COMBO_ENABLE = yes
 VPATH += keyboards/gboards/
 
