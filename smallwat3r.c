@@ -190,6 +190,8 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
         case C_RB_QUOT:
             return 50;
         case C_RB_UNDS:
+        case C_LB_X:
+        case C_RB_J:
             return 15;
         #ifndef KEY_COUNT_30
         case C_LB_W:
