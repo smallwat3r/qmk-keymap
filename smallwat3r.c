@@ -22,28 +22,6 @@ enum custom_keycodes {
     SELWBAK,
     SELWFWD,
     SELLINE,
-    // macros invoked from magic key
-    M_POST_DOT,
-    M_POST_COMMA,
-    M_POST_A,
-    M_POST_B,
-    M_POST_C,
-    M_POST_D,
-    M_POST_E,
-    M_POST_I,
-    M_POST_J,
-    M_POST_M,
-    M_POST_N,
-    M_POST_O,
-    M_POST_Q,
-    M_POST_R,
-    M_POST_S,
-    M_POST_T,
-    M_POST_U,
-    M_POST_V,
-    M_POST_W,
-    M_POST_Y,
-    M_POST_Z,
 };
 
 // define one alias per key to use on the base layer, this is a
