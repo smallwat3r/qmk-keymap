@@ -29,7 +29,7 @@ enum custom_keycodes {
 #define  CK_1   KC_L
 #define  CK_2   KC_D
 #define  CK_3   KC_P
-#define  CK_4   MT(MOD_LSFT,  KC_M)
+#define  CK_4   MT(MOD_LSFT,  KC_W)
 #define  CK_5   LT(SYM,       KC_R)
 #define  CK_6   LT(NUM,       KC_T)
 #define  CK_7   LT(NAV,       KC_S)
@@ -42,13 +42,13 @@ enum custom_keycodes {
 #define  CK_14  KC_F
 #define  CK_15  KC_O
 #define  CK_16  KC_U
-#define  CK_17  KC_Y
+#define  CK_17  KC_M
 #define  CK_18  LT(SYS,       KC_N)
 #define  CK_19  LT(NUM,       KC_A)
 #define  CK_20  LT(SYM,       KC_E)
 #define  CK_21  MT(MOD_LSFT,  KC_I)
 #define  CK_22  MT(MOD_LGUI,  KC_H)
-#define  CK_23  MT(MOD_LALT,  KC_COMMA)
+#define  CK_23  MT(MOD_LALT,  KC_Y)
 #define  CK_24  MT(MOD_LCTL,  KC_DOT)
 #define  CK_25  LT(SYS,       KC_BSPC)
 #define  CK_26  LT(SYM,       KC_ENT)
@@ -166,12 +166,10 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
         case C_LB_WH:
         case C_RB_QUOT:
             return 50;
-        case C_RB_UNDS:
-        case C_LB_X:
         case C_RB_J:
             return 15;
         #ifndef KEY_COUNT_30
-        case C_LB_W:
+        case C_LB_COMMA:
             return 50;
         #endif
     }
