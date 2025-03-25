@@ -163,11 +163,8 @@ enum custom_keycodes {
 uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     switch (combo_index) {
         case C_LB_SH:
-        case C_LB_WH:
         case C_RB_QUOT:
             return 50;
-        case C_RB_J:
-            return 15;
         #ifndef KEY_COUNT_30
         case C_LB_COMMA:
             return 50;

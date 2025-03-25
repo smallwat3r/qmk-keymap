@@ -6,13 +6,13 @@ COMB(C_LB_COMMA,      KC_COMMA,       CK_5,        CK_6)
 #endif
 COMB(C_LB_Z,          KC_Z,           CK_9,        CK_10)
 COMB(C_LB_V,          KC_V,           CK_6,        CK_11)
+COMB(C_LB_J,          KC_J,           CK_10,       CK_11)
 COMB(C_LB_LBRC,       KC_LBRC,        CK_1,        CK_3)
 COMB(C_LB_LPRN,       KC_LPRN,        CK_9,        CK_11)
 COMB(C_LB_OSM_S,      OSM(MOD_LSFT),  CK_5,        CK_6,   CK_7)
 SUBS(C_LB_TH,         "th",           CK_6,        CK_7)
 SUBS(C_LB_SH,         "sh",           CK_5,        CK_7)
 // right base
-COMB(C_RB_J,          KC_J,           CK_14,       CK_15)
 #ifndef KEY_COUNT_30
 COMB(C_RB_ESC,        KC_ESC,         CK_18,       CK_19,  CK_20)
 #endif
