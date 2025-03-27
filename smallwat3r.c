@@ -44,7 +44,7 @@ enum custom_keycodes {
 #define  CK_16  KC_U
 #define  CK_17  KC_Y
 #define  CK_18  LT(SYS,       KC_N)
-#define  CK_19  LT(NUM,       KC_A)
+#define  CK_19  KC_A
 #define  CK_20  LT(SYM,       KC_E)
 #define  CK_21  MT(MOD_LSFT,  KC_I)
 #define  CK_22  MT(MOD_LGUI,  KC_H)
@@ -63,9 +63,9 @@ enum custom_keycodes {
 
 // base
 #define  ___BASE_L1___  CK_1,   CK_2,   CK_3
-#define  ___BASE_L1_30  KC_W,   CK_1,   CK_2,   CK_3,   KC_Q
+#define  ___BASE_L1_30  KC_M,   CK_1,   CK_2,   CK_3,   KC_Q
 #define  ___BASE_R1___  CK_14,  CK_15,  CK_16
-#define  ___BASE_R1_30  KC_J,   CK_14,  CK_15,  CK_16,  KC_ESC
+#define  ___BASE_R1_30  KC_J,   CK_14,  CK_15,  CK_16,  KC_QUOT
 #define  ___BASE_L2___  CK_4,   CK_5,   CK_6,   CK_7,   CK_8
 #define  ___BASE_R2___  CK_17,  CK_18,  CK_19,  CK_20,  CK_21
 #define  ___BASE_L3___  CK_9,   CK_10,  CK_11
@@ -74,14 +74,14 @@ enum custom_keycodes {
 #define  ___BASE_R4___  CK_25,  CK_26
 
 // num
-#define  ___NUM__L1___  KC_7,      KC_8,   KC_9
-#define  ___NUM__L1_30  KC_NO,     KC_7,   KC_8,  KC_9,  KC_NO
-#define  ___NUM__R1___  KC_7,      KC_8,   KC_9
-#define  ___NUM__R1_30  KC_NO,     KC_7,   KC_8,  KC_9,  KC_TRNS
-#define  ___NUM__L2___  KC_0,      KC_4,   KC_5,  KC_6,  M_KC_000
-#define  ___NUM__R2___  M_KC_000,  KC_4,   KC_5,  KC_6,  KC_0
-#define  ___NUM__L3___  KC_1,      KC_2,   KC_3
-#define  ___NUM__R3___  KC_1,      KC_2,   KC_3
+#define  ___NUM__L1___  KC_TRNS,   KC_TRNS,  KC_TRNS
+#define  ___NUM__L1_30  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___NUM__R1___  KC_7,      KC_8,     KC_9
+#define  ___NUM__R1_30  KC_NO,     KC_7,     KC_8,     KC_9,     KC_TRNS
+#define  ___NUM__L2___  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___NUM__R2___  M_KC_000,  KC_4,     KC_5,     KC_6,     KC_0
+#define  ___NUM__L3___  KC_TRNS,   KC_TRNS,  KC_TRNS
+#define  ___NUM__R3___  KC_1,      KC_2,     KC_3
 #define  ___NUM__L4___  KC_TRNS,   KC_SPC
 #define  ___NUM__R4___  KC_BSPC,   KC_DEL
 
