@@ -146,13 +146,13 @@ enum custom_keycodes {
 #define  ___FUN__R4___  A(KC_BSPC),  A(KC_DEL)
 
 // sys
-#define  ___SYS__L1___  MS_ACL0,  KC_BTN4,         KC_BTN5
+#define  ___SYS__L1___  KC_MPLY,  KC_BTN4,         KC_BTN5
 #define  ___SYS__L1_30  KC_NO,    MS_ACL0,         KC_BTN4,       KC_BTN5,  KC_NO
 #define  ___SYS__R1___  KC_MUTE,  KC_VOLD,         KC_VOLU
 #define  ___SYS__R1_30  KC_NO,    KC_VOLD,         KC_VOLU,       KC_MUTE,  KC_TRNS
 #define  ___SYS__L2___  KC_END,   KC_WH_R,         KC_WH_U,       KC_WH_D,  KC_WH_L
 #define  ___SYS__R2___  KC_MS_L,  KC_MS_D,         KC_MS_U,       KC_MS_R,  KC_HOME
-#define  ___SYS__L3___  MS_ACL1,  KC_BRID,         KC_BRIU
+#define  ___SYS__L3___  KC_MCTL,  KC_BRID,         KC_BRIU
 #define  ___SYS__R3___  RGB_TOG,  G(KC_KP_MINUS),  G(KC_KP_PLUS)
 #define  ___SYS__L4___  KC_BTN2,  KC_BTN1
 #define  ___SYS__R4___  KC_TRNS,  KC_TRNS
