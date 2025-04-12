@@ -8,6 +8,7 @@
 enum layers {
     BASE,
     SYM,
+    SYM2,
     NUM,
     NAV,
     NAV2,
@@ -30,7 +31,7 @@ enum custom_keycodes {
 #define  CK_2   KC_D
 #define  CK_3   KC_P
 #define  CK_4   MT(MOD_LSFT,  KC_W)
-#define  CK_5   LT(SYM,       KC_R)
+#define  CK_5   LT(SYM2,      KC_R)
 #define  CK_6   LT(NUM,       KC_T)
 #define  CK_7   LT(NAV,       KC_S)
 #define  CK_8   KC_G
@@ -45,7 +46,7 @@ enum custom_keycodes {
 #define  CK_17  KC_Y
 #define  CK_18  LT(SYS,       KC_N)
 #define  CK_19  KC_A
-#define  CK_20  LT(SYM,       KC_E)
+#define  CK_20  LT(SYM2,      KC_E)
 #define  CK_21  MT(MOD_LSFT,  KC_I)
 #define  CK_22  MT(MOD_LGUI,  KC_H)
 #define  CK_23  MT(MOD_LALT,  KC_COMMA)
@@ -96,6 +97,18 @@ enum custom_keycodes {
 #define  ___SYM__R3___  S(KC_COMMA),  S(KC_DOT),    M_KC_ARROW
 #define  ___SYM__L4___  KC_TRNS,      KC_TRNS
 #define  ___SYM__R4___  KC_TRNS,      KC_TRNS
+
+// sym2 (lighter layer that ease rolls for home row)
+#define  ___SYM2_L1___  KC_AT,        S(KC_3),      S(KC_4)
+#define  ___SYM2_L1_30  KC_NO,        KC_AT,        S(KC_3),     S(KC_4),      KC_EURO
+#define  ___SYM2_R1___  KC_BSLS,      KC_SLASH,     S(KC_SLASH)
+#define  ___SYM2_R1_30  KC_NO,        KC_BSLS,      KC_SLASH,    S(KC_SLASH),  KC_CIRC
+#define  ___SYM2_L2___  S(KC_8),      S(KC_EQUAL),  KC_EQUAL,    S(KC_QUOTE),  S(KC_5)
+#define  ___SYM2_R2___  S(KC_1),      S(KC_SCLN),   CK_19,       CK_20,        S(KC_BSLS)
+#define  ___SYM2_L3___  KC_MINUS,     S(KC_7),      KC_GRAVE
+#define  ___SYM2_R3___  S(KC_COMMA),  S(KC_DOT),    M_KC_ARROW
+#define  ___SYM2_L4___  KC_TRNS,      KC_TRNS
+#define  ___SYM2_R4___  KC_TRNS,      KC_TRNS
 
 // nav
 #define  ___NAV__L1___  KC_TRNS,     KC_TRNS,     KC_TRNS
@@ -262,7 +275,7 @@ void keyboard_post_init_user(void) {
     rgblight_layers = rgb_layers;
 #endif
 #ifdef AUTOCORRECT_ENABLE
-    // ensure autocorrect is turned on by default
+    // ensure autocorrect is on by default
     if (!autocorrect_is_enabled()) autocorrect_enable();
 #endif
 }

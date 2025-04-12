@@ -22,6 +22,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___SYM__L3___, ___SYM__R3___,
         ___SYM__L4___, ___SYM__R4___
     ),
+    [SYM2] = LAYOUT_wrapper(
+        ___SYM2_L1___, ___SYM2_R1___,
+        ___SYM2_L2___, ___SYM2_R2___,
+        ___SYM2_L3___, ___SYM2_R3___,
+        ___SYM2_L4___, ___SYM2_R4___
+    ),
     [NAV] = LAYOUT_wrapper(
         ___NAV__L1___, ___NAV__R1___,
         ___NAV__L2___, ___NAV__R2___,
