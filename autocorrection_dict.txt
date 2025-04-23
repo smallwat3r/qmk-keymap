@@ -62,6 +62,7 @@ whihc         -> which
 whlch         -> which
 wihch         -> which
 coudl         -> could
+colud         -> could
 :htikn        -> think
 :htink        -> think
 thikn         -> think
