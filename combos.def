@@ -35,10 +35,10 @@ SUBS(C_LS_DOCSTRING,  "\"\"\"",       KC_EQUAL,    S(KC_QUOTE))
 SUBS(C_LS_MARKCODE,   "```",          S(KC_7),     KC_GRAVE)
 // right sym
 #ifndef KEY_COUNT_30
-COMB(C_RS_CIRC,       KC_CIRC,        RALT(KC_3),  S(KC_GRAVE))
+COMB(C_RS_CIRC,       KC_CIRC,        KC_EQUAL,    KC_GRAVE)
 #endif
 // left edit
-COMB(C_LE_SAVE,       G(KC_S),        G(KC_C),    G(KC_V))
+COMB(C_LE_SAVE,       G(KC_S),        G(KC_C),     G(KC_V))
 // right fun
 COMB(C_RF_F10,        KC_F10,         KC_F7,       KC_F8)
 COMB(C_RF_F11,        KC_F11,         KC_F8,       KC_F9)

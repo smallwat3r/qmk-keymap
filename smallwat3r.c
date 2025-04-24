@@ -178,11 +178,14 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
         case C_LB_SH:
         case C_LB_WH:
         case C_RB_QUOT:
+        case C_RS_CIRC:
             return 50;
         #ifndef KEY_COUNT_30
         case C_LB_M:
             return 50;
         #endif
+        case C_LB_LBRC:
+            return 20;
     }
     return COMBO_TERM; // 35
 }
