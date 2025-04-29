@@ -37,7 +37,6 @@
 #  * You can find data on English word frequencies at
 #    https://www.wordfrequency.info/samples.asp
 
-
 ## 10 most common words.
 # The words "there", "about", "their", "would", "people", "which", "could",
 # "think", "other", and "because" are among the most common words in English
@@ -466,8 +465,23 @@ tongiht       -> tonight
 tranpose      -> transpose
 typcial       -> typical
 udpate        -> update
+updaet        -> update
 ususally      -> usually
 verticies     -> vertices
 whereever     -> wherever
 wherre        -> where
 wierd         -> weird
+
+# other useful additions
+:im:          -> I'm
+:ive:         -> I've
+youre         -> you're
+youve         -> you've
+:dont:        -> don't
+doesnt        -> doesn't
+couldnt       -> couldn't
+:cant:        -> can't
+:wont:        -> won't
+:latre:       -> later
+wouldnt       -> wouldn't
+calss         -> class
