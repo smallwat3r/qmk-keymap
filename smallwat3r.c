@@ -64,9 +64,9 @@ enum custom_keycodes {
 
 // base
 #define  ___BASE_L1___  CK_1,   CK_2,   CK_3
-#define  ___BASE_L1_30  KC_W,   CK_1,   CK_2,   CK_3,   KC_Q
+#define  ___BASE_L1_30  KC_Q,   CK_1,   CK_2,   CK_3,   KC_J
 #define  ___BASE_R1___  CK_14,  CK_15,  CK_16
-#define  ___BASE_R1_30  KC_J,   CK_14,  CK_15,  CK_16,  KC_QUOT
+#define  ___BASE_R1_30  KC_B,   CK_14,  CK_15,  CK_16,  KC_QUOT
 #define  ___BASE_L2___  CK_4,   CK_5,   CK_6,   CK_7,   CK_8
 #define  ___BASE_R2___  CK_17,  CK_18,  CK_19,  CK_20,  CK_21
 #define  ___BASE_L3___  CK_9,   CK_10,  CK_11
@@ -178,12 +178,9 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
         case C_LB_SH:
         case C_LB_WH:
         case C_RB_UNDS:
-        case C_RS_CIRC:
+        case C_RB_DASH:
+        case C_LB_B:
             return 50;
-        #ifndef KEY_COUNT_30
-        case C_LB_QUOT:
-            return 50;
-        #endif
         case C_LB_LBRC:
             return 20;
     }
