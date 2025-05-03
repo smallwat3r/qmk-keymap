@@ -141,7 +141,7 @@ enum custom_keycodes {
 #define  ___EDIT_R1_30  KC_NO,       S(KC_LBRC),  S(KC_RBRC),  KC_TRNS,   KC_TRNS
 #define  ___EDIT_L2___  G(KC_A),     G(KC_X),     G(KC_C),     G(KC_V),   KC_TRNS
 #define  ___EDIT_R2___  KC_LEFT,     KC_DOWN,     KC_UP,       KC_RIGHT,  KC_TRNS
-#define  ___EDIT_L3___  KC_TRNS,     G(KC_Z),     G(KC_Z)
+#define  ___EDIT_L3___  KC_TRNS,     G(KC_Z),     SGUI(KC_Z)
 #define  ___EDIT_R3___  KC_LBRC,     KC_RBRC,     KC_TRNS
 #define  ___EDIT_L4___  KC_TRNS,     KC_TRNS
 #define  ___EDIT_R4___  KC_BSPC,     KC_DEL
