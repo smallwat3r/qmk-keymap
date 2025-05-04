@@ -1,6 +1,6 @@
 # Smallwat3r's QMK keymap
 
-Custom 26 keys layout with minimal strain on pinky fingers.
+Custom 26 keys layout with minimal strain on pinky fingers for the [Smallcat](https://github.com/smallwat3r/smallcat) keyboard.
 
 Highly relying on combos. I'm using very light switches (Ambients Nocturnal from Kailh, 20g), which makes it very comfortable.
 
