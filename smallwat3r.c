@@ -127,8 +127,8 @@ enum custom_keycodes {
 #define  ___NAV2_L1_30  KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,      KC_TRNS
 #define  ___NAV2_R1___  KC_TRNS,     KC_TRNS,     KC_TRNS
 #define  ___NAV2_R1_30  KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,      KC_TRNS
-#define  ___NAV2_L2___  SELWBAK,     KC_TRNS,     KC_TRNS,     KC_TRNS,      KC_TRNS
-#define  ___NAV2_R2___  A(KC_LEFT),  KC_TRNS,     KC_TRNS,     A(KC_RIGHT),  SELWFWD
+#define  ___NAV2_L2___  KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,      KC_TRNS
+#define  ___NAV2_R2___  A(KC_LEFT),  SELWBAK,     SELWFWD,     A(KC_RIGHT),  KC_TRNS
 #define  ___NAV2_L3___  KC_TRNS,     KC_TRNS,     KC_TRNS
 #define  ___NAV2_R3___  SELLINE,     KC_TRNS,     KC_TRNS
 #define  ___NAV2_L4___  KC_TRNS,     KC_TRNS
