@@ -15,6 +15,7 @@ enum layers {
     EDIT,
     FUN,
     SYS,
+    ROS,  // ROS2 teleop
 };
 
 enum custom_keycodes {
@@ -34,7 +35,7 @@ enum custom_keycodes {
 #define  CK_5   LT(SYM2,      KC_R)
 #define  CK_6   LT(NUM,       KC_T)
 #define  CK_7   LT(NAV,       KC_S)
-#define  CK_8   KC_G
+#define  CK_8   LT(ROS,       KC_G)
 #define  CK_9   MT(MOD_LCTL,  KC_K)
 #define  CK_10  MT(MOD_LALT,  KC_M)
 #define  CK_11  MT(MOD_LGUI,  KC_C)
@@ -169,6 +170,18 @@ enum custom_keycodes {
 #define  ___SYS__R3___  RGB_TOG,  G(KC_KP_MINUS),  G(KC_KP_PLUS)
 #define  ___SYS__L4___  KC_BTN2,  KC_BTN1
 #define  ___SYS__R4___  KC_TRNS,  KC_TRNS
+
+// ros2 teleop
+#define  ___ROS__L1___  KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___ROS__L1_30  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___ROS__R1___  KC_U,     KC_I,     KC_O
+#define  ___ROS__R1_30  KC_TRNS,  KC_U,     KC_I,     KC_O,     KC_TRNS
+#define  ___ROS__L2___  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___ROS__R2___  KC_TRNS,  KC_J,     KC_K,     KC_L,     KC_TRNS
+#define  ___ROS__L3___  KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___ROS__R3___  KC_M,     KC_COMM,  KC_DOT
+#define  ___ROS__L4___  KC_TRNS,  KC_TRNS
+#define  ___ROS__R4___  KC_TRNS,  KC_TRNS
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 

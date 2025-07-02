@@ -58,6 +58,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___SYS__L3___, ___SYS__R3___,
         ___SYS__L4___, ___SYS__R4___
     ),
+    [ROS] = LAYOUT_wrapper(
+        ___ROS__L1___, ___ROS__R1___,
+        ___ROS__L2___, ___ROS__R2___,
+        ___ROS__L3___, ___ROS__R3___,
+        ___ROS__L4___, ___ROS__R4___
+    )
 };
 
 #ifdef CHORDAL_HOLD
