@@ -120,7 +120,7 @@ enum custom_keycodes {
 #define  ___NAV__R2___  KC_LEFT,     KC_DOWN,     KC_UP,       KC_RIGHT,     KC_TRNS
 #define  ___NAV__L3___  KC_TRNS,     KC_TRNS,     KC_TRNS
 #define  ___NAV__R3___  KC_LBRC,     KC_RBRC,     KC_TRNS
-#define  ___NAV__L4___  KC_TRNS,     KC_TRNS
+#define  ___NAV__L4___  KC_BTN2,     KC_BTN1
 #define  ___NAV__R4___  KC_BSPC,     KC_DEL
 
 // nav2
