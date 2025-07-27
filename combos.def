@@ -1,5 +1,6 @@
 // left base
 COMB(C_LB_Z,          KC_Z,           CK_1,        CK_2,   CK_3)
+COMB(C_LB_SWAP_GC,    CG_LSWP,        CK_4,        CK_5,   CK_6, CK_7)
 COMB(C_LB_Q,          KC_Q,           CK_2,        CK_3)
 COMB(C_LB_B,          KC_B,           CK_5,        CK_6)
 COMB(C_LB_X,          KC_X,           CK_9,        CK_10)
@@ -13,6 +14,7 @@ SUBS(C_LB_TH,         "th",           CK_6,        CK_7)
 SUBS(C_LB_WH,         "wh",           CK_4,        CK_7)
 // right base
 COMB(C_RB_ESC,        KC_ESC,         CK_18,       CK_19,  CK_20)
+COMB(C_RB_UNSWAP_GC,  CG_LNRM,        CK_18,       CK_19,  CK_20, CK_21)
 COMB(C_RB_UNDS,       KC_UNDS,        CK_22,       CK_19)
 COMB(C_RB_SCLN,       KC_SCLN,        CK_23,       CK_24)
 COMB(C_RB_RBRC,       KC_RBRC,        CK_14,       CK_16)
