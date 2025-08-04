@@ -116,8 +116,8 @@ enum custom_keycodes {
 #define  ___NAV__L1_30  KC_NO,       KC_TRNS,     KC_TRNS,     KC_TRNS,      KC_NO
 #define  ___NAV__R1___  S(KC_LBRC),  S(KC_RBRC),  KC_TRNS
 #define  ___NAV__R1_30  KC_NO,       S(KC_LBRC),  S(KC_RBRC),  KC_TRNS,      KC_TRNS
-#define  ___NAV__L2___  KC_TRNS,     KC_TRNS,     MO(NAV2),    KC_TRNS,      KC_TRNS
-#define  ___NAV__R2___  KC_LEFT,     KC_DOWN,     KC_UP,       KC_RIGHT,     KC_TRNS
+#define  ___NAV__L2___  KC_END,      KC_TRNS,     MO(NAV2),    KC_TRNS,      KC_TRNS
+#define  ___NAV__R2___  KC_LEFT,     KC_DOWN,     KC_UP,       KC_RIGHT,     KC_HOME
 #define  ___NAV__L3___  KC_TRNS,     KC_TRNS,     KC_TRNS
 #define  ___NAV__R3___  KC_LBRC,     KC_RBRC,     KC_TRNS
 #define  ___NAV__L4___  KC_BTN2,     KC_BTN1
