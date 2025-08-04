@@ -4,7 +4,7 @@ Custom 26 keys layout with minimal strain on pinky fingers for the [Smallcat](ht
 
 Highly relying on combos. I'm using very light switches (Ambients Nocturnal from Kailh, 20g), which makes it very comfortable.
 
-I use `./cp-smallcat` to copy the Smallcat keyboard configs onto my local QMK firmware repository.
+I use `./scripts/copy-boards` to copy the Smallcat keyboard configs to my local QMK firmware repository.
 
 Compile firmware
 ```
