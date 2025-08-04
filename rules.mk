@@ -9,9 +9,6 @@ VPATH += keyboards/gboards/
 COMMAND_ENABLE = no
 UNICODE_ENABLE = no
 
-RGBLIGHT_ENABLE = yes
-WS2812_DRIVER = vendor
-
 EXTRAFLAGS += -flto
 
 SELECT_WORD_ENABLE ?= yes
