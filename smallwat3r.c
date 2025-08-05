@@ -87,29 +87,39 @@ enum custom_keycodes {
 #define  ___NUM__L4___  KC_TRNS,   KC_SPC
 #define  ___NUM__R4___  KC_BSPC,   KC_DEL
 
+// common SYM definitions
+#define  ___SYM_COMMON_L1___  KC_AT,        S(KC_3),      S(KC_4)
+#define  ___SYM_COMMON_L1_30  KC_NO,        KC_AT,        S(KC_3),     S(KC_4),      KC_EURO
+#define  ___SYM_COMMON_R1___  KC_BSLS,      KC_SLASH,     S(KC_SLASH)
+#define  ___SYM_COMMON_R1_30  KC_NO,        KC_BSLS,      KC_SLASH,    S(KC_SLASH),  KC_CIRC
+#define  ___SYM_COMMON_L3___  S(KC_EQUAL),  S(KC_7),      KC_GRAVE
+#define  ___SYM_COMMON_R3___  S(KC_COMMA),  S(KC_DOT),    M_KC_ARROW
+#define  ___SYM_COMMON_L4___  KC_TRNS,      KC_TRNS
+#define  ___SYM_COMMON_R4___  KC_TRNS,      KC_TRNS
+
 // sym
-#define  ___SYM__L1___  KC_AT,        S(KC_3),      S(KC_4)
-#define  ___SYM__L1_30  KC_NO,        KC_AT,        S(KC_3),     S(KC_4),      KC_EURO
-#define  ___SYM__R1___  KC_BSLS,      KC_SLASH,     S(KC_SLASH)
-#define  ___SYM__R1_30  KC_NO,        KC_BSLS,      KC_SLASH,    S(KC_SLASH),  KC_CIRC
+#define  ___SYM__L1___  ___SYM_COMMON_L1___
+#define  ___SYM__L1_30  ___SYM_COMMON_L1_30
+#define  ___SYM__R1___  ___SYM_COMMON_R1___
+#define  ___SYM__R1_30  ___SYM_COMMON_R1_30
 #define  ___SYM__L2___  S(KC_8),      KC_MINUS,     KC_EQUAL,    S(KC_QUOTE),  S(KC_5)
 #define  ___SYM__R2___  S(KC_1),      S(KC_SCLN),   RALT(KC_3),  S(KC_GRAVE),  S(KC_BSLS)
-#define  ___SYM__L3___  S(KC_EQUAL),  S(KC_7),      KC_GRAVE
-#define  ___SYM__R3___  S(KC_COMMA),  S(KC_DOT),    M_KC_ARROW
-#define  ___SYM__L4___  KC_TRNS,      KC_TRNS
-#define  ___SYM__R4___  KC_TRNS,      KC_TRNS
+#define  ___SYM__L3___  ___SYM_COMMON_L3___
+#define  ___SYM__R3___  ___SYM_COMMON_R3___
+#define  ___SYM__L4___  ___SYM_COMMON_L4___
+#define  ___SYM__R4___  ___SYM_COMMON_R4___
 
 // sym2 (lighter layer that ease rolls for home row)
-#define  ___SYM2_L1___  KC_AT,        S(KC_3),      S(KC_4)
-#define  ___SYM2_L1_30  KC_NO,        KC_AT,        S(KC_3),     S(KC_4),      KC_EURO
-#define  ___SYM2_R1___  KC_BSLS,      KC_SLASH,     S(KC_SLASH)
-#define  ___SYM2_R1_30  KC_NO,        KC_BSLS,      KC_SLASH,    S(KC_SLASH),  KC_CIRC
+#define  ___SYM2_L1___  ___SYM_COMMON_L1___
+#define  ___SYM2_L1_30  ___SYM_COMMON_L1_30
+#define  ___SYM2_R1___  ___SYM_COMMON_R1___
+#define  ___SYM2_R1_30  ___SYM_COMMON_R1_30
 #define  ___SYM2_L2___  S(KC_8),      KC_R,         KC_EQUAL,    S(KC_QUOTE),  S(KC_5)
-#define  ___SYM2_R2___  S(KC_1),      S(KC_SCLN),   CK_19,       CK_20,        S(KC_BSLS)
-#define  ___SYM2_L3___  S(KC_EQUAL),  S(KC_7),      KC_GRAVE
-#define  ___SYM2_R3___  S(KC_COMMA),  S(KC_DOT),    M_KC_ARROW
-#define  ___SYM2_L4___  KC_TRNS,      KC_TRNS
-#define  ___SYM2_R4___  KC_TRNS,      KC_TRNS
+#define  ___SYM2_R2___  S(KC_1),      S(KC_SCLN),   CK_19,       KC_E,         S(KC_BSLS)
+#define  ___SYM2_L3___  ___SYM_COMMON_L3___
+#define  ___SYM2_R3___  ___SYM_COMMON_R3___
+#define  ___SYM2_L4___  ___SYM_COMMON_L4___
+#define  ___SYM2_R4___  ___SYM_COMMON_R4___
 
 // nav
 #define  ___NAV__L1___  KC_TRNS,     KC_TRNS,     KC_TRNS
@@ -216,33 +226,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
                 select_word_unregister();
             }
-            break;
+            return false;
         case SELWFWD: // forward word selection.
             if (record->event.pressed) {
                 select_word_register('W');
             } else {
                 select_word_unregister();
             }
-            break;
+            return false;
         case SELLINE: // line selection.
             if (record->event.pressed) {
                 select_word_register('L');
             } else {
                 select_word_unregister();
             }
-            break;
+            return false;
 #endif
-    }
-
-    if (record->event.pressed) {
-        switch (keycode) {
-            case M_KC_ARROW:
+        case M_KC_ARROW:
+            if (record->event.pressed) {
                 SEND_STRING("->");
-                return false;
-            case M_KC_000:
+            }
+            return false;
+        case M_KC_000:
+            if (record->event.pressed) {
                 SEND_STRING("000");
-                return false;
-        }
+            }
+            return false;
     }
     return true;
 }
