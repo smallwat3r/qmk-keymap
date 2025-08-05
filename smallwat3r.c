@@ -21,6 +21,20 @@ enum layers {
 enum custom_keycodes {
     M_KC_ARROW = SAFE_RANGE,
     M_KC_000,
+    M_KC_SCRN,  // take screenshot
+    M_KC_COPY,
+    M_KC_CUT,
+    M_KC_PASTE,
+    M_KC_UNDO,
+    M_KC_REDO,
+    M_KC_FIND,
+    M_KC_F_NEXT, // find next
+    M_KC_F_PREV, // find prev
+    M_KC_ALL,    // select all
+    M_KC_BSPC_W, // backspace whole word
+    M_KC_DEL_W,  // delete whole word
+    M_KC_R_W,    // move right whole word
+    M_KC_L_W,    // move left whole word
     SELWBAK,
     SELWFWD,
     SELLINE,
@@ -139,20 +153,20 @@ enum custom_keycodes {
 #define  ___NAV2_R1___  KC_TRNS,     KC_TRNS,     KC_TRNS
 #define  ___NAV2_R1_30  KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,      KC_TRNS
 #define  ___NAV2_L2___  KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,      KC_TRNS
-#define  ___NAV2_R2___  A(KC_LEFT),  SELWBAK,     SELWFWD,     A(KC_RIGHT),  KC_TRNS
+#define  ___NAV2_R2___  M_KC_L_W,    SELWBAK,     SELWFWD,     M_KC_R_W,     KC_TRNS
 #define  ___NAV2_L3___  KC_TRNS,     KC_TRNS,     KC_TRNS
 #define  ___NAV2_R3___  SELLINE,     KC_TRNS,     KC_TRNS
 #define  ___NAV2_L4___  KC_TRNS,     KC_TRNS
-#define  ___NAV2_R4___  A(KC_BSPC),  A(KC_DEL)
+#define  ___NAV2_R4___  M_KC_BSPC_W, M_KC_DEL_W
 
 // edit
-#define  ___EDIT_L1___  SGUI(KC_G),  G(KC_F),     G(KC_G)
-#define  ___EDIT_L1_30  KC_NO,       SGUI(KC_G),  G(KC_F),     G(KC_G),   KC_NO
+#define  ___EDIT_L1___  M_KC_F_PREV, M_KC_FIND,   M_KC_F_NEXT
+#define  ___EDIT_L1_30  KC_NO,       M_KC_F_PREV, M_KC_FIND,   M_KC_F_NEXT, KC_NO
 #define  ___EDIT_R1___  S(KC_LBRC),  S(KC_RBRC),  KC_TRNS
-#define  ___EDIT_R1_30  KC_NO,       S(KC_LBRC),  S(KC_RBRC),  KC_TRNS,   KC_TRNS
-#define  ___EDIT_L2___  G(KC_A),     G(KC_X),     G(KC_C),     G(KC_V),   KC_TRNS
-#define  ___EDIT_R2___  KC_LEFT,     KC_DOWN,     KC_UP,       KC_RIGHT,  KC_TRNS
-#define  ___EDIT_L3___  KC_TRNS,     G(KC_Z),     SGUI(KC_Z)
+#define  ___EDIT_R1_30  KC_NO,       S(KC_LBRC),  S(KC_RBRC),  KC_TRNS,     KC_TRNS
+#define  ___EDIT_L2___  M_KC_ALL,    M_KC_CUT,    M_KC_COPY,   M_KC_PASTE,  KC_TRNS
+#define  ___EDIT_R2___  KC_LEFT,     KC_DOWN,     KC_UP,       KC_RIGHT,    KC_TRNS
+#define  ___EDIT_L3___  KC_TRNS,     M_KC_UNDO,   M_KC_REDO
 #define  ___EDIT_R3___  KC_LBRC,     KC_RBRC,     KC_TRNS
 #define  ___EDIT_L4___  KC_TRNS,     KC_TRNS
 #define  ___EDIT_R4___  KC_BSPC,     KC_DEL
@@ -167,7 +181,7 @@ enum custom_keycodes {
 #define  ___FUN__L3___  KC_TRNS,     KC_TRNS,   KC_TRNS
 #define  ___FUN__R3___  KC_F1,       KC_F2,     KC_F3
 #define  ___FUN__L4___  KC_TRNS,     KC_TRNS
-#define  ___FUN__R4___  A(KC_BSPC),  A(KC_DEL)
+#define  ___FUN__R4___  M_KC_BSPC_W, M_KC_DEL_W
 
 // sys
 #define  ___SYS__L1___  KC_MPLY,  KC_BTN4,         KC_BTN5
@@ -250,6 +264,132 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case M_KC_000:
             if (record->event.pressed) {
                 SEND_STRING("000");
+            }
+            return false;
+        case M_KC_SCRN:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(SGUI(KC_4));
+                } else {
+                    tap_code(KC_PSCR);
+                }
+            }
+            return false;
+        case M_KC_COPY:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(G(KC_C));
+                } else {
+                    tap_code(KC_COPY);
+                }
+            }
+            return false;
+        case M_KC_CUT:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(G(KC_X));
+                } else {
+                    tap_code(KC_CUT);
+                }
+            }
+            return false;
+        case M_KC_PASTE:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(G(KC_V));
+                } else {
+                    tap_code(KC_PASTE);
+                }
+            }
+            return false;
+        case M_KC_UNDO:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(G(KC_Z));
+                } else {
+                    tap_code(KC_UNDO);
+                }
+            }
+            return false;
+        case M_KC_REDO:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(SGUI(KC_Z));
+                } else {
+                    tap_code16(LCS(KC_Z));
+                }
+            }
+            return false;
+        case M_KC_FIND:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(G(KC_F));
+                } else {
+                    tap_code(KC_FIND);
+                }
+            }
+            return false;
+        case M_KC_F_NEXT:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(G(KC_G));
+                } else {
+                    tap_code16(C(KC_G));
+                }
+            }
+            return false;
+        case M_KC_F_PREV:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(SGUI(KC_G));
+                } else {
+                    tap_code16(LCS(KC_G));
+                }
+            }
+            return false;
+        case M_KC_ALL:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(G(KC_A));
+                } else {
+                    tap_code16(C(KC_A));
+                }
+            }
+            return false;
+        case M_KC_BSPC_W:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(A(KC_BSPC));
+                } else {
+                    tap_code16(C(KC_BSPC));
+                }
+            }
+            return false;
+        case M_KC_DEL_W:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(A(KC_DEL));
+                } else {
+                    tap_code16(C(KC_DEL));
+                }
+            }
+            return false;
+        case M_KC_R_W:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(A(KC_RIGHT));
+                } else {
+                    tap_code16(C(KC_RIGHT));
+                }
+            }
+            return false;
+        case M_KC_L_W:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(A(KC_LEFT));
+                } else {
+                    tap_code16(C(KC_LEFT));
+                }
             }
             return false;
     }
