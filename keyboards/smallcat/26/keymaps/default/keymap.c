@@ -63,6 +63,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___ROS__L2___, ___ROS__R2___,
         ___ROS__L3___, ___ROS__R3___,
         ___ROS__L4___, ___ROS__R4___
+    ),
+    [UNI] = LAYOUT_wrapper(
+        ___UNI__L1___, ___UNI__R1___,
+        ___UNI__L2___, ___UNI__R2___,
+        ___UNI__L3___, ___UNI__R3___,
+        ___UNI__L4___, ___UNI__R4___
     )
 };
 

@@ -16,6 +16,7 @@ enum layers {
     FUN,
     SYS,
     ROS,  // ROS2 teleop
+    UNI,  // unicode
 };
 
 enum custom_keycodes {
@@ -40,11 +41,31 @@ enum custom_keycodes {
     SELLINE,
 };
 
+enum unicode_names {
+  A_GRAVE,       // à
+  A_CIRCUMFLEX,  // â
+  C_CEDILLA,     // ç
+  E_ACUTE,       // é
+  E_GRAVE,       // è
+  E_CIRCUMFLEX,  // ê
+  U_CIRCUMFLEX   // û
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+  [A_GRAVE]     = 0x00E0, // à
+  [A_CIRCUMFLEX]= 0x00E2, // â
+  [C_CEDILLA]   = 0x00E7, // ç
+  [E_ACUTE]     = 0x00E9, // é
+  [E_GRAVE]     = 0x00E8, // è
+  [E_CIRCUMFLEX]= 0x00EA, // ê
+  [U_CIRCUMFLEX]= 0x00FB, // û
+};
+
 // define one alias per key to use on the base layer, this is a
 // useful level of abstraction in order to define combos
 #define  CK_1   KC_L
 #define  CK_2   KC_D
-#define  CK_3   KC_P
+#define  CK_3   LT(UNI,       KC_P)
 #define  CK_4   MT(MOD_LSFT,  KC_W)
 #define  CK_5   LT(SYM2,      KC_R)
 #define  CK_6   LT(NUM,       KC_T)
@@ -206,6 +227,18 @@ enum custom_keycodes {
 #define  ___ROS__R3___  KC_M,     KC_COMM,  KC_DOT
 #define  ___ROS__L4___  KC_TRNS,  KC_TRNS
 #define  ___ROS__R4___  KC_TRNS,  KC_TRNS
+
+// uni
+#define  ___UNI__L1___  KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___UNI__L1_30  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___UNI__R1___  UM(A_GRAVE), UM(A_CIRCUMFLEX), UM(U_CIRCUMFLEX)
+#define  ___UNI__R1_30  KC_TRNS, UM(A_GRAVE), UM(A_CIRCUMFLEX), UM(U_CIRCUMFLEX), KC_TRNS
+#define  ___UNI__L2___  KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
+#define  ___UNI__R2___  KC_TRNS, UM(E_ACUTE), UM(E_GRAVE), UM(E_CIRCUMFLEX), UM(C_CEDILLA)
+#define  ___UNI__L3___  KC_TRNS, KC_TRNS,  KC_TRNS
+#define  ___UNI__R3___  KC_TRNS, KC_TRNS, KC_TRNS
+#define  ___UNI__L4___  KC_TRNS, KC_TRNS
+#define  ___UNI__R4___  KC_TRNS, KC_TRNS
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
@@ -439,5 +472,18 @@ void keyboard_post_init_user(void) {
 #ifdef AUTOCORRECT_ENABLE
     // ensure autocorrect is on by default
     if (!autocorrect_is_enabled()) autocorrect_enable();
+#endif
+#ifdef OS_DETECTION_ENABLE
+    switch (detected_host_os()) {
+        case OS_WINDOWS:
+            set_unicode_input_mode(UNICODE_MODE_WINDOWS);
+            break;
+        case OS_MACOS:
+            set_unicode_input_mode(UNICODE_MODE_MACOS);
+            break;
+        default:
+            set_unicode_input_mode(UNICODE_MODE_LINUX);
+            break;
+    }
 #endif
 }
