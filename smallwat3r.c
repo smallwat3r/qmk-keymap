@@ -39,6 +39,9 @@ enum custom_keycodes {
     SELWBAK,
     SELWFWD,
     SELLINE,
+    M_KC_EURO,
+    M_KC_POUND,
+    M_KC_HASH,
 };
 
 enum unicode_names {
@@ -48,7 +51,10 @@ enum unicode_names {
   E_ACUTE,       // é
   E_GRAVE,       // è
   E_CIRCUMFLEX,  // ê
-  U_CIRCUMFLEX   // û
+  U_CIRCUMFLEX,  // û
+  UNI_EURO,      // €
+  UNI_POUND,     // £
+  UNI_HASH,      // #
 };
 
 const uint32_t PROGMEM unicode_map[] = {
@@ -59,6 +65,9 @@ const uint32_t PROGMEM unicode_map[] = {
   [E_GRAVE]     = 0x00E8, // è
   [E_CIRCUMFLEX]= 0x00EA, // ê
   [U_CIRCUMFLEX]= 0x00FB, // û
+  [UNI_EURO]    = 0x20AC, // €
+  [UNI_POUND]   = 0x00A3, // £
+  [UNI_HASH]    = 0x0023, // #
 };
 
 // define one alias per key to use on the base layer, this is a
@@ -89,8 +98,6 @@ const uint32_t PROGMEM unicode_map[] = {
 #define  CK_24  MT(MOD_LCTL,  KC_DOT)
 #define  CK_25  LT(SYS,       KC_BSPC)
 #define  CK_26  LT(SYM,       KC_ENT)
-
-#define KC_EURO LSFT(LALT(KC_2))
 
 #ifdef COMBO_ENABLE
 // need to be included after custom keycode definition in order to use the
@@ -123,8 +130,8 @@ const uint32_t PROGMEM unicode_map[] = {
 #define  ___NUM__R4___  KC_BSPC,   KC_DEL
 
 // common SYM definitions
-#define  ___SYM_COMMON_L1___  KC_AT,        S(KC_3),      S(KC_4)
-#define  ___SYM_COMMON_L1_30  KC_NO,        KC_AT,        S(KC_3),     S(KC_4),      KC_EURO
+#define  ___SYM_COMMON_L1___  KC_AT,        M_KC_POUND,   S(KC_4)
+#define  ___SYM_COMMON_L1_30  KC_NO,        KC_AT,        S(KC_3),     S(KC_4),      M_KC_EURO
 #define  ___SYM_COMMON_R1___  KC_BSLS,      KC_SLASH,     S(KC_SLASH)
 #define  ___SYM_COMMON_R1_30  KC_NO,        KC_BSLS,      KC_SLASH,    S(KC_SLASH),  KC_CIRC
 #define  ___SYM_COMMON_L3___  S(KC_EQUAL),  S(KC_7),      KC_GRAVE
@@ -138,7 +145,7 @@ const uint32_t PROGMEM unicode_map[] = {
 #define  ___SYM__R1___  ___SYM_COMMON_R1___
 #define  ___SYM__R1_30  ___SYM_COMMON_R1_30
 #define  ___SYM__L2___  S(KC_8),      KC_MINUS,     KC_EQUAL,    S(KC_QUOTE),  S(KC_5)
-#define  ___SYM__R2___  S(KC_1),      S(KC_SCLN),   RALT(KC_3),  S(KC_GRAVE),  S(KC_BSLS)
+#define  ___SYM__R2___  S(KC_1),      S(KC_SCLN),   M_KC_HASH,   S(KC_GRAVE),  S(KC_BSLS)
 #define  ___SYM__L3___  ___SYM_COMMON_L3___
 #define  ___SYM__R3___  ___SYM_COMMON_R3___
 #define  ___SYM__L4___  ___SYM_COMMON_L4___
@@ -241,6 +248,25 @@ const uint32_t PROGMEM unicode_map[] = {
 #define  ___UNI__R4___  KC_TRNS, KC_TRNS
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
+
+#ifdef OS_DETECTION_ENABLE
+bool process_detected_host_os_kb(os_variant_t detected_os) {
+    if (!process_detected_host_os_user(detected_os)) {
+        return false;
+    }
+    switch (detected_os) {
+        case OS_MACOS:
+            set_unicode_input_mode(UNICODE_MODE_MACOS);
+            break;
+        case OS_LINUX:
+            set_unicode_input_mode(UNICODE_MODE_LINUX);
+            break;
+        default:
+            break;
+    }
+    return true;
+}
+#endif
 
 #ifdef COMBO_TERM_PER_COMBO
 uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
@@ -349,7 +375,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (detected_host_os() == OS_MACOS) {
                     tap_code16(SGUI(KC_Z));
                 } else {
-                    tap_code16(LCS(KC_Z));
+                    tap_code16(C(S(KC_Z)));
                 }
             }
             return false;
@@ -376,7 +402,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (detected_host_os() == OS_MACOS) {
                     tap_code16(SGUI(KC_G));
                 } else {
-                    tap_code16(LCS(KC_G));
+                    tap_code16(C(S(KC_G)));
                 }
             }
             return false;
@@ -422,6 +448,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     tap_code16(A(KC_LEFT));
                 } else {
                     tap_code16(C(KC_LEFT));
+                }
+            }
+            return false;
+        case M_KC_EURO:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(A(S(KC_2)));
+                } else {
+                    register_unicodemap(UNI_EURO);
+                }
+            }
+            return false;
+        case M_KC_POUND:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(S(KC_3));
+                } else {
+                    register_unicodemap(UNI_POUND);
+                }
+            }
+            return false;
+        case M_KC_HASH:
+            if (record->event.pressed) {
+                if (detected_host_os() == OS_MACOS) {
+                    tap_code16(RALT(KC_3));
+                } else {
+                    register_unicodemap(UNI_HASH);
                 }
             }
             return false;
@@ -472,18 +525,5 @@ void keyboard_post_init_user(void) {
 #ifdef AUTOCORRECT_ENABLE
     // ensure autocorrect is on by default
     if (!autocorrect_is_enabled()) autocorrect_enable();
-#endif
-#ifdef OS_DETECTION_ENABLE
-    switch (detected_host_os()) {
-        case OS_WINDOWS:
-            set_unicode_input_mode(UNICODE_MODE_WINDOWS);
-            break;
-        case OS_MACOS:
-            set_unicode_input_mode(UNICODE_MODE_MACOS);
-            break;
-        default:
-            set_unicode_input_mode(UNICODE_MODE_LINUX);
-            break;
-    }
 #endif
 }

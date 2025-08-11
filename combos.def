@@ -27,7 +27,7 @@ COMB(C_BB_CAPS,       KC_CAPS,        CK_7,        CK_18)
 COMB(C_BB_PSCRN,      M_KC_SCRN,      CK_8,        CK_17)
 // left sym
 #ifndef KEY_COUNT_30
-COMB(C_LS_EURO,       KC_EURO,        S(KC_3),     S(KC_4))
+COMB(C_LS_EURO,       M_KC_EURO,      M_KC_POUND,  S(KC_4))
 #endif
 SUBS(C_LS_DOCSTRING,  "\"\"\"",       KC_EQUAL,    S(KC_QUOTE))
 SUBS(C_LS_MARKCODE,   "```",          S(KC_7),     KC_GRAVE)
