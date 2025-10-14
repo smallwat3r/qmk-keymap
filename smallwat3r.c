@@ -384,7 +384,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (detected_host_os() == OS_MACOS) {
                     tap_code16(G(KC_F));
                 } else {
-                    tap_code(KC_FIND);
+                    tap_code16(C(KC_F));
                 }
             }
             return false;
