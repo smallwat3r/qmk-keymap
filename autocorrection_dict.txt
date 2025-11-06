@@ -479,9 +479,16 @@ youre         -> you're
 youve         -> you've
 :dont:        -> don't
 doesnt        -> doesn't
+dosen't       -> doesn't
+dosent        -> doesn't
 couldnt       -> couldn't
 :cant:        -> can't
 :wont:        -> won't
 :latre:       -> later
 wouldnt       -> wouldn't
 calss         -> class
+areo:         -> aero
+wasnt         -> wasn't
+theyre        -> they're
+didnt         -> didn't
+shouldnt      -> shouldn't

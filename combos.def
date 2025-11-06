@@ -11,6 +11,8 @@ COMB(C_LB_OSM_S,      OSM(MOD_LSFT),  CK_5,        CK_6,   CK_7)
 SUBS(C_LB_SH,         "sh",           CK_5,        CK_7)
 SUBS(C_LB_TH,         "th",           CK_6,        CK_7)
 SUBS(C_LB_WH,         "wh",           CK_4,        CK_7)
+SUBS(C_LB_WC,         ".com",         CK_4,        CK_11)
+SUBS(C_LB_WG,         "smallwat3r",   CK_4,        CK_8)
 // right base
 COMB(C_RB_ESC,        KC_ESC,         CK_18,       CK_19,  CK_20)
 COMB(C_RB_UNDS,       KC_UNDS,        CK_22,       CK_19)
