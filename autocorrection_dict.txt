@@ -492,3 +492,4 @@ wasnt         -> wasn't
 theyre        -> they're
 didnt         -> didn't
 shouldnt      -> shouldn't
+wrold         -> world
