@@ -33,6 +33,7 @@ COMB(C_LS_EURO,       M_KC_EURO,      M_KC_POUND,  S(KC_4))
 #endif
 SUBS(C_LS_DOCSTRING,  "\"\"\"",       KC_EQUAL,    S(KC_QUOTE))
 SUBS(C_LS_MARKCODE,   "```",          S(KC_7),     KC_GRAVE)
+SUBS(C_LS_INDENT,     "    ",         S(KC_8),     KC_SPC)
 // right sym
 #ifndef KEY_COUNT_30
 COMB(C_RS_CIRC,       KC_CIRC,        KC_EQUAL,    KC_GRAVE)

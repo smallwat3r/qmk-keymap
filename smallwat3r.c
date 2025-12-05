@@ -21,7 +21,6 @@ enum layers {
 
 enum custom_keycodes {
     M_KC_ARROW = SAFE_RANGE,
-    M_KC_INDENT_SPACE,
     M_KC_000,
     M_KC_SCRN,  // take screenshot
     M_KC_COPY,
@@ -137,7 +136,7 @@ const uint32_t PROGMEM unicode_map[] = {
 #define  ___SYM_COMMON_R1_30  KC_NO,        KC_BSLS,      KC_SLASH,    S(KC_SLASH),  KC_CIRC
 #define  ___SYM_COMMON_L3___  S(KC_EQUAL),  S(KC_7),      KC_GRAVE
 #define  ___SYM_COMMON_R3___  S(KC_COMMA),  S(KC_DOT),    M_KC_ARROW
-#define  ___SYM_COMMON_L4___  KC_TRNS,      M_KC_INDENT_SPACE
+#define  ___SYM_COMMON_L4___  KC_TRNS,      KC_SPC
 #define  ___SYM_COMMON_R4___  KC_TRNS,      KC_TRNS
 
 // sym
@@ -319,11 +318,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case M_KC_ARROW:
             if (record->event.pressed) {
                 SEND_STRING("->");
-            }
-            return false;
-        case M_KC_INDENT_SPACE:
-            if (record->event.pressed) {
-                SEND_STRING("    ");
             }
             return false;
         case M_KC_000:
