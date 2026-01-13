@@ -284,6 +284,9 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
 }
 #endif
 
+#define OS_TAP(mac_key, other_key) \
+    tap_code16(detected_host_os() == OS_MACOS ? (mac_key) : (other_key))
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef SELECT_WORD_ENABLE
     if (!process_select_word(keycode, record)) {
@@ -291,191 +294,66 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 #endif
 
+    if (!record->event.pressed) {
+#ifdef SELECT_WORD_ENABLE
+        switch (keycode) {
+            case SELWBAK:
+            case SELWFWD:
+            case SELLINE:
+                select_word_unregister();
+                return false;
+        }
+#endif
+        return true;
+    }
+
     switch (keycode) {
 #ifdef SELECT_WORD_ENABLE
-        case SELWBAK: // backward word selection.
-            if (record->event.pressed) {
-                select_word_register('B');
-            } else {
-                select_word_unregister();
-            }
-            return false;
-        case SELWFWD: // forward word selection.
-            if (record->event.pressed) {
-                select_word_register('W');
-            } else {
-                select_word_unregister();
-            }
-            return false;
-        case SELLINE: // line selection.
-            if (record->event.pressed) {
-                select_word_register('L');
-            } else {
-                select_word_unregister();
-            }
-            return false;
+        case SELWBAK: select_word_register('B'); return false;
+        case SELWFWD: select_word_register('W'); return false;
+        case SELLINE: select_word_register('L'); return false;
 #endif
-        case M_KC_ARROW:
-            if (record->event.pressed) {
-                SEND_STRING("->");
-            }
-            return false;
-        case M_KC_000:
-            if (record->event.pressed) {
-                SEND_STRING("000");
-            }
-            return false;
+        case M_KC_ARROW:   SEND_STRING("->"); return false;
+        case M_KC_000:     SEND_STRING("000"); return false;
+        case M_KC_COPY:    OS_TAP(G(KC_C), KC_COPY); return false;
+        case M_KC_CUT:     OS_TAP(G(KC_X), KC_CUT); return false;
+        case M_KC_PASTE:   OS_TAP(G(KC_V), KC_PASTE); return false;
+        case M_KC_UNDO:    OS_TAP(G(KC_Z), C(KC_Z)); return false;
+        case M_KC_REDO:    OS_TAP(SGUI(KC_Z), C(S(KC_Z))); return false;
+        case M_KC_FIND:    OS_TAP(G(KC_F), C(KC_F)); return false;
+        case M_KC_F_NEXT:  OS_TAP(G(KC_G), C(KC_G)); return false;
+        case M_KC_F_PREV:  OS_TAP(SGUI(KC_G), C(S(KC_G))); return false;
+        case M_KC_ALL:     OS_TAP(G(KC_A), C(KC_A)); return false;
+        case M_KC_BSPC_W:  OS_TAP(A(KC_BSPC), C(KC_BSPC)); return false;
+        case M_KC_DEL_W:   OS_TAP(A(KC_DEL), C(KC_DEL)); return false;
+        case M_KC_R_W:     OS_TAP(A(KC_RIGHT), C(KC_RIGHT)); return false;
+        case M_KC_L_W:     OS_TAP(A(KC_LEFT), C(KC_LEFT)); return false;
         case M_KC_SCRN:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(SGUI(KC_4));
-                } else {
-                    tap_code(KC_PSCR);
-                }
-            }
-            return false;
-        case M_KC_COPY:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(G(KC_C));
-                } else {
-                    tap_code(KC_COPY);
-                }
-            }
-            return false;
-        case M_KC_CUT:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(G(KC_X));
-                } else {
-                    tap_code(KC_CUT);
-                }
-            }
-            return false;
-        case M_KC_PASTE:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(G(KC_V));
-                } else {
-                    tap_code(KC_PASTE);
-                }
-            }
-            return false;
-        case M_KC_UNDO:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(G(KC_Z));
-                } else {
-                    tap_code16(C(KC_Z));
-                }
-            }
-            return false;
-        case M_KC_REDO:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(SGUI(KC_Z));
-                } else {
-                    tap_code16(C(S(KC_Z)));
-                }
-            }
-            return false;
-        case M_KC_FIND:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(G(KC_F));
-                } else {
-                    tap_code16(C(KC_F));
-                }
-            }
-            return false;
-        case M_KC_F_NEXT:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(G(KC_G));
-                } else {
-                    tap_code16(C(KC_G));
-                }
-            }
-            return false;
-        case M_KC_F_PREV:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(SGUI(KC_G));
-                } else {
-                    tap_code16(C(S(KC_G)));
-                }
-            }
-            return false;
-        case M_KC_ALL:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(G(KC_A));
-                } else {
-                    tap_code16(C(KC_A));
-                }
-            }
-            return false;
-        case M_KC_BSPC_W:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(A(KC_BSPC));
-                } else {
-                    tap_code16(C(KC_BSPC));
-                }
-            }
-            return false;
-        case M_KC_DEL_W:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(A(KC_DEL));
-                } else {
-                    tap_code16(C(KC_DEL));
-                }
-            }
-            return false;
-        case M_KC_R_W:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(A(KC_RIGHT));
-                } else {
-                    tap_code16(C(KC_RIGHT));
-                }
-            }
-            return false;
-        case M_KC_L_W:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(A(KC_LEFT));
-                } else {
-                    tap_code16(C(KC_LEFT));
-                }
+            if (detected_host_os() == OS_MACOS) {
+                tap_code16(SGUI(KC_4));
+            } else {
+                tap_code(KC_PSCR);
             }
             return false;
         case M_KC_EURO:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(A(S(KC_2)));
-                } else {
-                    register_unicodemap(UNI_EURO);
-                }
+            if (detected_host_os() == OS_MACOS) {
+                tap_code16(A(S(KC_2)));
+            } else {
+                register_unicodemap(UNI_EURO);
             }
             return false;
         case M_KC_POUND:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(S(KC_3));
-                } else {
-                    register_unicodemap(UNI_POUND);
-                }
+            if (detected_host_os() == OS_MACOS) {
+                tap_code16(S(KC_3));
+            } else {
+                register_unicodemap(UNI_POUND);
             }
             return false;
         case M_KC_HASH:
-            if (record->event.pressed) {
-                if (detected_host_os() == OS_MACOS) {
-                    tap_code16(RALT(KC_3));
-                } else {
-                    register_unicodemap(UNI_HASH);
-                }
+            if (detected_host_os() == OS_MACOS) {
+                tap_code16(RALT(KC_3));
+            } else {
+                register_unicodemap(UNI_HASH);
             }
             return false;
     }
