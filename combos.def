@@ -1,47 +1,62 @@
-// left base
-COMB(C_LB_Z,          KC_Z,           CK_1,        CK_2,   CK_3)
-COMB(C_LB_Q,          KC_Q,           CK_2,        CK_3)
-COMB(C_LB_B,          KC_B,           CK_5,        CK_6)
-COMB(C_LB_X,          KC_X,           CK_9,        CK_10)
-COMB(C_LB_V,          KC_V,           CK_6,        CK_11)
-COMB(C_LB_J,          KC_J,           CK_10,       CK_11)
-COMB(C_LB_LBRC,       KC_LBRC,        CK_1,        CK_3)
-COMB(C_LB_LPRN,       KC_LPRN,        CK_9,        CK_11)
-COMB(C_LB_OSM_S,      OSM(MOD_LSFT),  CK_5,        CK_6,   CK_7)
-SUBS(C_LB_SH,         "sh",           CK_5,        CK_7)
-SUBS(C_LB_TH,         "th",           CK_6,        CK_7)
-SUBS(C_LB_WH,         "wh",           CK_4,        CK_7)
-SUBS(C_LB_WC,         ".com",         CK_4,        CK_11)
-SUBS(C_LB_WG,         "smallwat3r",   CK_4,        CK_8)
-// right base
-COMB(C_RB_ESC,        KC_ESC,         CK_18,       CK_19,  CK_20)
-COMB(C_RB_UNDS,       KC_UNDS,        CK_22,       CK_19)
-COMB(C_RB_SCLN,       KC_SCLN,        CK_23,       CK_24)
-COMB(C_RB_RBRC,       KC_RBRC,        CK_14,       CK_16)
-COMB(C_RB_RPRN,       KC_RPRN,        CK_22,       CK_24)
-COMB(C_RB_QUOT,       KC_QUOT,        CK_18,       CK_20)
-COMB(C_RB_DASH,       KC_MINS,        CK_22,       CK_23)
-SUBS(C_RB_YOU,        "you",          CK_16,       CK_18)
-SUBS(C_RB_ION,        "ion",          CK_22,       CK_20)
-SUBS(C_RB_ING,        "ing",          CK_18,       CK_21)
-// both base
-COMB(C_BB_CAPS,       KC_CAPS,        CK_7,        CK_18)
-COMB(C_BB_PSCRN,      M_KC_SCRN,      CK_8,        CK_17)
-// left sym
-COMB(C_LS_EURO,       M_KC_EURO,      M_KC_POUND,  S(KC_4))
-SUBS(C_LS_DOCSTRING,  "\"\"\"",       KC_EQUAL,    S(KC_QUOTE))
-SUBS(C_LS_MARKCODE,   "```",          S(KC_7),     KC_GRAVE)
-SUBS(C_LS_INDENT,     "    ",         S(KC_8),     KC_SPC)
-// right sym
-COMB(C_RS_CIRC,       KC_CIRC,        KC_EQUAL,    KC_GRAVE)
-// left edit
-COMB(C_LE_SAVE,       G(KC_S),        G(KC_C),     G(KC_V))
-// right fun
-COMB(C_RF_F10,        KC_F10,         KC_F7,       KC_F8)
-COMB(C_RF_F11,        KC_F11,         KC_F8,       KC_F9)
-COMB(C_RF_F12,        KC_F12,         KC_F7,       KC_F8,    KC_F9)
-// left sys
-COMB(C_LSYS_ACL1,     MS_ACL1,        KC_WH_U,     KC_WH_D)
-COMB(C_LSYS_ACL0,     MS_ACL0,        KC_WH_R,     KC_WH_U,  KC_WH_D)
-COMB(C_LSYS_AC_ON,    AC_ON,          KC_MPLY,     KC_BTN4,  KC_BTN5)
-COMB(C_LSYS_AC_OFF,   AC_OFF,         KC_MCTL,     KC_BRID,  KC_BRIU)
+// BASE layer - left hand (missing keys)
+COMB(C_LB_Z,      KC_Z,           CK_1,  CK_2,  CK_3)
+COMB(C_LB_Q,      KC_Q,           CK_2,  CK_3)
+COMB(C_LB_B,      KC_B,           CK_5,  CK_6)
+COMB(C_LB_X,      KC_X,           CK_9,  CK_10)
+COMB(C_LB_V,      KC_V,           CK_6,  CK_11)
+COMB(C_LB_J,      KC_J,           CK_10, CK_11)
+
+// BASE layer - left hand (brackets)
+COMB(C_LB_LBRC,   KC_LBRC,        CK_1,  CK_3)
+COMB(C_LB_LPRN,   KC_LPRN,        CK_9,  CK_11)
+
+// BASE layer - left hand (modifiers)
+COMB(C_LB_OSM_S,  OSM(MOD_LSFT),  CK_5,  CK_6,  CK_7)
+
+// BASE layer - left hand (text)
+SUBS(C_LB_SH,     "sh",           CK_5,  CK_7)
+SUBS(C_LB_TH,     "th",           CK_6,  CK_7)
+SUBS(C_LB_WH,     "wh",           CK_4,  CK_7)
+SUBS(C_LB_WC,     ".com",         CK_4,  CK_11)
+SUBS(C_LB_WG,     "smallwat3r",   CK_4,  CK_8)
+
+// BASE layer - right hand (symbols)
+COMB(C_RB_ESC,    KC_ESC,         CK_18, CK_19, CK_20)
+COMB(C_RB_UNDS,   KC_UNDS,        CK_22, CK_19)
+COMB(C_RB_SCLN,   KC_SCLN,        CK_23, CK_24)
+COMB(C_RB_QUOT,   KC_QUOT,        CK_18, CK_20)
+COMB(C_RB_DASH,   KC_MINS,        CK_22, CK_23)
+
+// BASE layer - right hand (brackets)
+COMB(C_RB_RBRC,   KC_RBRC,        CK_14, CK_16)
+COMB(C_RB_RPRN,   KC_RPRN,        CK_22, CK_24)
+
+// BASE layer - right hand (text)
+SUBS(C_RB_YOU,    "you",          CK_16, CK_18)
+SUBS(C_RB_ION,    "ion",          CK_22, CK_20)
+SUBS(C_RB_ING,    "ing",          CK_18, CK_21)
+
+// BASE layer - both hands
+COMB(C_BB_CAPS,   KC_CAPS,        CK_7,  CK_18)
+COMB(C_BB_PSCRN,  M_KC_SCRN,      CK_8,  CK_17)
+
+// SYM layer
+COMB(C_LS_EURO,       M_KC_EURO,  M_KC_POUND,  S(KC_4))
+COMB(C_RS_CIRC,       KC_CIRC,    KC_EQUAL,    KC_GRAVE)
+SUBS(C_LS_DOCSTRING,  "\"\"\"",   KC_EQUAL,    S(KC_QUOTE))
+SUBS(C_LS_MARKCODE,   "```",      S(KC_7),     KC_GRAVE)
+SUBS(C_LS_INDENT,     "    ",     S(KC_8),     KC_SPC)
+
+// EDIT layer
+COMB(C_LE_SAVE,  G(KC_S),  G(KC_C),  G(KC_V))
+
+// FUN layer
+COMB(C_RF_F10,  KC_F10,  KC_F7,  KC_F8)
+COMB(C_RF_F11,  KC_F11,  KC_F8,  KC_F9)
+COMB(C_RF_F12,  KC_F12,  KC_F7,  KC_F8,  KC_F9)
+
+// SYS layer
+COMB(C_LSYS_ACL1,    MS_ACL1,  KC_WH_U,  KC_WH_D)
+COMB(C_LSYS_ACL0,    MS_ACL0,  KC_WH_R,  KC_WH_U,  KC_WH_D)
+COMB(C_LSYS_AC_ON,   AC_ON,    KC_MPLY,  KC_BTN4,  KC_BTN5)
+COMB(C_LSYS_AC_OFF,  AC_OFF,   KC_MCTL,  KC_BRID,  KC_BRIU)
