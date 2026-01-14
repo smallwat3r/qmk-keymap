@@ -72,32 +72,33 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // define one alias per key to use on the base layer, this is a
 // useful level of abstraction in order to define combos
-#define CK_1 KC_L
-#define CK_2 KC_D
-#define CK_3 LT(UNI, KC_P)
-#define CK_4 MT(MOD_LSFT, KC_W)
-#define CK_5 LT(SYM2, KC_R)
-#define CK_6 LT(NUM, KC_T)
-#define CK_7 LT(NAV, KC_S)
-#define CK_8 LT(ROS, KC_G)
-#define CK_9 MT(MOD_LCTL, KC_K)
-#define CK_10 MT(MOD_LALT, KC_M)
-#define CK_11 MT(MOD_LGUI, KC_C)
-#define CK_12 LT(EDIT, KC_TAB)
-#define CK_13 LT(FUN, KC_SPC)
-#define CK_14 KC_F
-#define CK_15 KC_O
-#define CK_16 KC_U
-#define CK_17 KC_Y
-#define CK_18 LT(SYS, KC_N)
-#define CK_19 KC_A
-#define CK_20 LT(SYM2, KC_E)
-#define CK_21 MT(MOD_LSFT, KC_I)
-#define CK_22 MT(MOD_LGUI, KC_H)
-#define CK_23 MT(MOD_LALT, KC_COMMA)
-#define CK_24 MT(MOD_LCTL, KC_DOT)
-#define CK_25 LT(SYS, KC_BSPC)
-#define CK_26 LT(SYM, KC_ENT)
+// naming: K_<side><row><position> (L/R, T/H/B/TH, 1-5)
+#define K_LT1  KC_L
+#define K_LT2  KC_D
+#define K_LT3  LT(UNI, KC_P)
+#define K_LH1  MT(MOD_LSFT, KC_W)
+#define K_LH2  LT(SYM2, KC_R)
+#define K_LH3  LT(NUM, KC_T)
+#define K_LH4  LT(NAV, KC_S)
+#define K_LH5  LT(ROS, KC_G)
+#define K_LB1  MT(MOD_LCTL, KC_K)
+#define K_LB2  MT(MOD_LALT, KC_M)
+#define K_LB3  MT(MOD_LGUI, KC_C)
+#define K_LTH1 LT(EDIT, KC_TAB)
+#define K_LTH2 LT(FUN, KC_SPC)
+#define K_RT1  KC_F
+#define K_RT2  KC_O
+#define K_RT3  KC_U
+#define K_RH1  KC_Y
+#define K_RH2  LT(SYS, KC_N)
+#define K_RH3  KC_A
+#define K_RH4  LT(SYM2, KC_E)
+#define K_RH5  MT(MOD_LSFT, KC_I)
+#define K_RB1  MT(MOD_LGUI, KC_H)
+#define K_RB2  MT(MOD_LALT, KC_COMMA)
+#define K_RB3  MT(MOD_LCTL, KC_DOT)
+#define K_RTH1 LT(SYS, KC_BSPC)
+#define K_RTH2 LT(SYM, KC_ENT)
 
 #ifdef COMBO_ENABLE
 // need to be included after custom keycode definition in order to use the
@@ -106,14 +107,14 @@ const uint32_t PROGMEM unicode_map[] = {
 #endif
 
 // base
-#define BASE_L_TOP CK_1, CK_2, CK_3
-#define BASE_R_TOP CK_14, CK_15, CK_16
-#define BASE_L_HOME CK_4, CK_5, CK_6, CK_7, CK_8
-#define BASE_R_HOME CK_17, CK_18, CK_19, CK_20, CK_21
-#define BASE_L_BOT CK_9, CK_10, CK_11
-#define BASE_R_BOT CK_22, CK_23, CK_24
-#define BASE_L_THUMB CK_12, CK_13
-#define BASE_R_THUMB CK_25, CK_26
+#define BASE_L_TOP K_LT1, K_LT2, K_LT3
+#define BASE_R_TOP K_RT1, K_RT2, K_RT3
+#define BASE_L_HOME K_LH1, K_LH2, K_LH3, K_LH4, K_LH5
+#define BASE_R_HOME K_RH1, K_RH2, K_RH3, K_RH4, K_RH5
+#define BASE_L_BOT K_LB1, K_LB2, K_LB3
+#define BASE_R_BOT K_RB1, K_RB2, K_RB3
+#define BASE_L_THUMB K_LTH1, K_LTH2
+#define BASE_R_THUMB K_RTH1, K_RTH2
 
 // num
 #define NUM_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
