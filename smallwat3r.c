@@ -215,6 +215,12 @@ const uint32_t PROGMEM unicode_map[] = {
 #define UNI_R_THUMB KC_TRNS, KC_TRNS
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
+#define LAYER_DEF(layer) LAYOUT_wrapper( \
+    layer##_L_TOP,   layer##_R_TOP, \
+    layer##_L_HOME,  layer##_R_HOME, \
+    layer##_L_BOT,   layer##_R_BOT, \
+    layer##_L_THUMB, layer##_R_THUMB \
+)
 
 #ifdef OS_DETECTION_ENABLE
 bool process_detected_host_os_kb(os_variant_t detected_os) {
