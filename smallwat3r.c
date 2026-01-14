@@ -575,42 +575,52 @@ const rgblight_segment_t PROGMEM capslock_layer[]  = RGBLIGHT_LAYER_SEGMENTS({0,
 const rgblight_segment_t PROGMEM osm_shift_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_GREEN});
 
 const rgblight_segment_t *const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(default_layer, capslock_layer, osm_shift_layer);
-#endif
 
-layer_state_t default_layer_state_set_user(layer_state_t state) {
-#ifdef RGBLIGHT_ENABLE
-    // light default layer in white
+static void rgb_init(void) {
+    rgblight_layers = rgb_layers;
+}
+
+static void rgb_set_base_layer(layer_state_t state) {
     rgblight_set_layer_state(0, layer_state_cmp(state, BASE));
-#endif
-    return state;
 }
 
-#ifdef RGBLIGHT_ENABLE
-bool led_update_user(led_t led_state) {
-    // light up led in red when caps lock in on
-    rgblight_set_layer_state(1, led_state.caps_lock);
-    return true;
+static void rgb_set_caps_lock(bool enabled) {
+    rgblight_set_layer_state(1, enabled);
 }
-#endif
 
-void oneshot_mods_changed_user(uint8_t mods) {
-#ifdef RGBLIGHT_ENABLE
-    // light up led in yellow when sticky shift is activated
+static void rgb_set_oneshot_shift(uint8_t mods) {
     if (mods & MOD_MASK_SHIFT) {
         rgblight_set_layer_state(2, true);
     }
     if (!mods) {
         rgblight_set_layer_state(2, false);
     }
+}
+
+bool led_update_user(led_t led_state) {
+    rgb_set_caps_lock(led_state.caps_lock);
+    return true;
+}
+#endif
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+#ifdef RGBLIGHT_ENABLE
+    rgb_set_base_layer(state);
+#endif
+    return state;
+}
+
+void oneshot_mods_changed_user(uint8_t mods) {
+#ifdef RGBLIGHT_ENABLE
+    rgb_set_oneshot_shift(mods);
 #endif
 }
 
 void keyboard_post_init_user(void) {
 #ifdef RGBLIGHT_ENABLE
-    rgblight_layers = rgb_layers;
+    rgb_init();
 #endif
 #ifdef AUTOCORRECT_ENABLE
-    // ensure autocorrect is on by default
     if (!autocorrect_is_enabled()) autocorrect_enable();
 #endif
 }
