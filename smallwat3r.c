@@ -101,9 +101,7 @@ const uint32_t PROGMEM unicode_map[] = {
 #define K_RTH2 LT(SYM, KC_ENT)
 
 #ifdef COMBO_ENABLE
-// need to be included after custom keycode definition in order to use the
-// keycodes in combos.def
-#    include "g/keymap_combo.h"
+#    include "g/keymap_combo.h" // must follow K_* definitions used in combos.def
 #endif
 
 // base
