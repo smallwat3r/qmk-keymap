@@ -8,7 +8,7 @@
 enum layers {
     BASE,
     SYM,
-    SYM2,
+    SYM2, // lighter symbol layer for home row rolls
     NUM,
     NAV,
     NAV2,
@@ -36,38 +36,38 @@ enum custom_keycodes {
     M_KC_DEL_W,  // delete whole word
     M_KC_R_W,    // move right whole word
     M_KC_L_W,    // move left whole word
-    SELWBAK,
-    SELWFWD,
-    SELLINE,
+    M_KC_SEL_BACK,
+    M_KC_SEL_FWD,
+    M_KC_SEL_LINE,
     M_KC_EURO,
     M_KC_POUND,
     M_KC_HASH,
 };
 
 enum unicode_names {
-    A_GRAVE,      // à
-    A_CIRCUMFLEX, // â
-    C_CEDILLA,    // ç
-    E_ACUTE,      // é
-    E_GRAVE,      // è
-    E_CIRCUMFLEX, // ê
-    U_CIRCUMFLEX, // û
-    UNI_EURO,     // €
-    UNI_POUND,    // £
-    UNI_HASH,     // #
+    UC_A_GRAVE,      // à
+    UC_A_CIRCUMFLEX, // â
+    UC_C_CEDILLA,    // ç
+    UC_E_ACUTE,      // é
+    UC_E_GRAVE,      // è
+    UC_E_CIRCUMFLEX, // ê
+    UC_U_CIRCUMFLEX, // û
+    UC_EURO,         // €
+    UC_POUND,        // £
+    UC_HASH,         // #
 };
 
 const uint32_t PROGMEM unicode_map[] = {
-    [A_GRAVE]      = 0x00E0, // à
-    [A_CIRCUMFLEX] = 0x00E2, // â
-    [C_CEDILLA]    = 0x00E7, // ç
-    [E_ACUTE]      = 0x00E9, // é
-    [E_GRAVE]      = 0x00E8, // è
-    [E_CIRCUMFLEX] = 0x00EA, // ê
-    [U_CIRCUMFLEX] = 0x00FB, // û
-    [UNI_EURO]     = 0x20AC, // €
-    [UNI_POUND]    = 0x00A3, // £
-    [UNI_HASH]     = 0x0023, // #
+    [UC_A_GRAVE]      = 0x00E0, // à
+    [UC_A_CIRCUMFLEX] = 0x00E2, // â
+    [UC_C_CEDILLA]    = 0x00E7, // ç
+    [UC_E_ACUTE]      = 0x00E9, // é
+    [UC_E_GRAVE]      = 0x00E8, // è
+    [UC_E_CIRCUMFLEX] = 0x00EA, // ê
+    [UC_U_CIRCUMFLEX] = 0x00FB, // û
+    [UC_EURO]         = 0x20AC, // €
+    [UC_POUND]        = 0x00A3, // £
+    [UC_HASH]         = 0x0023, // #
 };
 
 // define one alias per key to use on the base layer, this is a
@@ -160,9 +160,9 @@ const uint32_t PROGMEM unicode_map[] = {
 #define NAV2_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV2_R_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV2_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define NAV2_R_HOME M_KC_L_W, SELWBAK, SELWFWD, M_KC_R_W, KC_TRNS
+#define NAV2_R_HOME M_KC_L_W, M_KC_SEL_BACK, M_KC_SEL_FWD, M_KC_R_W, KC_TRNS
 #define NAV2_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
-#define NAV2_R_BOT SELLINE, KC_TRNS, KC_TRNS
+#define NAV2_R_BOT M_KC_SEL_LINE, KC_TRNS, KC_TRNS
 #define NAV2_L_THUMB KC_TRNS, KC_TRNS
 #define NAV2_R_THUMB M_KC_BSPC_W, M_KC_DEL_W
 
@@ -208,9 +208,9 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // uni (unicode)
 #define UNI_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
-#define UNI_R_TOP UM(E_CIRCUMFLEX), UM(A_CIRCUMFLEX), UM(U_CIRCUMFLEX)
+#define UNI_R_TOP UM(UC_E_CIRCUMFLEX), UM(UC_A_CIRCUMFLEX), UM(UC_U_CIRCUMFLEX)
 #define UNI_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define UNI_R_HOME KC_TRNS, UM(E_GRAVE), UM(A_GRAVE), UM(E_ACUTE), UM(C_CEDILLA)
+#define UNI_R_HOME KC_TRNS, UM(UC_E_GRAVE), UM(UC_A_GRAVE), UM(UC_E_ACUTE), UM(UC_C_CEDILLA)
 #define UNI_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_R_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_L_THUMB KC_TRNS, KC_TRNS
@@ -274,9 +274,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!record->event.pressed) {
 #ifdef SELECT_WORD_ENABLE
         switch (keycode) {
-            case SELWBAK:
-            case SELWFWD:
-            case SELLINE:
+            case M_KC_SEL_BACK:
+            case M_KC_SEL_FWD:
+            case M_KC_SEL_LINE:
                 select_word_unregister();
                 return false;
         }
@@ -286,13 +286,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
 #ifdef SELECT_WORD_ENABLE
-        case SELWBAK:
+        case M_KC_SEL_BACK:
             select_word_register('B');
             return false;
-        case SELWFWD:
+        case M_KC_SEL_FWD:
             select_word_register('W');
             return false;
-        case SELLINE:
+        case M_KC_SEL_LINE:
             select_word_register('L');
             return false;
 #endif
@@ -345,13 +345,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             OS_TAP(SGUI(KC_4), KC_PSCR);
             return false;
         case M_KC_EURO:
-            OS_TAP_UNICODE(A(S(KC_2)), UNI_EURO);
+            OS_TAP_UNICODE(A(S(KC_2)), UC_EURO);
             return false;
         case M_KC_POUND:
-            OS_TAP_UNICODE(S(KC_3), UNI_POUND);
+            OS_TAP_UNICODE(S(KC_3), UC_POUND);
             return false;
         case M_KC_HASH:
-            OS_TAP_UNICODE(RALT(KC_3), UNI_HASH);
+            OS_TAP_UNICODE(RALT(KC_3), UC_HASH);
             return false;
     }
     return true;
