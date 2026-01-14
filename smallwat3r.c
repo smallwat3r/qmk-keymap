@@ -106,122 +106,114 @@ const uint32_t PROGMEM unicode_map[] = {
 #endif
 
 // base
-#define ___BASE_L1___ CK_1, CK_2, CK_3
-#define ___BASE_R1___ CK_14, CK_15, CK_16
-#define ___BASE_L2___ CK_4, CK_5, CK_6, CK_7, CK_8
-#define ___BASE_R2___ CK_17, CK_18, CK_19, CK_20, CK_21
-#define ___BASE_L3___ CK_9, CK_10, CK_11
-#define ___BASE_R3___ CK_22, CK_23, CK_24
-#define ___BASE_L4___ CK_12, CK_13
-#define ___BASE_R4___ CK_25, CK_26
+#define BASE_L_TOP CK_1, CK_2, CK_3
+#define BASE_R_TOP CK_14, CK_15, CK_16
+#define BASE_L_HOME CK_4, CK_5, CK_6, CK_7, CK_8
+#define BASE_R_HOME CK_17, CK_18, CK_19, CK_20, CK_21
+#define BASE_L_BOT CK_9, CK_10, CK_11
+#define BASE_R_BOT CK_22, CK_23, CK_24
+#define BASE_L_THUMB CK_12, CK_13
+#define BASE_R_THUMB CK_25, CK_26
 
 // num
-#define ___NUM__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NUM__R1___ KC_7, KC_8, KC_9
-#define ___NUM__L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_DOT, KC_TRNS
-#define ___NUM__R2___ M_KC_000, KC_4, KC_5, KC_6, KC_0
-#define ___NUM__L3___ KC_TRNS, KC_TRNS, KC_COMMA
-#define ___NUM__R3___ KC_1, KC_2, KC_3
-#define ___NUM__L4___ KC_TRNS, KC_SPC
-#define ___NUM__R4___ KC_BSPC, KC_DEL
+#define NUM_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define NUM_R_TOP KC_7, KC_8, KC_9
+#define NUM_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_DOT, KC_TRNS
+#define NUM_R_HOME M_KC_000, KC_4, KC_5, KC_6, KC_0
+#define NUM_L_BOT KC_TRNS, KC_TRNS, KC_COMMA
+#define NUM_R_BOT KC_1, KC_2, KC_3
+#define NUM_L_THUMB KC_TRNS, KC_SPC
+#define NUM_R_THUMB KC_BSPC, KC_DEL
 
-// common SYM definitions
-#define ___SYM_COMMON_L1___ KC_AT, M_KC_POUND, S(KC_4)
-#define ___SYM_COMMON_R1___ KC_BSLS, KC_SLASH, S(KC_SLASH)
-#define ___SYM_COMMON_L3___ S(KC_EQUAL), S(KC_7), KC_GRAVE
-#define ___SYM_COMMON_R3___ S(KC_COMMA), S(KC_DOT), M_KC_ARROW
-#define ___SYM_COMMON_L4___ KC_TRNS, KC_SPC
-#define ___SYM_COMMON_R4___ KC_TRNS, KC_TRNS
+// sym (common)
+#define SYM_L_TOP KC_AT, M_KC_POUND, S(KC_4)
+#define SYM_R_TOP KC_BSLS, KC_SLASH, S(KC_SLASH)
+#define SYM_L_HOME S(KC_8), KC_MINUS, KC_EQUAL, S(KC_QUOTE), S(KC_5)
+#define SYM_R_HOME S(KC_1), S(KC_SCLN), M_KC_HASH, S(KC_GRAVE), S(KC_BSLS)
+#define SYM_L_BOT S(KC_EQUAL), S(KC_7), KC_GRAVE
+#define SYM_R_BOT S(KC_COMMA), S(KC_DOT), M_KC_ARROW
+#define SYM_L_THUMB KC_TRNS, KC_SPC
+#define SYM_R_THUMB KC_TRNS, KC_TRNS
 
-// sym
-#define ___SYM__L1___ ___SYM_COMMON_L1___
-#define ___SYM__R1___ ___SYM_COMMON_R1___
-#define ___SYM__L2___ S(KC_8), KC_MINUS, KC_EQUAL, S(KC_QUOTE), S(KC_5)
-#define ___SYM__R2___ S(KC_1), S(KC_SCLN), M_KC_HASH, S(KC_GRAVE), S(KC_BSLS)
-#define ___SYM__L3___ ___SYM_COMMON_L3___
-#define ___SYM__R3___ ___SYM_COMMON_R3___
-#define ___SYM__L4___ ___SYM_COMMON_L4___
-#define ___SYM__R4___ ___SYM_COMMON_R4___
-
-// sym2 (lighter layer that ease rolls for home row)
-#define ___SYM2_L1___ ___SYM_COMMON_L1___
-#define ___SYM2_R1___ ___SYM_COMMON_R1___
-#define ___SYM2_L2___ S(KC_8), KC_R, KC_EQUAL, S(KC_QUOTE), S(KC_5)
-#define ___SYM2_R2___ S(KC_1), S(KC_SCLN), CK_19, KC_E, S(KC_BSLS)
-#define ___SYM2_L3___ ___SYM_COMMON_L3___
-#define ___SYM2_R3___ ___SYM_COMMON_R3___
-#define ___SYM2_L4___ ___SYM_COMMON_L4___
-#define ___SYM2_R4___ ___SYM_COMMON_R4___
+// sym2 (lighter layer that eases rolls for home row)
+#define SYM2_L_TOP SYM_L_TOP
+#define SYM2_R_TOP SYM_R_TOP
+#define SYM2_L_HOME S(KC_8), KC_R, KC_EQUAL, S(KC_QUOTE), S(KC_5)
+#define SYM2_R_HOME S(KC_1), S(KC_SCLN), CK_19, KC_E, S(KC_BSLS)
+#define SYM2_L_BOT SYM_L_BOT
+#define SYM2_R_BOT SYM_R_BOT
+#define SYM2_L_THUMB SYM_L_THUMB
+#define SYM2_R_THUMB SYM_R_THUMB
 
 // nav
-#define ___NAV__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NAV__R1___ S(KC_LBRC), S(KC_RBRC), KC_TRNS
-#define ___NAV__L2___ KC_END, KC_TRNS, MO(NAV2), KC_TRNS, KC_TRNS
-#define ___NAV__R2___ KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_HOME
-#define ___NAV__L3___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NAV__R3___ KC_LBRC, KC_RBRC, KC_TRNS
-#define ___NAV__L4___ KC_BTN2, KC_BTN1
-#define ___NAV__R4___ KC_BSPC, KC_DEL
+#define NAV_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV_R_TOP S(KC_LBRC), S(KC_RBRC), KC_TRNS
+#define NAV_L_HOME KC_END, KC_TRNS, MO(NAV2), KC_TRNS, KC_TRNS
+#define NAV_R_HOME KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_HOME
+#define NAV_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV_R_BOT KC_LBRC, KC_RBRC, KC_TRNS
+#define NAV_L_THUMB KC_BTN2, KC_BTN1
+#define NAV_R_THUMB KC_BSPC, KC_DEL
 
 // nav2
-#define ___NAV2_L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NAV2_R1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NAV2_L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NAV2_R2___ M_KC_L_W, SELWBAK, SELWFWD, M_KC_R_W, KC_TRNS
-#define ___NAV2_L3___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NAV2_R3___ SELLINE, KC_TRNS, KC_TRNS
-#define ___NAV2_L4___ KC_TRNS, KC_TRNS
-#define ___NAV2_R4___ M_KC_BSPC_W, M_KC_DEL_W
+#define NAV2_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV2_R_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV2_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV2_R_HOME M_KC_L_W, SELWBAK, SELWFWD, M_KC_R_W, KC_TRNS
+#define NAV2_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV2_R_BOT SELLINE, KC_TRNS, KC_TRNS
+#define NAV2_L_THUMB KC_TRNS, KC_TRNS
+#define NAV2_R_THUMB M_KC_BSPC_W, M_KC_DEL_W
 
 // edit
-#define ___EDIT_L1___ M_KC_F_PREV, M_KC_FIND, M_KC_F_NEXT
-#define ___EDIT_R1___ S(KC_LBRC), S(KC_RBRC), KC_TRNS
-#define ___EDIT_L2___ M_KC_ALL, M_KC_CUT, M_KC_COPY, M_KC_PASTE, KC_TRNS
-#define ___EDIT_R2___ KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_TRNS
-#define ___EDIT_L3___ KC_TRNS, M_KC_UNDO, M_KC_REDO
-#define ___EDIT_R3___ KC_LBRC, KC_RBRC, KC_TRNS
-#define ___EDIT_L4___ KC_TRNS, KC_TRNS
-#define ___EDIT_R4___ KC_BSPC, KC_DEL
+#define EDIT_L_TOP M_KC_F_PREV, M_KC_FIND, M_KC_F_NEXT
+#define EDIT_R_TOP S(KC_LBRC), S(KC_RBRC), KC_TRNS
+#define EDIT_L_HOME M_KC_ALL, M_KC_CUT, M_KC_COPY, M_KC_PASTE, KC_TRNS
+#define EDIT_R_HOME KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_TRNS
+#define EDIT_L_BOT KC_TRNS, M_KC_UNDO, M_KC_REDO
+#define EDIT_R_BOT KC_LBRC, KC_RBRC, KC_TRNS
+#define EDIT_L_THUMB KC_TRNS, KC_TRNS
+#define EDIT_R_THUMB KC_BSPC, KC_DEL
 
 // fun
-#define ___FUN__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___FUN__R1___ KC_F7, KC_F8, KC_F9
-#define ___FUN__L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define ___FUN__R2___ KC_TRNS, KC_F4, KC_F5, KC_F6, KC_TRNS
-#define ___FUN__L3___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___FUN__R3___ KC_F1, KC_F2, KC_F3
-#define ___FUN__L4___ KC_TRNS, KC_TRNS
-#define ___FUN__R4___ M_KC_BSPC_W, M_KC_DEL_W
+#define FUN_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define FUN_R_TOP KC_F7, KC_F8, KC_F9
+#define FUN_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define FUN_R_HOME KC_TRNS, KC_F4, KC_F5, KC_F6, KC_TRNS
+#define FUN_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
+#define FUN_R_BOT KC_F1, KC_F2, KC_F3
+#define FUN_L_THUMB KC_TRNS, KC_TRNS
+#define FUN_R_THUMB M_KC_BSPC_W, M_KC_DEL_W
 
 // sys
-#define ___SYS__L1___ KC_MPLY, KC_BTN4, KC_BTN5
-#define ___SYS__R1___ KC_MUTE, KC_VOLD, KC_VOLU
-#define ___SYS__L2___ KC_END, KC_WH_R, KC_WH_U, KC_WH_D, KC_WH_L
-#define ___SYS__R2___ KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_HOME
-#define ___SYS__L3___ KC_MCTL, KC_BRID, KC_BRIU
-#define ___SYS__R3___ RGB_TOG, G(KC_KP_MINUS), G(KC_KP_PLUS)
-#define ___SYS__L4___ KC_BTN2, KC_BTN1
-#define ___SYS__R4___ KC_TRNS, KC_TRNS
+#define SYS_L_TOP KC_MPLY, KC_BTN4, KC_BTN5
+#define SYS_R_TOP KC_MUTE, KC_VOLD, KC_VOLU
+#define SYS_L_HOME KC_END, KC_WH_R, KC_WH_U, KC_WH_D, KC_WH_L
+#define SYS_R_HOME KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_HOME
+#define SYS_L_BOT KC_MCTL, KC_BRID, KC_BRIU
+#define SYS_R_BOT RGB_TOG, G(KC_KP_MINUS), G(KC_KP_PLUS)
+#define SYS_L_THUMB KC_BTN2, KC_BTN1
+#define SYS_R_THUMB KC_TRNS, KC_TRNS
 
-// ros2 teleop
-#define ___ROS__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___ROS__R1___ KC_U, KC_I, KC_O
-#define ___ROS__L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define ___ROS__R2___ KC_TRNS, KC_J, KC_K, KC_L, KC_TRNS
-#define ___ROS__L3___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___ROS__R3___ KC_M, KC_COMM, KC_DOT
-#define ___ROS__L4___ KC_TRNS, KC_TRNS
-#define ___ROS__R4___ KC_TRNS, KC_TRNS
+// ros (ros2 teleop)
+#define ROS_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define ROS_R_TOP KC_U, KC_I, KC_O
+#define ROS_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define ROS_R_HOME KC_TRNS, KC_J, KC_K, KC_L, KC_TRNS
+#define ROS_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
+#define ROS_R_BOT KC_M, KC_COMM, KC_DOT
+#define ROS_L_THUMB KC_TRNS, KC_TRNS
+#define ROS_R_THUMB KC_TRNS, KC_TRNS
 
-// uni
-#define ___UNI__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___UNI__R1___ UM(E_CIRCUMFLEX), UM(A_CIRCUMFLEX), UM(U_CIRCUMFLEX)
-#define ___UNI__L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define ___UNI__R2___ KC_TRNS, UM(E_GRAVE), UM(A_GRAVE), UM(E_ACUTE), UM(C_CEDILLA)
-#define ___UNI__L3___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___UNI__R3___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___UNI__L4___ KC_TRNS, KC_TRNS
-#define ___UNI__R4___ KC_TRNS, KC_TRNS
+// uni (unicode)
+#define UNI_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_R_TOP UM(E_CIRCUMFLEX), UM(A_CIRCUMFLEX), UM(U_CIRCUMFLEX)
+#define UNI_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_R_HOME KC_TRNS, UM(E_GRAVE), UM(A_GRAVE), UM(E_ACUTE), UM(C_CEDILLA)
+#define UNI_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_R_BOT KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_L_THUMB KC_TRNS, KC_TRNS
+#define UNI_R_THUMB KC_TRNS, KC_TRNS
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
