@@ -7,9 +7,9 @@
 
 enum layers {
     BASE,
+    NUM,
     SYM,
     SYM2, // lighter symbol layer for home row rolls
-    NUM,
     NAV,
     NAV2,
     EDIT,
@@ -222,6 +222,16 @@ const uint32_t PROGMEM unicode_map[] = {
     layer##_L_THUMB, layer##_R_THUMB \
 )
 
+#ifdef CHORDAL_HOLD
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT(
+             'L', 'L', 'L',            'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+             'L', 'L', 'L',            'R', 'R', 'R',
+                       '*', '*',  '*', '*'
+    );
+#endif
+
 #ifdef OS_DETECTION_ENABLE
 bool process_detected_host_os_kb(os_variant_t detected_os) {
     if (!process_detected_host_os_user(detected_os)) {
@@ -244,13 +254,13 @@ bool process_detected_host_os_kb(os_variant_t detected_os) {
 #ifdef COMBO_TERM_PER_COMBO
 uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     switch (combo_index) {
-        case C_LB_SH:
-        case C_LB_WH:
-        case C_RB_UNDS:
-        case C_RB_DASH:
-        case C_LB_B:
+        case C_BL_SH:
+        case C_BL_WH:
+        case C_BR_UNDS:
+        case C_BR_DASH:
+        case C_BL_B:
             return 50;
-        case C_LB_LBRC:
+        case C_BL_LBRC:
             return 20;
     }
     return COMBO_TERM; // 35
