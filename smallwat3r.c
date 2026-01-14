@@ -107,9 +107,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // base
 #define ___BASE_L1___ CK_1, CK_2, CK_3
-#define ___BASE_L1_30 KC_Q, CK_1, CK_2, CK_3, KC_J
 #define ___BASE_R1___ CK_14, CK_15, CK_16
-#define ___BASE_R1_30 KC_B, CK_14, CK_15, CK_16, KC_QUOT
 #define ___BASE_L2___ CK_4, CK_5, CK_6, CK_7, CK_8
 #define ___BASE_R2___ CK_17, CK_18, CK_19, CK_20, CK_21
 #define ___BASE_L3___ CK_9, CK_10, CK_11
@@ -119,9 +117,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // num
 #define ___NUM__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NUM__L1_30 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ___NUM__R1___ KC_7, KC_8, KC_9
-#define ___NUM__R1_30 KC_NO, KC_7, KC_8, KC_9, KC_TRNS
 #define ___NUM__L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_DOT, KC_TRNS
 #define ___NUM__R2___ M_KC_000, KC_4, KC_5, KC_6, KC_0
 #define ___NUM__L3___ KC_TRNS, KC_TRNS, KC_COMMA
@@ -131,9 +127,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // common SYM definitions
 #define ___SYM_COMMON_L1___ KC_AT, M_KC_POUND, S(KC_4)
-#define ___SYM_COMMON_L1_30 KC_NO, KC_AT, S(KC_3), S(KC_4), M_KC_EURO
 #define ___SYM_COMMON_R1___ KC_BSLS, KC_SLASH, S(KC_SLASH)
-#define ___SYM_COMMON_R1_30 KC_NO, KC_BSLS, KC_SLASH, S(KC_SLASH), KC_CIRC
 #define ___SYM_COMMON_L3___ S(KC_EQUAL), S(KC_7), KC_GRAVE
 #define ___SYM_COMMON_R3___ S(KC_COMMA), S(KC_DOT), M_KC_ARROW
 #define ___SYM_COMMON_L4___ KC_TRNS, KC_SPC
@@ -141,9 +135,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // sym
 #define ___SYM__L1___ ___SYM_COMMON_L1___
-#define ___SYM__L1_30 ___SYM_COMMON_L1_30
 #define ___SYM__R1___ ___SYM_COMMON_R1___
-#define ___SYM__R1_30 ___SYM_COMMON_R1_30
 #define ___SYM__L2___ S(KC_8), KC_MINUS, KC_EQUAL, S(KC_QUOTE), S(KC_5)
 #define ___SYM__R2___ S(KC_1), S(KC_SCLN), M_KC_HASH, S(KC_GRAVE), S(KC_BSLS)
 #define ___SYM__L3___ ___SYM_COMMON_L3___
@@ -153,9 +145,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // sym2 (lighter layer that ease rolls for home row)
 #define ___SYM2_L1___ ___SYM_COMMON_L1___
-#define ___SYM2_L1_30 ___SYM_COMMON_L1_30
 #define ___SYM2_R1___ ___SYM_COMMON_R1___
-#define ___SYM2_R1_30 ___SYM_COMMON_R1_30
 #define ___SYM2_L2___ S(KC_8), KC_R, KC_EQUAL, S(KC_QUOTE), S(KC_5)
 #define ___SYM2_R2___ S(KC_1), S(KC_SCLN), CK_19, KC_E, S(KC_BSLS)
 #define ___SYM2_L3___ ___SYM_COMMON_L3___
@@ -165,9 +155,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // nav
 #define ___NAV__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NAV__L1_30 KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO
 #define ___NAV__R1___ S(KC_LBRC), S(KC_RBRC), KC_TRNS
-#define ___NAV__R1_30 KC_NO, S(KC_LBRC), S(KC_RBRC), KC_TRNS, KC_TRNS
 #define ___NAV__L2___ KC_END, KC_TRNS, MO(NAV2), KC_TRNS, KC_TRNS
 #define ___NAV__R2___ KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_HOME
 #define ___NAV__L3___ KC_TRNS, KC_TRNS, KC_TRNS
@@ -177,9 +165,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // nav2
 #define ___NAV2_L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NAV2_L1_30 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ___NAV2_R1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___NAV2_R1_30 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ___NAV2_L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ___NAV2_R2___ M_KC_L_W, SELWBAK, SELWFWD, M_KC_R_W, KC_TRNS
 #define ___NAV2_L3___ KC_TRNS, KC_TRNS, KC_TRNS
@@ -189,9 +175,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // edit
 #define ___EDIT_L1___ M_KC_F_PREV, M_KC_FIND, M_KC_F_NEXT
-#define ___EDIT_L1_30 KC_NO, M_KC_F_PREV, M_KC_FIND, M_KC_F_NEXT, KC_NO
 #define ___EDIT_R1___ S(KC_LBRC), S(KC_RBRC), KC_TRNS
-#define ___EDIT_R1_30 KC_NO, S(KC_LBRC), S(KC_RBRC), KC_TRNS, KC_TRNS
 #define ___EDIT_L2___ M_KC_ALL, M_KC_CUT, M_KC_COPY, M_KC_PASTE, KC_TRNS
 #define ___EDIT_R2___ KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_TRNS
 #define ___EDIT_L3___ KC_TRNS, M_KC_UNDO, M_KC_REDO
@@ -201,9 +185,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // fun
 #define ___FUN__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___FUN__L1_30 KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO
 #define ___FUN__R1___ KC_F7, KC_F8, KC_F9
-#define ___FUN__R1_30 KC_NO, KC_F7, KC_F8, KC_F9, KC_TRNS
 #define ___FUN__L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ___FUN__R2___ KC_TRNS, KC_F4, KC_F5, KC_F6, KC_TRNS
 #define ___FUN__L3___ KC_TRNS, KC_TRNS, KC_TRNS
@@ -213,9 +195,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // sys
 #define ___SYS__L1___ KC_MPLY, KC_BTN4, KC_BTN5
-#define ___SYS__L1_30 KC_NO, MS_ACL0, KC_BTN4, KC_BTN5, KC_NO
 #define ___SYS__R1___ KC_MUTE, KC_VOLD, KC_VOLU
-#define ___SYS__R1_30 KC_NO, KC_VOLD, KC_VOLU, KC_MUTE, KC_TRNS
 #define ___SYS__L2___ KC_END, KC_WH_R, KC_WH_U, KC_WH_D, KC_WH_L
 #define ___SYS__R2___ KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_HOME
 #define ___SYS__L3___ KC_MCTL, KC_BRID, KC_BRIU
@@ -225,9 +205,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // ros2 teleop
 #define ___ROS__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___ROS__L1_30 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ___ROS__R1___ KC_U, KC_I, KC_O
-#define ___ROS__R1_30 KC_TRNS, KC_U, KC_I, KC_O, KC_TRNS
 #define ___ROS__L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ___ROS__R2___ KC_TRNS, KC_J, KC_K, KC_L, KC_TRNS
 #define ___ROS__L3___ KC_TRNS, KC_TRNS, KC_TRNS
@@ -237,9 +215,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // uni
 #define ___UNI__L1___ KC_TRNS, KC_TRNS, KC_TRNS
-#define ___UNI__L1_30 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ___UNI__R1___ UM(E_CIRCUMFLEX), UM(A_CIRCUMFLEX), UM(U_CIRCUMFLEX)
-#define ___UNI__R1_30 KC_TRNS, UM(E_CIRCUMFLEX), UM(A_CIRCUMFLEX), UM(U_CIRCUMFLEX), KC_TRNS
 #define ___UNI__L2___ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ___UNI__R2___ KC_TRNS, UM(E_GRAVE), UM(A_GRAVE), UM(E_ACUTE), UM(C_CEDILLA)
 #define ___UNI__L3___ KC_TRNS, KC_TRNS, KC_TRNS

@@ -56,7 +56,7 @@ extern "C" {
 extern uint16_t SELECT_WORD_KEYCODE;
 
 /** Handler function for Select Word. */
-bool process_select_word(uint16_t keycode, keyrecord_t* record);
+bool process_select_word(uint16_t keycode, keyrecord_t *record);
 
 /**
  * @fn select_word_task(void)
@@ -70,7 +70,7 @@ bool process_select_word(uint16_t keycode, keyrecord_t* record);
 void select_word_task(void);
 #else
 static inline void select_word_task(void) {}
-#endif  // SELECT_WORD_TIMEOUT > 0
+#endif // SELECT_WORD_TIMEOUT > 0
 
 /**
  * @brief Registers (presses) selection `action`.
@@ -98,9 +98,9 @@ void select_word_unregister(void);
 
 /** Registers and unregisters ("taps") selection `action.` */
 static inline void select_word_tap(char action) {
-  select_word_register(action);
-  wait_ms(TAP_CODE_DELAY);
-  select_word_unregister();
+    select_word_register(action);
+    wait_ms(TAP_CODE_DELAY);
+    select_word_unregister();
 }
 
 #if defined(SELECT_WORD_OS_DYNAMIC) || defined(OS_DETECTION_ENABLE)
@@ -118,7 +118,7 @@ static inline void select_word_tap(char action) {
  *     }
  */
 bool select_word_host_is_mac(void);
-#endif  // defined(SELECT_WORD_OS_DYNAMIC) || defined(OS_DETECTION_ENABLE)
+#endif // defined(SELECT_WORD_OS_DYNAMIC) || defined(OS_DETECTION_ENABLE)
 
 #ifdef __cplusplus
 }
