@@ -45,29 +45,29 @@ enum custom_keycodes {
 };
 
 enum unicode_names {
-    UC_A_GRAVE,      // à
-    UC_A_CIRCUMFLEX, // â
-    UC_C_CEDILLA,    // ç
-    UC_E_ACUTE,      // é
-    UC_E_GRAVE,      // è
-    UC_E_CIRCUMFLEX, // ê
-    UC_U_CIRCUMFLEX, // û
-    UC_EURO,         // €
-    UC_POUND,        // £
-    UC_HASH,         // #
+    UN_A_GRAVE,      // à
+    UN_A_CIRCUMFLEX, // â
+    UN_C_CEDILLA,    // ç
+    UN_E_ACUTE,      // é
+    UN_E_GRAVE,      // è
+    UN_E_CIRCUMFLEX, // ê
+    UN_U_CIRCUMFLEX, // û
+    UN_EURO,         // €
+    UN_POUND,        // £
+    UN_HASH,         // #
 };
 
 const uint32_t PROGMEM unicode_map[] = {
-    [UC_A_GRAVE]      = 0x00E0, // à
-    [UC_A_CIRCUMFLEX] = 0x00E2, // â
-    [UC_C_CEDILLA]    = 0x00E7, // ç
-    [UC_E_ACUTE]      = 0x00E9, // é
-    [UC_E_GRAVE]      = 0x00E8, // è
-    [UC_E_CIRCUMFLEX] = 0x00EA, // ê
-    [UC_U_CIRCUMFLEX] = 0x00FB, // û
-    [UC_EURO]         = 0x20AC, // €
-    [UC_POUND]        = 0x00A3, // £
-    [UC_HASH]         = 0x0023, // #
+    [UN_A_GRAVE]      = 0x00E0, // à
+    [UN_A_CIRCUMFLEX] = 0x00E2, // â
+    [UN_C_CEDILLA]    = 0x00E7, // ç
+    [UN_E_ACUTE]      = 0x00E9, // é
+    [UN_E_GRAVE]      = 0x00E8, // è
+    [UN_E_CIRCUMFLEX] = 0x00EA, // ê
+    [UN_U_CIRCUMFLEX] = 0x00FB, // û
+    [UN_EURO]         = 0x20AC, // €
+    [UN_POUND]        = 0x00A3, // £
+    [UN_HASH]         = 0x0023, // #
 };
 
 // define one alias per key to use on the base layer, this is a
@@ -140,7 +140,7 @@ const uint32_t PROGMEM unicode_map[] = {
 #define SYM2_L_TOP SYM_L_TOP
 #define SYM2_R_TOP SYM_R_TOP
 #define SYM2_L_HOME S(KC_8), KC_R, KC_EQUAL, S(KC_QUOTE), S(KC_5)
-#define SYM2_R_HOME S(KC_1), S(KC_SCLN), CK_19, KC_E, S(KC_BSLS)
+#define SYM2_R_HOME S(KC_1), S(KC_SCLN), K_RH3, KC_E, S(KC_BSLS)
 #define SYM2_L_BOT SYM_L_BOT
 #define SYM2_R_BOT SYM_R_BOT
 #define SYM2_L_THUMB SYM_L_THUMB
@@ -208,9 +208,9 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // uni (unicode)
 #define UNI_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
-#define UNI_R_TOP UM(UC_E_CIRCUMFLEX), UM(UC_A_CIRCUMFLEX), UM(UC_U_CIRCUMFLEX)
+#define UNI_R_TOP UM(UN_E_CIRCUMFLEX), UM(UN_A_CIRCUMFLEX), UM(UN_U_CIRCUMFLEX)
 #define UNI_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define UNI_R_HOME KC_TRNS, UM(UC_E_GRAVE), UM(UC_A_GRAVE), UM(UC_E_ACUTE), UM(UC_C_CEDILLA)
+#define UNI_R_HOME KC_TRNS, UM(UN_E_GRAVE), UM(UN_A_GRAVE), UM(UN_E_ACUTE), UM(UN_C_CEDILLA)
 #define UNI_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_R_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_L_THUMB KC_TRNS, KC_TRNS
@@ -345,13 +345,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             OS_TAP(SGUI(KC_4), KC_PSCR);
             return false;
         case M_KC_EURO:
-            OS_TAP_UNICODE(A(S(KC_2)), UC_EURO);
+            OS_TAP_UNICODE(A(S(KC_2)), UN_EURO);
             return false;
         case M_KC_POUND:
-            OS_TAP_UNICODE(S(KC_3), UC_POUND);
+            OS_TAP_UNICODE(S(KC_3), UN_POUND);
             return false;
         case M_KC_HASH:
-            OS_TAP_UNICODE(RALT(KC_3), UC_HASH);
+            OS_TAP_UNICODE(RALT(KC_3), UN_HASH);
             return false;
     }
     return true;
