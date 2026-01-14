@@ -38,10 +38,10 @@ SUBS(C_RB_ING,    "ing",          K_RH2, K_RH5)
 
 // BASE layer - both hands
 COMB(C_BB_CAPS,   KC_CAPS,        K_LH4, K_RH2)
-COMB(C_BB_PSCRN,  M_KC_SCRN,      K_LH5, K_RH1)
+COMB(C_BB_PSCRN,  MK_SCRN,      K_LH5, K_RH1)
 
 // SYM layer
-COMB(C_LS_EURO,       M_KC_EURO,  M_KC_POUND,  S(KC_4))
+COMB(C_LS_EURO,       MK_EURO,  MK_POUND,  S(KC_4))
 COMB(C_RS_CIRC,       KC_CIRC,    KC_EQUAL,    KC_GRAVE)
 SUBS(C_LS_DOCSTRING,  "\"\"\"",   KC_EQUAL,    S(KC_QUOTE))
 SUBS(C_LS_MARKCODE,   "```",      S(KC_7),     KC_GRAVE)

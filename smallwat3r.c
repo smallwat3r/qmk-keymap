@@ -20,28 +20,28 @@ enum layers {
 };
 
 enum custom_keycodes {
-    M_KC_ARROW = SAFE_RANGE,
-    M_KC_000,
-    M_KC_SCRN, // take screenshot
-    M_KC_COPY,
-    M_KC_CUT,
-    M_KC_PASTE,
-    M_KC_UNDO,
-    M_KC_REDO,
-    M_KC_FIND,
-    M_KC_F_NEXT, // find next
-    M_KC_F_PREV, // find prev
-    M_KC_ALL,    // select all
-    M_KC_BSPC_W, // backspace whole word
-    M_KC_DEL_W,  // delete whole word
-    M_KC_R_W,    // move right whole word
-    M_KC_L_W,    // move left whole word
-    M_KC_SEL_BACK,
-    M_KC_SEL_FWD,
-    M_KC_SEL_LINE,
-    M_KC_EURO,
-    M_KC_POUND,
-    M_KC_HASH,
+    MK_ARROW = SAFE_RANGE,
+    MK_000,
+    MK_SCRN, // take screenshot
+    MK_COPY,
+    MK_CUT,
+    MK_PASTE,
+    MK_UNDO,
+    MK_REDO,
+    MK_FIND,
+    MK_F_NEXT, // find next
+    MK_F_PREV, // find prev
+    MK_ALL,    // select all
+    MK_BSPC_W, // backspace whole word
+    MK_DEL_W,  // delete whole word
+    MK_R_W,    // move right whole word
+    MK_L_W,    // move left whole word
+    MK_SEL_BACK,
+    MK_SEL_FWD,
+    MK_SEL_LINE,
+    MK_EURO,
+    MK_POUND,
+    MK_HASH,
 };
 
 enum unicode_names {
@@ -118,19 +118,19 @@ const uint32_t PROGMEM unicode_map[] = {
 #define NUM_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define NUM_R_TOP KC_7, KC_8, KC_9
 #define NUM_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_DOT, KC_TRNS
-#define NUM_R_HOME M_KC_000, KC_4, KC_5, KC_6, KC_0
+#define NUM_R_HOME MK_000, KC_4, KC_5, KC_6, KC_0
 #define NUM_L_BOT KC_TRNS, KC_TRNS, KC_COMMA
 #define NUM_R_BOT KC_1, KC_2, KC_3
 #define NUM_L_THUMB KC_TRNS, KC_SPC
 #define NUM_R_THUMB KC_BSPC, KC_DEL
 
 // sym (common)
-#define SYM_L_TOP KC_AT, M_KC_POUND, S(KC_4)
+#define SYM_L_TOP KC_AT, MK_POUND, S(KC_4)
 #define SYM_R_TOP KC_BSLS, KC_SLASH, S(KC_SLASH)
 #define SYM_L_HOME S(KC_8), KC_MINUS, KC_EQUAL, S(KC_QUOTE), S(KC_5)
-#define SYM_R_HOME S(KC_1), S(KC_SCLN), M_KC_HASH, S(KC_GRAVE), S(KC_BSLS)
+#define SYM_R_HOME S(KC_1), S(KC_SCLN), MK_HASH, S(KC_GRAVE), S(KC_BSLS)
 #define SYM_L_BOT S(KC_EQUAL), S(KC_7), KC_GRAVE
-#define SYM_R_BOT S(KC_COMMA), S(KC_DOT), M_KC_ARROW
+#define SYM_R_BOT S(KC_COMMA), S(KC_DOT), MK_ARROW
 #define SYM_L_THUMB KC_TRNS, KC_SPC
 #define SYM_R_THUMB KC_TRNS, KC_TRNS
 
@@ -158,18 +158,18 @@ const uint32_t PROGMEM unicode_map[] = {
 #define NAV2_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV2_R_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV2_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define NAV2_R_HOME M_KC_L_W, M_KC_SEL_BACK, M_KC_SEL_FWD, M_KC_R_W, KC_TRNS
+#define NAV2_R_HOME MK_L_W, MK_SEL_BACK, MK_SEL_FWD, MK_R_W, KC_TRNS
 #define NAV2_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
-#define NAV2_R_BOT M_KC_SEL_LINE, KC_TRNS, KC_TRNS
+#define NAV2_R_BOT MK_SEL_LINE, KC_TRNS, KC_TRNS
 #define NAV2_L_THUMB KC_TRNS, KC_TRNS
-#define NAV2_R_THUMB M_KC_BSPC_W, M_KC_DEL_W
+#define NAV2_R_THUMB MK_BSPC_W, MK_DEL_W
 
 // edit
-#define EDIT_L_TOP M_KC_F_PREV, M_KC_FIND, M_KC_F_NEXT
+#define EDIT_L_TOP MK_F_PREV, MK_FIND, MK_F_NEXT
 #define EDIT_R_TOP S(KC_LBRC), S(KC_RBRC), KC_TRNS
-#define EDIT_L_HOME M_KC_ALL, M_KC_CUT, M_KC_COPY, M_KC_PASTE, KC_TRNS
+#define EDIT_L_HOME MK_ALL, MK_CUT, MK_COPY, MK_PASTE, KC_TRNS
 #define EDIT_R_HOME KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_TRNS
-#define EDIT_L_BOT KC_TRNS, M_KC_UNDO, M_KC_REDO
+#define EDIT_L_BOT KC_TRNS, MK_UNDO, MK_REDO
 #define EDIT_R_BOT KC_LBRC, KC_RBRC, KC_TRNS
 #define EDIT_L_THUMB KC_TRNS, KC_TRNS
 #define EDIT_R_THUMB KC_BSPC, KC_DEL
@@ -182,7 +182,7 @@ const uint32_t PROGMEM unicode_map[] = {
 #define FUN_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define FUN_R_BOT KC_F1, KC_F2, KC_F3
 #define FUN_L_THUMB KC_TRNS, KC_TRNS
-#define FUN_R_THUMB M_KC_BSPC_W, M_KC_DEL_W
+#define FUN_R_THUMB MK_BSPC_W, MK_DEL_W
 
 // sys
 #define SYS_L_TOP KC_MPLY, KC_BTN4, KC_BTN5
@@ -272,9 +272,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!record->event.pressed) {
 #ifdef SELECT_WORD_ENABLE
         switch (keycode) {
-            case M_KC_SEL_BACK:
-            case M_KC_SEL_FWD:
-            case M_KC_SEL_LINE:
+            case MK_SEL_BACK:
+            case MK_SEL_FWD:
+            case MK_SEL_LINE:
                 select_word_unregister();
                 return false;
         }
@@ -284,71 +284,71 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
 #ifdef SELECT_WORD_ENABLE
-        case M_KC_SEL_BACK:
+        case MK_SEL_BACK:
             select_word_register('B');
             return false;
-        case M_KC_SEL_FWD:
+        case MK_SEL_FWD:
             select_word_register('W');
             return false;
-        case M_KC_SEL_LINE:
+        case MK_SEL_LINE:
             select_word_register('L');
             return false;
 #endif
-        case M_KC_ARROW:
+        case MK_ARROW:
             SEND_STRING("->");
             return false;
-        case M_KC_000:
+        case MK_000:
             SEND_STRING("000");
             return false;
-        case M_KC_COPY:
+        case MK_COPY:
             OS_TAP(G(KC_C), KC_COPY);
             return false;
-        case M_KC_CUT:
+        case MK_CUT:
             OS_TAP(G(KC_X), KC_CUT);
             return false;
-        case M_KC_PASTE:
+        case MK_PASTE:
             OS_TAP(G(KC_V), KC_PASTE);
             return false;
-        case M_KC_UNDO:
+        case MK_UNDO:
             OS_TAP(G(KC_Z), C(KC_Z));
             return false;
-        case M_KC_REDO:
+        case MK_REDO:
             OS_TAP(SGUI(KC_Z), C(S(KC_Z)));
             return false;
-        case M_KC_FIND:
+        case MK_FIND:
             OS_TAP(G(KC_F), C(KC_F));
             return false;
-        case M_KC_F_NEXT:
+        case MK_F_NEXT:
             OS_TAP(G(KC_G), C(KC_G));
             return false;
-        case M_KC_F_PREV:
+        case MK_F_PREV:
             OS_TAP(SGUI(KC_G), C(S(KC_G)));
             return false;
-        case M_KC_ALL:
+        case MK_ALL:
             OS_TAP(G(KC_A), C(KC_A));
             return false;
-        case M_KC_BSPC_W:
+        case MK_BSPC_W:
             OS_TAP(A(KC_BSPC), C(KC_BSPC));
             return false;
-        case M_KC_DEL_W:
+        case MK_DEL_W:
             OS_TAP(A(KC_DEL), C(KC_DEL));
             return false;
-        case M_KC_R_W:
+        case MK_R_W:
             OS_TAP(A(KC_RIGHT), C(KC_RIGHT));
             return false;
-        case M_KC_L_W:
+        case MK_L_W:
             OS_TAP(A(KC_LEFT), C(KC_LEFT));
             return false;
-        case M_KC_SCRN:
+        case MK_SCRN:
             OS_TAP(SGUI(KC_4), KC_PSCR);
             return false;
-        case M_KC_EURO:
+        case MK_EURO:
             OS_TAP_UNICODE(A(S(KC_2)), UN_EURO);
             return false;
-        case M_KC_POUND:
+        case MK_POUND:
             OS_TAP_UNICODE(S(KC_3), UN_POUND);
             return false;
-        case M_KC_HASH:
+        case MK_HASH:
             OS_TAP_UNICODE(RALT(KC_3), UN_HASH);
             return false;
     }
