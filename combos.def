@@ -40,23 +40,25 @@ SUBS(C_BR_ING,    "ing",          K_RH2, K_RH5)
 COMB(C_BB_CAPS,   KC_CAPS,        K_LH4, K_RH2)
 COMB(C_BB_PSCRN,  MK_SCRN,      K_LH5, K_RH1)
 
-// SYM layer
-COMB(C_LS_EURO,       MK_EURO,  MK_POUND,  S(KC_4))
-COMB(C_RS_CIRC,       KC_CIRC,    KC_EQUAL,    KC_GRAVE)
-SUBS(C_LS_DOCSTRING,  "\"\"\"",   KC_EQUAL,    S(KC_QUOTE))
-SUBS(C_LS_MARKCODE,   "```",      S(KC_7),     KC_GRAVE)
-SUBS(C_LS_INDENT,     "    ",     S(KC_8),     KC_SPC)
+// SYM layer - left
+COMB(C_SL_EURO,       MK_EURO,  MK_POUND,  S(KC_4))
+SUBS(C_SL_DOCSTRING,  "\"\"\"",   KC_EQUAL,    S(KC_QUOTE))
+SUBS(C_SL_MARKCODE,   "```",      S(KC_7),     KC_GRAVE)
+SUBS(C_SL_INDENT,     "    ",     S(KC_8),     KC_SPC)
 
-// EDIT layer
-COMB(C_LE_SAVE,  G(KC_S),  G(KC_C),  G(KC_V))
+// SYM layer - right
+COMB(C_SR_CIRC,       KC_CIRC,    KC_EQUAL,    KC_GRAVE)
 
-// FUN layer
-COMB(C_RF_F10,  KC_F10,  KC_F7,  KC_F8)
-COMB(C_RF_F11,  KC_F11,  KC_F8,  KC_F9)
-COMB(C_RF_F12,  KC_F12,  KC_F7,  KC_F8,  KC_F9)
+// EDIT layer - left
+COMB(C_EL_SAVE,  G(KC_S),  G(KC_C),  G(KC_V))
 
-// SYS layer
-COMB(C_LSYS_ACL1,    MS_ACL1,  KC_WH_U,  KC_WH_D)
-COMB(C_LSYS_ACL0,    MS_ACL0,  KC_WH_R,  KC_WH_U,  KC_WH_D)
-COMB(C_LSYS_AC_ON,   AC_ON,    KC_MPLY,  KC_BTN4,  KC_BTN5)
-COMB(C_LSYS_AC_OFF,  AC_OFF,   KC_MCTL,  KC_BRID,  KC_BRIU)
+// FUN layer - right
+COMB(C_FR_F10,  KC_F10,  KC_F7,  KC_F8)
+COMB(C_FR_F11,  KC_F11,  KC_F8,  KC_F9)
+COMB(C_FR_F12,  KC_F12,  KC_F7,  KC_F8,  KC_F9)
+
+// SYS layer - left
+COMB(C_SYSL_ACL1,    MS_ACL1,  KC_WH_U,  KC_WH_D)
+COMB(C_SYSL_ACL0,    MS_ACL0,  KC_WH_R,  KC_WH_U,  KC_WH_D)
+COMB(C_SYSL_AC_ON,   AC_ON,    KC_MPLY,  KC_BTN4,  KC_BTN5)
+COMB(C_SYSL_AC_OFF,  AC_OFF,   KC_MCTL,  KC_BRID,  KC_BRIU)
