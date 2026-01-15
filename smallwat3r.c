@@ -409,11 +409,26 @@ const uint32_t PROGMEM unicode_map[] = {
 #define UNI_R_THUMB KC_TRNS, KC_TRNS
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
-#define LAYER_DEF(layer) LAYOUT_wrapper(layer##_L_TOP, layer##_R_TOP, layer##_L_HOME, layer##_R_HOME, layer##_L_BOT, layer##_R_BOT, layer##_L_THUMB, layer##_R_THUMB)
+// clang-format off
+#define LAYER_DEF(layer) LAYOUT_wrapper( \
+    layer##_L_TOP,   layer##_R_TOP, \
+    layer##_L_HOME,  layer##_R_HOME, \
+    layer##_L_BOT,   layer##_R_BOT, \
+    layer##_L_THUMB, layer##_R_THUMB \
+)
+// clang-format on
 
+// clang-format off
 #ifdef CHORDAL_HOLD
-const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT('L', 'L', 'L', 'R', 'R', 'R', 'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R', 'L', 'L', 'L', 'R', 'R', 'R', '*', '*', '*', '*');
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT(
+             'L', 'L', 'L',            'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+             'L', 'L', 'L',            'R', 'R', 'R',
+                       '*', '*',  '*', '*'
+    );
 #endif
+// clang-format on
 
 #ifdef OS_DETECTION_ENABLE
 bool process_detected_host_os_kb(os_variant_t detected_os) {
@@ -449,15 +464,6 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     return COMBO_TERM; // 35
 }
 #endif
-
-#define OS_TAP_UNICODE(mac_key, unicode_name)  \
-    do {                                       \
-        if (detected_host_os() == OS_MACOS) {  \
-            tap_code16(mac_key);               \
-        } else {                               \
-            register_unicodemap(unicode_name); \
-        }                                      \
-    } while (0)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef OS_KEYS_ENABLE
@@ -503,13 +509,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("000");
             return false;
         case MK_EURO:
-            OS_TAP_UNICODE(A(S(KC_2)), UN_EURO);
+            register_unicodemap(UN_EURO);
             return false;
         case MK_POUND:
-            OS_TAP_UNICODE(S(KC_3), UN_POUND);
+            register_unicodemap(UN_POUND);
             return false;
         case MK_HASH:
-            OS_TAP_UNICODE(RALT(KC_3), UN_HASH);
+            register_unicodemap(UN_HASH);
             return false;
     }
     return true;
