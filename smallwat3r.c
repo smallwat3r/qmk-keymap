@@ -601,6 +601,18 @@ bool led_update_user(led_t led_state) {
     rgb_set_caps_lock(led_state.caps_lock);
     return true;
 }
+
+#ifdef CAPS_WORD_ENABLE
+void caps_word_set_user(bool active) {
+    rgb_set_caps_lock(active);
+}
+#endif
+#endif
+
+#if defined(CAPS_WORD_ENABLE) && defined(LED_CAPS_LOCK_PIN) && !defined(RGBLIGHT_ENABLE)
+void caps_word_set_user(bool active) {
+    gpio_write_pin(LED_CAPS_LOCK_PIN, active ? LED_PIN_ON_STATE : !LED_PIN_ON_STATE);
+}
 #endif
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {

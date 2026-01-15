@@ -37,7 +37,7 @@ SUBS(C_BR_ION,    "ion",          K_RB1, K_RH4)
 SUBS(C_BR_ING,    "ing",          K_RH2, K_RH5)
 
 // BASE layer - both hands
-COMB(C_BB_CAPS,   KC_CAPS,        K_LH4, K_RH2)
+COMB(C_BB_CAPS,   CW_TOGG,        K_LH4, K_RH2)
 COMB(C_BB_PSCRN,  MK_SCRN,      K_LH5, K_RH1)
 
 // SYM layer - left

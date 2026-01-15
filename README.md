@@ -54,7 +54,7 @@ BASE
     U+N = "you"  H+E = "ion"  N+I = "ing"
 
   Combos (both):
-    S+N = Caps Lock           G+Y = Screenshot
+    S+N = Caps Word           G+Y = Screenshot
 
 NUM (hold T) - number pad
     ┌───┬───┬───┐               ┌───┬───┬───┐
