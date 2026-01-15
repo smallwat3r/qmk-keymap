@@ -47,7 +47,15 @@ enum unicode_names {
     UN_E_ACUTE,      // é
     UN_E_GRAVE,      // è
     UN_E_CIRCUMFLEX, // ê
+    UN_E_DIAERESIS,  // ë
+    UN_I_CIRCUMFLEX, // î
+    UN_I_DIAERESIS,  // ï
+    UN_O_CIRCUMFLEX, // ô
+    UN_U_GRAVE,      // ù
     UN_U_CIRCUMFLEX, // û
+    UN_OE_LIGATURE,  // œ
+    UN_GUILL_L,      // «
+    UN_GUILL_R,      // »
     UN_EURO,         // €
     UN_POUND,        // £
     UN_HASH,         // #
@@ -60,7 +68,15 @@ const uint32_t PROGMEM unicode_map[] = {
     [UN_E_ACUTE]      = 0x00E9, // é
     [UN_E_GRAVE]      = 0x00E8, // è
     [UN_E_CIRCUMFLEX] = 0x00EA, // ê
+    [UN_E_DIAERESIS]  = 0x00EB, // ë
+    [UN_I_CIRCUMFLEX] = 0x00EE, // î
+    [UN_I_DIAERESIS]  = 0x00EF, // ï
+    [UN_O_CIRCUMFLEX] = 0x00F4, // ô
+    [UN_U_GRAVE]      = 0x00F9, // ù
     [UN_U_CIRCUMFLEX] = 0x00FB, // û
+    [UN_OE_LIGATURE]  = 0x0153, // œ
+    [UN_GUILL_L]      = 0x00AB, // «
+    [UN_GUILL_R]      = 0x00BB, // »
     [UN_EURO]         = 0x20AC, // €
     [UN_POUND]        = 0x00A3, // £
     [UN_HASH]         = 0x0023, // #
@@ -382,30 +398,30 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // uni (unicode)
 //     ┌───┬───┬───┐
-//     │   │   │   │
+//     │ ë │ ï │   │
 // ┌───┼───┼───┼───┼───┐
-// │   │   │   │   │   │
+// │ « │ » │   │   │   │
 // └───┼───┼───┼───┼───┘
 //     │   │   │   │
 //     └───┴───┼───┼───┐
 //             │   │   │
 //             └───┴───┘
-#define UNI_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
-#define UNI_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_L_TOP UM(UN_E_DIAERESIS), UM(UN_I_DIAERESIS), KC_TRNS
+#define UNI_L_HOME UM(UN_GUILL_L), UM(UN_GUILL_R), KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_L_THUMB KC_TRNS, KC_TRNS
 //     ┌───┬───┬───┐
 //     │ ê │ â │ û │
 // ┌───┼───┼───┼───┼───┐
-// │   │ è │ à │ é │ ç │
+// │ ù │ è │ à │ é │ ç │
 // └───┼───┼───┼───┼───┘
-//     │   │   │   │
+//     │ ô │ î │ œ │
 // ┌───┼───┼───┴───┘
 // │   │   │
 // └───┴───┘
 #define UNI_R_TOP UM(UN_E_CIRCUMFLEX), UM(UN_A_CIRCUMFLEX), UM(UN_U_CIRCUMFLEX)
-#define UNI_R_HOME KC_TRNS, UM(UN_E_GRAVE), UM(UN_A_GRAVE), UM(UN_E_ACUTE), UM(UN_C_CEDILLA)
-#define UNI_R_BOT KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_R_HOME UM(UN_U_GRAVE), UM(UN_E_GRAVE), UM(UN_A_GRAVE), UM(UN_E_ACUTE), UM(UN_C_CEDILLA)
+#define UNI_R_BOT UM(UN_O_CIRCUMFLEX), UM(UN_I_CIRCUMFLEX), UM(UN_OE_LIGATURE)
 #define UNI_R_THUMB KC_TRNS, KC_TRNS
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
