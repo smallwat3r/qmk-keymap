@@ -7,6 +7,9 @@
 #ifdef LED_INDICATOR_ENABLE
 #    include "features/led_indicator.h"
 #endif
+#ifdef OS_KEYS_ENABLE
+#    include "features/os_keys.h"
+#endif
 
 enum layers {
     BASE,
@@ -23,22 +26,12 @@ enum layers {
 };
 
 enum custom_keycodes {
+#ifdef OS_KEYS_ENABLE
+    MK_ARROW = OS_KEYS_SAFE_RANGE,
+#else
     MK_ARROW = SAFE_RANGE,
+#endif
     MK_000,
-    MK_SCRN, // take screenshot
-    MK_COPY,
-    MK_CUT,
-    MK_PASTE,
-    MK_UNDO,
-    MK_REDO,
-    MK_FIND,
-    MK_F_NEXT, // find next
-    MK_F_PREV, // find prev
-    MK_ALL,    // select all
-    MK_BSPC_W, // backspace whole word
-    MK_DEL_W,  // delete whole word
-    MK_R_W,    // move right whole word
-    MK_L_W,    // move left whole word
     MK_SEL_BACK,
     MK_SEL_FWD,
     MK_SEL_LINE,
@@ -76,30 +69,30 @@ const uint32_t PROGMEM unicode_map[] = {
 // define one alias per key to use on the base layer, this is a
 // useful level of abstraction in order to define combos
 // naming: K_<side><row><position> (L/R, T/H/B/TH, 1-5)
-#define K_LT1  KC_L
-#define K_LT2  KC_D
-#define K_LT3  LT(UNI, KC_P)
-#define K_LH1  MT(MOD_LSFT, KC_W)
-#define K_LH2  LT(SYM2, KC_R)
-#define K_LH3  LT(NUM, KC_T)
-#define K_LH4  LT(NAV, KC_S)
-#define K_LH5  LT(ROS, KC_G)
-#define K_LB1  MT(MOD_LCTL, KC_K)
-#define K_LB2  MT(MOD_LALT, KC_M)
-#define K_LB3  MT(MOD_LGUI, KC_C)
+#define K_LT1 KC_L
+#define K_LT2 KC_D
+#define K_LT3 LT(UNI, KC_P)
+#define K_LH1 MT(MOD_LSFT, KC_W)
+#define K_LH2 LT(SYM2, KC_R)
+#define K_LH3 LT(NUM, KC_T)
+#define K_LH4 LT(NAV, KC_S)
+#define K_LH5 LT(ROS, KC_G)
+#define K_LB1 MT(MOD_LCTL, KC_K)
+#define K_LB2 MT(MOD_LALT, KC_M)
+#define K_LB3 MT(MOD_LGUI, KC_C)
 #define K_LTH1 LT(EDIT, KC_TAB)
 #define K_LTH2 LT(FUN, KC_SPC)
-#define K_RT1  KC_F
-#define K_RT2  KC_O
-#define K_RT3  KC_U
-#define K_RH1  KC_Y
-#define K_RH2  LT(SYS, KC_N)
-#define K_RH3  KC_A
-#define K_RH4  LT(SYM2, KC_E)
-#define K_RH5  MT(MOD_LSFT, KC_I)
-#define K_RB1  MT(MOD_LGUI, KC_H)
-#define K_RB2  MT(MOD_LALT, KC_COMMA)
-#define K_RB3  MT(MOD_LCTL, KC_DOT)
+#define K_RT1 KC_F
+#define K_RT2 KC_O
+#define K_RT3 KC_U
+#define K_RH1 KC_Y
+#define K_RH2 LT(SYS, KC_N)
+#define K_RH3 KC_A
+#define K_RH4 LT(SYM2, KC_E)
+#define K_RH5 MT(MOD_LSFT, KC_I)
+#define K_RB1 MT(MOD_LGUI, KC_H)
+#define K_RB2 MT(MOD_LALT, KC_COMMA)
+#define K_RB3 MT(MOD_LCTL, KC_DOT)
 #define K_RTH1 LT(SYS, KC_BSPC)
 #define K_RTH2 LT(SYM, KC_ENT)
 
@@ -117,9 +110,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │TAB│SPC│
 //             └───┴───┘
-#define BASE_L_TOP   K_LT1, K_LT2, K_LT3
-#define BASE_L_HOME  K_LH1, K_LH2, K_LH3, K_LH4, K_LH5
-#define BASE_L_BOT   K_LB1, K_LB2, K_LB3
+#define BASE_L_TOP K_LT1, K_LT2, K_LT3
+#define BASE_L_HOME K_LH1, K_LH2, K_LH3, K_LH4, K_LH5
+#define BASE_L_BOT K_LB1, K_LB2, K_LB3
 #define BASE_L_THUMB K_LTH1, K_LTH2
 //     ┌───┬───┬───┐
 //     │ F │ O │ U │
@@ -130,9 +123,9 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │BSP│ENT│
 // └───┴───┘
-#define BASE_R_TOP   K_RT1, K_RT2, K_RT3
-#define BASE_R_HOME  K_RH1, K_RH2, K_RH3, K_RH4, K_RH5
-#define BASE_R_BOT   K_RB1, K_RB2, K_RB3
+#define BASE_R_TOP K_RT1, K_RT2, K_RT3
+#define BASE_R_HOME K_RH1, K_RH2, K_RH3, K_RH4, K_RH5
+#define BASE_R_BOT K_RB1, K_RB2, K_RB3
 #define BASE_R_THUMB K_RTH1, K_RTH2
 
 // num
@@ -145,9 +138,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │   │SPC│
 //             └───┴───┘
-#define NUM_L_TOP   KC_TRNS, KC_TRNS, KC_TRNS
-#define NUM_L_HOME  KC_TRNS, KC_TRNS, KC_TRNS, KC_DOT, KC_TRNS
-#define NUM_L_BOT   KC_TRNS, KC_TRNS, KC_COMMA
+#define NUM_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define NUM_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_DOT, KC_TRNS
+#define NUM_L_BOT KC_TRNS, KC_TRNS, KC_COMMA
 #define NUM_L_THUMB KC_TRNS, KC_SPC
 //     ┌───┬───┬───┐
 //     │ 7 │ 8 │ 9 │
@@ -158,9 +151,9 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │BSP│DEL│
 // └───┴───┘
-#define NUM_R_TOP   KC_7, KC_8, KC_9
-#define NUM_R_HOME  MK_000, KC_4, KC_5, KC_6, KC_0
-#define NUM_R_BOT   KC_1, KC_2, KC_3
+#define NUM_R_TOP KC_7, KC_8, KC_9
+#define NUM_R_HOME MK_000, KC_4, KC_5, KC_6, KC_0
+#define NUM_R_BOT KC_1, KC_2, KC_3
 #define NUM_R_THUMB KC_BSPC, KC_DEL
 
 // sym
@@ -173,9 +166,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │   │SPC│
 //             └───┴───┘
-#define SYM_L_TOP   KC_AT, MK_POUND, S(KC_4)
-#define SYM_L_HOME  S(KC_8), KC_MINUS, KC_EQUAL, S(KC_QUOTE), S(KC_5)
-#define SYM_L_BOT   S(KC_EQUAL), S(KC_7), KC_GRAVE
+#define SYM_L_TOP KC_AT, MK_POUND, S(KC_4)
+#define SYM_L_HOME S(KC_8), KC_MINUS, KC_EQUAL, S(KC_QUOTE), S(KC_5)
+#define SYM_L_BOT S(KC_EQUAL), S(KC_7), KC_GRAVE
 #define SYM_L_THUMB KC_TRNS, KC_SPC
 //     ┌───┬───┬───┐
 //     │ \ │ / │ ? │
@@ -186,9 +179,9 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │   │   │
 // └───┴───┘
-#define SYM_R_TOP   KC_BSLS, KC_SLASH, S(KC_SLASH)
-#define SYM_R_HOME  S(KC_1), S(KC_SCLN), MK_HASH, S(KC_GRAVE), S(KC_BSLS)
-#define SYM_R_BOT   S(KC_COMMA), S(KC_DOT), MK_ARROW
+#define SYM_R_TOP KC_BSLS, KC_SLASH, S(KC_SLASH)
+#define SYM_R_HOME S(KC_1), S(KC_SCLN), MK_HASH, S(KC_GRAVE), S(KC_BSLS)
+#define SYM_R_BOT S(KC_COMMA), S(KC_DOT), MK_ARROW
 #define SYM_R_THUMB KC_TRNS, KC_TRNS
 
 // sym2 (lighter layer that eases rolls for home row)
@@ -201,9 +194,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │   │SPC│
 //             └───┴───┘
-#define SYM2_L_TOP   SYM_L_TOP
-#define SYM2_L_HOME  S(KC_8), KC_R, KC_EQUAL, S(KC_QUOTE), S(KC_5)
-#define SYM2_L_BOT   SYM_L_BOT
+#define SYM2_L_TOP SYM_L_TOP
+#define SYM2_L_HOME S(KC_8), KC_R, KC_EQUAL, S(KC_QUOTE), S(KC_5)
+#define SYM2_L_BOT SYM_L_BOT
 #define SYM2_L_THUMB SYM_L_THUMB
 //     ┌───┬───┬───┐
 //     │ \ │ / │ ? │
@@ -214,9 +207,9 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │   │   │
 // └───┴───┘
-#define SYM2_R_TOP   SYM_R_TOP
-#define SYM2_R_HOME  S(KC_1), S(KC_SCLN), K_RH3, KC_E, S(KC_BSLS)
-#define SYM2_R_BOT   SYM_R_BOT
+#define SYM2_R_TOP SYM_R_TOP
+#define SYM2_R_HOME S(KC_1), S(KC_SCLN), K_RH3, KC_E, S(KC_BSLS)
+#define SYM2_R_BOT SYM_R_BOT
 #define SYM2_R_THUMB SYM_R_THUMB
 
 // nav
@@ -229,9 +222,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │MB2│MB1│
 //             └───┴───┘
-#define NAV_L_TOP   KC_TRNS, KC_TRNS, KC_TRNS
-#define NAV_L_HOME  KC_END, KC_TRNS, MO(NAV2), KC_TRNS, KC_TRNS
-#define NAV_L_BOT   KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV_L_HOME KC_END, KC_TRNS, MO(NAV2), KC_TRNS, KC_TRNS
+#define NAV_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV_L_THUMB KC_BTN2, KC_BTN1
 //     ┌───┬───┬───┐
 //     │ { │ } │   │
@@ -242,9 +235,9 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │BSP│DEL│
 // └───┴───┘
-#define NAV_R_TOP   S(KC_LBRC), S(KC_RBRC), KC_TRNS
-#define NAV_R_HOME  KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_HOME
-#define NAV_R_BOT   KC_LBRC, KC_RBRC, KC_TRNS
+#define NAV_R_TOP S(KC_LBRC), S(KC_RBRC), KC_TRNS
+#define NAV_R_HOME KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_HOME
+#define NAV_R_BOT KC_LBRC, KC_RBRC, KC_TRNS
 #define NAV_R_THUMB KC_BSPC, KC_DEL
 
 // nav2
@@ -257,9 +250,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │   │   │
 //             └───┴───┘
-#define NAV2_L_TOP   KC_TRNS, KC_TRNS, KC_TRNS
-#define NAV2_L_HOME  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define NAV2_L_BOT   KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV2_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV2_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV2_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV2_L_THUMB KC_TRNS, KC_TRNS
 //     ┌───┬───┬───┐
 //     │   │   │   │
@@ -270,10 +263,10 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │BSW│DEW│
 // └───┴───┘
-#define NAV2_R_TOP   KC_TRNS, KC_TRNS, KC_TRNS
-#define NAV2_R_HOME  MK_L_W, MK_SEL_BACK, MK_SEL_FWD, MK_R_W, KC_TRNS
-#define NAV2_R_BOT   MK_SEL_LINE, KC_TRNS, KC_TRNS
-#define NAV2_R_THUMB MK_BSPC_W, MK_DEL_W
+#define NAV2_R_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define NAV2_R_HOME OS_L_W, MK_SEL_BACK, MK_SEL_FWD, OS_R_W, KC_TRNS
+#define NAV2_R_BOT MK_SEL_LINE, KC_TRNS, KC_TRNS
+#define NAV2_R_THUMB OS_BSPC_W, OS_DEL_W
 
 // edit
 //     ┌───┬───┬───┐
@@ -285,9 +278,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │   │   │
 //             └───┴───┘
-#define EDIT_L_TOP   MK_F_PREV, MK_FIND, MK_F_NEXT
-#define EDIT_L_HOME  MK_ALL, MK_CUT, MK_COPY, MK_PASTE, KC_TRNS
-#define EDIT_L_BOT   KC_TRNS, MK_UNDO, MK_REDO
+#define EDIT_L_TOP OS_F_PREV, OS_FIND, OS_F_NEXT
+#define EDIT_L_HOME OS_ALL, OS_CUT, OS_COPY, OS_PASTE, KC_TRNS
+#define EDIT_L_BOT KC_TRNS, OS_UNDO, OS_REDO
 #define EDIT_L_THUMB KC_TRNS, KC_TRNS
 //     ┌───┬───┬───┐
 //     │ { │ } │   │
@@ -298,9 +291,9 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │BSP│DEL│
 // └───┴───┘
-#define EDIT_R_TOP   S(KC_LBRC), S(KC_RBRC), KC_TRNS
-#define EDIT_R_HOME  KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_TRNS
-#define EDIT_R_BOT   KC_LBRC, KC_RBRC, KC_TRNS
+#define EDIT_R_TOP S(KC_LBRC), S(KC_RBRC), KC_TRNS
+#define EDIT_R_HOME KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_TRNS
+#define EDIT_R_BOT KC_LBRC, KC_RBRC, KC_TRNS
 #define EDIT_R_THUMB KC_BSPC, KC_DEL
 
 // fun
@@ -313,9 +306,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │   │   │
 //             └───┴───┘
-#define FUN_L_TOP   KC_TRNS, KC_TRNS, KC_TRNS
-#define FUN_L_HOME  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define FUN_L_BOT   KC_TRNS, KC_TRNS, KC_TRNS
+#define FUN_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define FUN_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define FUN_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define FUN_L_THUMB KC_TRNS, KC_TRNS
 //     ┌───┬───┬───┐
 //     │F7 │F8 │F9 │
@@ -326,10 +319,10 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │BSW│DEW│
 // └───┴───┘
-#define FUN_R_TOP   KC_F7, KC_F8, KC_F9
-#define FUN_R_HOME  KC_TRNS, KC_F4, KC_F5, KC_F6, KC_TRNS
-#define FUN_R_BOT   KC_F1, KC_F2, KC_F3
-#define FUN_R_THUMB MK_BSPC_W, MK_DEL_W
+#define FUN_R_TOP KC_F7, KC_F8, KC_F9
+#define FUN_R_HOME KC_TRNS, KC_F4, KC_F5, KC_F6, KC_TRNS
+#define FUN_R_BOT KC_F1, KC_F2, KC_F3
+#define FUN_R_THUMB OS_BSPC_W, OS_DEL_W
 
 // sys
 //     ┌───┬───┬───┐
@@ -341,9 +334,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │MB2│MB1│
 //             └───┴───┘
-#define SYS_L_TOP   KC_MPLY, KC_BTN4, KC_BTN5
-#define SYS_L_HOME  KC_END, KC_WH_R, KC_WH_U, KC_WH_D, KC_WH_L
-#define SYS_L_BOT   KC_MCTL, KC_BRID, KC_BRIU
+#define SYS_L_TOP KC_MPLY, KC_BTN4, KC_BTN5
+#define SYS_L_HOME KC_END, KC_WH_R, KC_WH_U, KC_WH_D, KC_WH_L
+#define SYS_L_BOT KC_MCTL, KC_BRID, KC_BRIU
 #define SYS_L_THUMB KC_BTN2, KC_BTN1
 //     ┌───┬───┬───┐
 //     │MUT│VL-│VL+│
@@ -354,9 +347,9 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │   │   │
 // └───┴───┘
-#define SYS_R_TOP   KC_MUTE, KC_VOLD, KC_VOLU
-#define SYS_R_HOME  KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_HOME
-#define SYS_R_BOT   RGB_TOG, G(KC_KP_MINUS), G(KC_KP_PLUS)
+#define SYS_R_TOP KC_MUTE, KC_VOLD, KC_VOLU
+#define SYS_R_HOME KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_HOME
+#define SYS_R_BOT RGB_TOG, OS_ZOOM_OUT, OS_ZOOM_IN
 #define SYS_R_THUMB KC_TRNS, KC_TRNS
 
 // ros (ros2 teleop)
@@ -369,9 +362,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │   │   │
 //             └───┴───┘
-#define ROS_L_TOP   KC_TRNS, KC_TRNS, KC_TRNS
-#define ROS_L_HOME  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define ROS_L_BOT   KC_TRNS, KC_TRNS, KC_TRNS
+#define ROS_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define ROS_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define ROS_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define ROS_L_THUMB KC_TRNS, KC_TRNS
 //     ┌───┬───┬───┐
 //     │ U │ I │ O │
@@ -382,9 +375,9 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │   │   │
 // └───┴───┘
-#define ROS_R_TOP   KC_U, KC_I, KC_O
-#define ROS_R_HOME  KC_TRNS, KC_J, KC_K, KC_L, KC_TRNS
-#define ROS_R_BOT   KC_M, KC_COMM, KC_DOT
+#define ROS_R_TOP KC_U, KC_I, KC_O
+#define ROS_R_HOME KC_TRNS, KC_J, KC_K, KC_L, KC_TRNS
+#define ROS_R_BOT KC_M, KC_COMM, KC_DOT
 #define ROS_R_THUMB KC_TRNS, KC_TRNS
 
 // uni (unicode)
@@ -397,9 +390,9 @@ const uint32_t PROGMEM unicode_map[] = {
 //     └───┴───┼───┼───┐
 //             │   │   │
 //             └───┴───┘
-#define UNI_L_TOP   KC_TRNS, KC_TRNS, KC_TRNS
-#define UNI_L_HOME  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-#define UNI_L_BOT   KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_L_THUMB KC_TRNS, KC_TRNS
 //     ┌───┬───┬───┐
 //     │ ê │ â │ û │
@@ -410,27 +403,16 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌───┼───┼───┴───┘
 // │   │   │
 // └───┴───┘
-#define UNI_R_TOP   UM(UN_E_CIRCUMFLEX), UM(UN_A_CIRCUMFLEX), UM(UN_U_CIRCUMFLEX)
-#define UNI_R_HOME  KC_TRNS, UM(UN_E_GRAVE), UM(UN_A_GRAVE), UM(UN_E_ACUTE), UM(UN_C_CEDILLA)
-#define UNI_R_BOT   KC_TRNS, KC_TRNS, KC_TRNS
+#define UNI_R_TOP UM(UN_E_CIRCUMFLEX), UM(UN_A_CIRCUMFLEX), UM(UN_U_CIRCUMFLEX)
+#define UNI_R_HOME KC_TRNS, UM(UN_E_GRAVE), UM(UN_A_GRAVE), UM(UN_E_ACUTE), UM(UN_C_CEDILLA)
+#define UNI_R_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_R_THUMB KC_TRNS, KC_TRNS
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
-#define LAYER_DEF(layer) LAYOUT_wrapper( \
-    layer##_L_TOP,   layer##_R_TOP, \
-    layer##_L_HOME,  layer##_R_HOME, \
-    layer##_L_BOT,   layer##_R_BOT, \
-    layer##_L_THUMB, layer##_R_THUMB \
-)
+#define LAYER_DEF(layer) LAYOUT_wrapper(layer##_L_TOP, layer##_R_TOP, layer##_L_HOME, layer##_R_HOME, layer##_L_BOT, layer##_R_BOT, layer##_L_THUMB, layer##_R_THUMB)
 
 #ifdef CHORDAL_HOLD
-const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
-    LAYOUT(
-             'L', 'L', 'L',            'R', 'R', 'R',
-        'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
-             'L', 'L', 'L',            'R', 'R', 'R',
-                       '*', '*',  '*', '*'
-    );
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT('L', 'L', 'L', 'R', 'R', 'R', 'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R', 'L', 'L', 'L', 'R', 'R', 'R', '*', '*', '*', '*');
 #endif
 
 #ifdef OS_DETECTION_ENABLE
@@ -468,8 +450,6 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
 }
 #endif
 
-#define OS_TAP(mac_key, other_key) tap_code16(detected_host_os() == OS_MACOS ? (mac_key) : (other_key))
-
 #define OS_TAP_UNICODE(mac_key, unicode_name)  \
     do {                                       \
         if (detected_host_os() == OS_MACOS) {  \
@@ -480,6 +460,11 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     } while (0)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef OS_KEYS_ENABLE
+    if (!process_os_keys(keycode, record)) {
+        return false;
+    }
+#endif
 #ifdef SELECT_WORD_ENABLE
     if (!process_select_word(keycode, record)) {
         return false;
@@ -516,48 +501,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MK_000:
             SEND_STRING("000");
-            return false;
-        case MK_COPY:
-            OS_TAP(G(KC_C), KC_COPY);
-            return false;
-        case MK_CUT:
-            OS_TAP(G(KC_X), KC_CUT);
-            return false;
-        case MK_PASTE:
-            OS_TAP(G(KC_V), KC_PASTE);
-            return false;
-        case MK_UNDO:
-            OS_TAP(G(KC_Z), C(KC_Z));
-            return false;
-        case MK_REDO:
-            OS_TAP(SGUI(KC_Z), C(S(KC_Z)));
-            return false;
-        case MK_FIND:
-            OS_TAP(G(KC_F), C(KC_F));
-            return false;
-        case MK_F_NEXT:
-            OS_TAP(G(KC_G), C(KC_G));
-            return false;
-        case MK_F_PREV:
-            OS_TAP(SGUI(KC_G), C(S(KC_G)));
-            return false;
-        case MK_ALL:
-            OS_TAP(G(KC_A), C(KC_A));
-            return false;
-        case MK_BSPC_W:
-            OS_TAP(A(KC_BSPC), C(KC_BSPC));
-            return false;
-        case MK_DEL_W:
-            OS_TAP(A(KC_DEL), C(KC_DEL));
-            return false;
-        case MK_R_W:
-            OS_TAP(A(KC_RIGHT), C(KC_RIGHT));
-            return false;
-        case MK_L_W:
-            OS_TAP(A(KC_LEFT), C(KC_LEFT));
-            return false;
-        case MK_SCRN:
-            OS_TAP(SGUI(KC_4), KC_PSCR);
             return false;
         case MK_EURO:
             OS_TAP_UNICODE(A(S(KC_2)), UN_EURO);
@@ -605,11 +548,11 @@ bool led_update_user(led_t led_state) {
     return true;
 }
 
-#ifdef CAPS_WORD_ENABLE
+#    ifdef CAPS_WORD_ENABLE
 void caps_word_set_user(bool active) {
     rgb_set_caps_lock(active);
 }
-#endif
+#    endif
 #endif
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {

@@ -5,12 +5,12 @@
 
 #include QMK_KEYBOARD_H
 
-static bool osm_active = false;
-static bool caps_word_active = false;
-static bool blink_state = false;
-static uint8_t flash_count = 0;
-static deferred_token blink_token = INVALID_DEFERRED_TOKEN;
-static deferred_token flash_token = INVALID_DEFERRED_TOKEN;
+static bool           osm_active       = false;
+static bool           caps_word_active = false;
+static bool           blink_state      = false;
+static uint8_t        flash_count      = 0;
+static deferred_token blink_token      = INVALID_DEFERRED_TOKEN;
+static deferred_token flash_token      = INVALID_DEFERRED_TOKEN;
 
 static uint32_t blink_callback(uint32_t trigger_time, void *cb_arg);
 

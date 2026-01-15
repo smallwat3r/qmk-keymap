@@ -38,7 +38,7 @@ SUBS(C_BR_ING,    "ing",          K_RH2, K_RH5)
 
 // BASE layer - both hands
 COMB(C_BB_CAPS,   CW_TOGG,        K_LH4, K_RH2)
-COMB(C_BB_PSCRN,  MK_SCRN,      K_LH5, K_RH1)
+COMB(C_BB_PSCRN,  OS_SCRN,      K_LH5, K_RH1)
 
 // SYM layer - left
 COMB(C_SL_EURO,       MK_EURO,  MK_POUND,  S(KC_4))
@@ -50,7 +50,7 @@ SUBS(C_SL_INDENT,     "    ",     S(KC_8),     KC_SPC)
 COMB(C_SR_CIRC,       KC_CIRC,    KC_EQUAL,    KC_GRAVE)
 
 // EDIT layer - left
-COMB(C_EL_SAVE,  G(KC_S),  G(KC_C),  G(KC_V))
+COMB(C_EL_SAVE,  OS_SAVE,  OS_COPY,  OS_PASTE)
 
 // FUN layer - right
 COMB(C_FR_F10,  KC_F10,  KC_F7,  KC_F8)

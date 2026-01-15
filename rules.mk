@@ -26,3 +26,9 @@ ifeq ($(strip $(LED_INDICATOR_ENABLE)), yes)
 	OPT_DEFS += -DLED_INDICATOR_ENABLE
 	SRC += features/led_indicator.c
 endif
+
+OS_KEYS_ENABLE ?= yes
+ifeq ($(strip $(OS_KEYS_ENABLE)), yes)
+	OPT_DEFS += -DOS_KEYS_ENABLE
+	SRC += features/os_keys.c
+endif
