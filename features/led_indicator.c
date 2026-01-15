@@ -41,7 +41,9 @@ static void restore_indicator_state(void) {
         indicator_set(true);
     } else if (osm_active) {
         blink_state = false;
-        blink_token = defer_exec(1, blink_callback, NULL);
+        if (blink_token == INVALID_DEFERRED_TOKEN) {
+            blink_token = defer_exec(1, blink_callback, NULL);
+        }
     } else {
         indicator_set(false);
     }
@@ -99,7 +101,8 @@ void caps_word_set_user(bool active) {
 void led_indicator_oneshot_mods(uint8_t mods) {
     if (mods & MOD_MASK_SHIFT) {
         osm_active = true;
-        if (!caps_word_active && flash_token == INVALID_DEFERRED_TOKEN) {
+        if (!caps_word_active && blink_token == INVALID_DEFERRED_TOKEN &&
+            flash_token == INVALID_DEFERRED_TOKEN) {
             blink_token = defer_exec(1, blink_callback, NULL);
         }
     } else if (!mods) {

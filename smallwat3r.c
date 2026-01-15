@@ -7,6 +7,9 @@
 #ifdef LED_INDICATOR_ENABLE
 #    include "features/led_indicator.h"
 #endif
+#ifdef RGB_INDICATOR_ENABLE
+#    include "features/rgb_indicator.h"
+#endif
 #ifdef OS_KEYS_ENABLE
 #    include "features/os_keys.h"
 #endif
@@ -537,56 +540,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-#ifdef RGBLIGHT_ENABLE
-const rgblight_segment_t PROGMEM default_layer[]   = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_WHITE});
-const rgblight_segment_t PROGMEM capslock_layer[]  = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_RED});
-const rgblight_segment_t PROGMEM osm_shift_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_GREEN});
-
-const rgblight_segment_t *const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(default_layer, capslock_layer, osm_shift_layer);
-
-static void rgb_init(void) {
-    rgblight_layers = rgb_layers;
-}
-
-static void rgb_set_base_layer(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, BASE));
-}
-
-static void rgb_set_caps_lock(bool enabled) {
-    rgblight_set_layer_state(1, enabled);
-}
-
-static void rgb_set_oneshot_shift(uint8_t mods) {
-    if (mods & MOD_MASK_SHIFT) {
-        rgblight_set_layer_state(2, true);
-    }
-    if (!mods) {
-        rgblight_set_layer_state(2, false);
-    }
-}
-
-bool led_update_user(led_t led_state) {
-    rgb_set_caps_lock(led_state.caps_lock);
-    return true;
-}
-
-#    ifdef CAPS_WORD_ENABLE
-void caps_word_set_user(bool active) {
-    rgb_set_caps_lock(active);
-}
-#    endif
-#endif
-
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-#ifdef RGBLIGHT_ENABLE
-    rgb_set_base_layer(state);
+#ifdef RGB_INDICATOR_ENABLE
+    rgb_indicator_set_base_layer(layer_state_cmp(state, BASE));
 #endif
     return state;
 }
 
 void oneshot_mods_changed_user(uint8_t mods) {
-#ifdef RGBLIGHT_ENABLE
-    rgb_set_oneshot_shift(mods);
+#ifdef RGB_INDICATOR_ENABLE
+    rgb_indicator_oneshot_mods(mods);
 #endif
 #ifdef LED_INDICATOR_ENABLE
     led_indicator_oneshot_mods(mods);
@@ -594,8 +557,8 @@ void oneshot_mods_changed_user(uint8_t mods) {
 }
 
 void keyboard_post_init_user(void) {
-#ifdef RGBLIGHT_ENABLE
-    rgb_init();
+#ifdef RGB_INDICATOR_ENABLE
+    rgb_indicator_init();
 #endif
 #ifdef LED_INDICATOR_ENABLE
     led_indicator_init();
