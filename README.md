@@ -7,14 +7,15 @@ Uses very light switches (Kailh Ambients Nocturnal, 20g) and relies heavily on c
 ## Building
 
 ```
-make          # Show available targets
-make all      # Build all keyboards
-make 26       # Build smallcat/26
-make uni      # Build smallcat/uni
-make flash-26 # Flash smallcat/26
-make flash-uni# Flash smallcat/uni
-make format   # Format code with clang-format
-make clean    # Clean build artifacts
+make             # Show available targets
+make all         # Build all keyboards
+make 26          # Build smallcat/26
+make uni         # Build smallcat/uni
+make flash-26    # Flash smallcat/26
+make flash-uni   # Flash smallcat/uni
+make format      # Format code with clang-format
+make autocorrect # Generate autocorrect data from dictionary
+make clean       # Clean build artifacts
 ```
 
 Compiled UF2 files are placed in the `uf2/` directory.

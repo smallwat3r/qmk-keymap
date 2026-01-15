@@ -1,5 +1,5 @@
 .SILENT:
-.PHONY: help all 26 uni flash-26 flash-uni clean format
+.PHONY: help all 26 uni flash-26 flash-uni clean format autocorrect
 .DEFAULT_GOAL := help
 
 QMK_USERSPACE := $(patsubst %/,%,$(dir $(shell realpath "$(lastword $(MAKEFILE_LIST))")))
@@ -29,10 +29,13 @@ clean:
 	qmk clean
 
 format:
-	clang-format -i *.c *.h
-	clang-format -i features/*.c features/*.h
+	find . -maxdepth 1 \( -name '*.c' -o -name '*.h' \) ! -name 'autocorrect_data.h' -exec clang-format -i {} +
+	find features -maxdepth 1 \( -name '*.c' -o -name '*.h' \) -exec clang-format -i {} +
 	clang-format -i keyboards/smallcat/*/keymaps/default/*.c
 	clang-format -i keyboards/smallcat/*/keymaps/default/*.h 2>/dev/null || true
+
+autocorrect:
+	qmk generate-autocorrect-data $(QMK_USERSPACE)/autocorrection_dict.txt -o $(QMK_USERSPACE)/autocorrect_data.h
 
 help:
 	@echo "Usage: make [target]"
@@ -47,6 +50,7 @@ help:
 	@echo "  flash-uni  Flash smallcat/uni"
 	@echo ""
 	@echo "Other targets:"
-	@echo "  clean      Clean build artifacts"
-	@echo "  format     Format C code with clang-format"
-	@echo "  help       Show this help message"
+	@echo "  clean         Clean build artifacts"
+	@echo "  format        Format C code with clang-format"
+	@echo "  autocorrect   Generate autocorrect data from dictionary"
+	@echo "  help          Show this help message"

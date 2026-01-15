@@ -11,7 +11,7 @@ enum os_keys_keycodes {
     OS_PASTE,
     OS_UNDO,
     OS_REDO,
-    OS_ALL,   // select all
+    OS_ALL, // select all
     // file operations
     OS_SAVE,
     OS_NEW,
@@ -37,13 +37,13 @@ enum os_keys_keycodes {
     OS_DEL_W,  // delete one word
     // browser/tabs
     OS_RELOAD,
-    OS_TAB_N,   // next tab
-    OS_TAB_P,   // previous tab
+    OS_TAB_N, // next tab
+    OS_TAB_P, // previous tab
     OS_ZOOM_IN,
     OS_ZOOM_OUT,
     // system
-    OS_SCRN, // screenshot
-    OS_LOCK, // lock screen
+    OS_SCRN,           // screenshot
+    OS_LOCK,           // lock screen
     OS_KEYS_SAFE_RANGE // start your custom keycodes from here
 };
 
