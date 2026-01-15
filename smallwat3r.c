@@ -105,10 +105,10 @@ const uint32_t PROGMEM unicode_map[] = {
 #define K_RH2 LT(SYS, KC_N)
 #define K_RH3 KC_A
 #define K_RH4 LT(SYM2, KC_E)
-#define K_RH5 MT(MOD_LSFT, KC_I)
-#define K_RB1 MT(MOD_LGUI, KC_H)
-#define K_RB2 MT(MOD_LALT, KC_COMMA)
-#define K_RB3 MT(MOD_LCTL, KC_DOT)
+#define K_RH5 MT(MOD_RSFT, KC_I)
+#define K_RB1 MT(MOD_RGUI, KC_H)
+#define K_RB2 MT(MOD_RALT, KC_COMMA)
+#define K_RB3 MT(MOD_RCTL, KC_DOT)
 #define K_RTH1 LT(SYS, KC_BSPC)
 #define K_RTH2 LT(SYM, KC_ENT)
 

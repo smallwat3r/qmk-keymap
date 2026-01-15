@@ -38,9 +38,9 @@ BASE
             └───┴───┘   └───┴───┘
 
   Hold modifiers:
-    Left:  W=Sft  R=SYM2  T=NUM  S=NAV  G=ROS  P=UNI
-           K=Ctl  M=Alt   C=Gui  Tab=EDIT  Spc=FUN
-    Right: I=Sft  E=SYM2  N=SYS  H=Gui  ,=Alt  .=Ctl
+    Left:  W=LSft  R=SYM2  T=NUM  S=NAV  G=ROS  P=UNI
+           K=LCtl  M=LAlt  C=LGui  Tab=EDIT  Spc=FUN
+    Right: I=RSft  E=SYM2  N=SYS  H=RGui  ,=RAlt  .=RCtl
            Bsp=SYS  Ent=SYM
 
   Combos (left):
