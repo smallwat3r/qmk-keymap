@@ -51,7 +51,7 @@ static uint32_t flash_callback(uint32_t trigger_time, void *cb_arg) {
     return 0;
 }
 
-#ifdef AUTOCORRECT_ENABLE
+#if defined(AUTOCORRECT_ENABLE) && !defined(RGBLIGHT_ENABLE)
 bool apply_autocorrect(uint8_t backspaces, const char *str, char *typo, char *correct) {
     // cancel any ongoing blink
     if (blink_token != INVALID_DEFERRED_TOKEN) {
@@ -73,7 +73,7 @@ void led_indicator_init(void) {
     indicator_set(false);
 }
 
-#ifdef CAPS_WORD_ENABLE
+#if defined(CAPS_WORD_ENABLE) && !defined(RGBLIGHT_ENABLE)
 void caps_word_set_user(bool active) {
     caps_word_active = active;
     if (active) {
@@ -81,12 +81,14 @@ void caps_word_set_user(bool active) {
             cancel_deferred_exec(blink_token);
             blink_token = INVALID_DEFERRED_TOKEN;
         }
+        if (flash_token != INVALID_DEFERRED_TOKEN) {
+            cancel_deferred_exec(flash_token);
+            flash_token = INVALID_DEFERRED_TOKEN;
+            flash_count = 0;
+        }
         indicator_set(true);
-    } else if (!osm_active) {
-        indicator_set(false);
     } else {
-        // OSM still active, restart blinking
-        blink_token = defer_exec(1, blink_callback, NULL);
+        restore_indicator_state();
     }
 }
 #endif
@@ -94,7 +96,7 @@ void caps_word_set_user(bool active) {
 void led_indicator_oneshot_mods(uint8_t mods) {
     if (mods & MOD_MASK_SHIFT) {
         osm_active = true;
-        if (!caps_word_active) {
+        if (!caps_word_active && flash_token == INVALID_DEFERRED_TOKEN) {
             blink_token = defer_exec(1, blink_callback, NULL);
         }
     } else if (!mods) {
@@ -103,7 +105,7 @@ void led_indicator_oneshot_mods(uint8_t mods) {
             cancel_deferred_exec(blink_token);
             blink_token = INVALID_DEFERRED_TOKEN;
         }
-        if (!caps_word_active) {
+        if (!caps_word_active && flash_token == INVALID_DEFERRED_TOKEN) {
             indicator_set(false);
         }
     }
