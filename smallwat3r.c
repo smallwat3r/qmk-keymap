@@ -393,7 +393,7 @@ const uint32_t PROGMEM unicode_map[] = {
 // └───┴───┘
 #define ROS_R_TOP KC_U, KC_I, KC_O
 #define ROS_R_HOME KC_TRNS, KC_J, KC_K, KC_L, KC_TRNS
-#define ROS_R_BOT KC_M, KC_COMM, KC_DOT
+#define ROS_R_BOT KC_M, KC_COMMA, KC_DOT
 #define ROS_R_THUMB KC_TRNS, KC_TRNS
 
 // uni (unicode)
@@ -473,11 +473,11 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
         case C_BR_UNDS:
         case C_BR_DASH:
         case C_BL_B:
-            return 50;
+            return COMBO_TERM_RELAXED;
         case C_BL_LBRC:
-            return 20;
+            return COMBO_TERM_TIGHT;
     }
-    return COMBO_TERM; // 35
+    return COMBO_TERM;
 }
 #endif
 
