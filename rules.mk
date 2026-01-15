@@ -17,5 +17,12 @@ EXTRAFLAGS += -flto
 SELECT_WORD_ENABLE ?= yes
 ifeq ($(strip $(SELECT_WORD_ENABLE)), yes)
 	OPT_DEFS += -DSELECT_WORD_ENABLE
-	SRC += features/select_word.c
+	SRC += features/external/select_word.c
+endif
+
+LED_INDICATOR_ENABLE ?= no
+ifeq ($(strip $(LED_INDICATOR_ENABLE)), yes)
+	DEFERRED_EXEC_ENABLE = yes
+	OPT_DEFS += -DLED_INDICATOR_ENABLE
+	SRC += features/led_indicator.c
 endif

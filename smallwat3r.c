@@ -2,7 +2,10 @@
 
 #include QMK_KEYBOARD_H
 #ifdef SELECT_WORD_ENABLE
-#    include "features/select_word.h"
+#    include "features/external/select_word.h"
+#endif
+#ifdef LED_INDICATOR_ENABLE
+#    include "features/led_indicator.h"
 #endif
 
 enum layers {
@@ -609,12 +612,6 @@ void caps_word_set_user(bool active) {
 #endif
 #endif
 
-#if defined(CAPS_WORD_ENABLE) && defined(LED_CAPS_LOCK_PIN) && !defined(RGBLIGHT_ENABLE)
-void caps_word_set_user(bool active) {
-    gpio_write_pin(LED_CAPS_LOCK_PIN, active ? LED_PIN_ON_STATE : !LED_PIN_ON_STATE);
-}
-#endif
-
 layer_state_t default_layer_state_set_user(layer_state_t state) {
 #ifdef RGBLIGHT_ENABLE
     rgb_set_base_layer(state);
@@ -626,11 +623,17 @@ void oneshot_mods_changed_user(uint8_t mods) {
 #ifdef RGBLIGHT_ENABLE
     rgb_set_oneshot_shift(mods);
 #endif
+#ifdef LED_INDICATOR_ENABLE
+    led_indicator_oneshot_mods(mods);
+#endif
 }
 
 void keyboard_post_init_user(void) {
 #ifdef RGBLIGHT_ENABLE
     rgb_init();
+#endif
+#ifdef LED_INDICATOR_ENABLE
+    led_indicator_init();
 #endif
 #ifdef AUTOCORRECT_ENABLE
     if (!autocorrect_is_enabled()) autocorrect_enable();
