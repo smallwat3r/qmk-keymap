@@ -227,7 +227,7 @@ const uint32_t PROGMEM unicode_map[] = {
 // │   │   │
 // └───┴───┘
 #define SYM2_R_TOP SYM_R_TOP
-#define SYM2_R_HOME S(KC_1), S(KC_SCLN), K_RH3, KC_E, S(KC_BSLS)
+#define SYM2_R_HOME S(KC_1), S(KC_SCLN), KC_A, KC_E, S(KC_BSLS)
 #define SYM2_R_BOT SYM_R_BOT
 #define SYM2_R_THUMB SYM_R_THUMB
 
@@ -527,6 +527,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MK_000:
             SEND_STRING("000");
             return false;
+        // Use unicode to ensure these symbols are always printed
+        // correctly regardless of host keyboard layout
         case MK_EURO:
             register_unicodemap(UN_EURO);
             return false;
