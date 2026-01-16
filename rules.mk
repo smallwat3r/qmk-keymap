@@ -24,6 +24,12 @@ ifeq ($(strip $(SELECT_WORD_ENABLE)), yes)
 	SRC += features/external/select_word.c
 endif
 
+SENTENCE_CASE_ENABLE ?= yes
+ifeq ($(strip $(SENTENCE_CASE_ENABLE)), yes)
+	OPT_DEFS += -DSENTENCE_CASE_ENABLE
+	SRC += features/external/sentence_case.c
+endif
+
 LED_INDICATOR_ENABLE ?= no
 ifeq ($(strip $(LED_INDICATOR_ENABLE)), yes)
 	DEFERRED_EXEC_ENABLE = yes
