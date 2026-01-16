@@ -194,7 +194,3 @@ UNI (hold P) - French unicode characters
             │   │   │   │   │   │
             └───┴───┘   └───┴───┘
 ```
-
-Note: The keymap image below (August 2025) might be slightly out of date, but most of it is still accurate.
-
-![keymap](./images/keymap.png)
