@@ -120,308 +120,220 @@ const uint32_t PROGMEM unicode_map[] = {
 #endif
 
 // base
-//     ┌───┬───┬───┐
-//     │ L │ D │ P │
-// ┌───┼───┼───┼───┼───┐
-// │ W │ R │ T │ S │ G │
-// └───┼───┼───┼───┼───┘
-//     │ K │ M │ C │
-//     └───┴───┼───┼───┐
-//             │TAB│SPC│
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │ L  │ D  │ P  │                    │ F  │ O  │ U  │
+// ┌────┼────┼────┼UNI─┼────┐          ┌────┼────┼────┼────┼────┐
+// │ W  │ R  │ T  │ S  │ G  │          │ Y  │ N  │ A  │ E  │ I  │
+// └LSft┼SYM2┼NUM─┼NAV─┼ROS─┘          └────┼SYS─┼────┼SYM2┼RSft┘
+//      │ K  │ M  │ C  │                    │ H  │ ,  │ .  │
+//      └LCtl┴LAlt┴LGui┘                    └RGui┴RAlt┴RCtl┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │Tab │Spc │    │Bsp │Ent │
+//                └EDIT┴FUN─┘    └SYS─┴SYM─┘
 #define BASE_L_TOP K_LT1, K_LT2, K_LT3
 #define BASE_L_HOME K_LH1, K_LH2, K_LH3, K_LH4, K_LH5
 #define BASE_L_BOT K_LB1, K_LB2, K_LB3
 #define BASE_L_THUMB K_LTH1, K_LTH2
-//     ┌───┬───┬───┐
-//     │ F │ O │ U │
-// ┌───┼───┼───┼───┼───┐
-// │ Y │ N │ A │ E │ I │
-// └───┼───┼───┼───┼───┘
-//     │ H │ , │ . │
-// ┌───┼───┼───┴───┘
-// │BSP│ENT│
-// └───┴───┘
 #define BASE_R_TOP K_RT1, K_RT2, K_RT3
 #define BASE_R_HOME K_RH1, K_RH2, K_RH3, K_RH4, K_RH5
 #define BASE_R_BOT K_RB1, K_RB2, K_RB3
 #define BASE_R_THUMB K_RTH1, K_RTH2
 
 // num
-//     ┌───┬───┬───┐
-//     │   │   │   │
-// ┌───┼───┼───┼───┼───┐
-// │   │   │   │ . │   │
-// └───┼───┼───┼───┼───┘
-//     │   │   │ , │
-//     └───┴───┼───┼───┐
-//             │   │SPC│
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │    │    │    │                    │ 7  │ 8  │ 9  │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │    │    │░░T░│ .  │    │          │000 │ 4  │ 5  │ 6  │ 0  │
+// └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
+//      │    │    │ ,  │                    │ 1  │ 2  │ 3  │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │    │Spc │    │Bsp │Del │
+//                └────┴────┘    └────┴────┘
 #define NUM_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define NUM_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_DOT, KC_TRNS
 #define NUM_L_BOT KC_TRNS, KC_TRNS, KC_COMMA
 #define NUM_L_THUMB KC_TRNS, KC_SPC
-//     ┌───┬───┬───┐
-//     │ 7 │ 8 │ 9 │
-// ┌───┼───┼───┼───┼───┐
-// │000│ 4 │ 5 │ 6 │ 0 │
-// └───┼───┼───┼───┼───┘
-//     │ 1 │ 2 │ 3 │
-// ┌───┼───┼───┴───┘
-// │BSP│DEL│
-// └───┴───┘
 #define NUM_R_TOP KC_7, KC_8, KC_9
 #define NUM_R_HOME MK_000, KC_4, KC_5, KC_6, KC_0
 #define NUM_R_BOT KC_1, KC_2, KC_3
 #define NUM_R_THUMB KC_BSPC, KC_DEL
 
 // sym
-//     ┌───┬───┬───┐
-//     │ @ │ £ │ $ │
-// ┌───┼───┼───┼───┼───┐
-// │ * │ - │ = │ " │ % │
-// └───┼───┼───┼───┼───┘
-//     │ + │ & │ ` │
-//     └───┴───┼───┼───┐
-//             │   │SPC│
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │ @  │ £  │ $  │                    │ \  │ /  │ ?  │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │ *  │ -  │ =  │ "  │ %  │          │ !  │ :  │ #  │ ~  │ |  │
+// └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
+//      │ +  │ &  │ `  │                    │ <  │ >  │ -> │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │    │Spc │    │    │░░░░│
+//                └────┴────┘    └────┴────┘
 #define SYM_L_TOP KC_AT, MK_POUND, S(KC_4)
 #define SYM_L_HOME S(KC_8), KC_MINUS, KC_EQUAL, S(KC_QUOTE), S(KC_5)
 #define SYM_L_BOT S(KC_EQUAL), S(KC_7), KC_GRAVE
 #define SYM_L_THUMB KC_TRNS, KC_SPC
-//     ┌───┬───┬───┐
-//     │ \ │ / │ ? │
-// ┌───┼───┼───┼───┼───┐
-// │ ! │ : │ # │ ~ │ | │
-// └───┼───┼───┼───┼───┘
-//     │ < │ > │-> │
-// ┌───┼───┼───┴───┘
-// │   │   │
-// └───┴───┘
 #define SYM_R_TOP KC_BSLS, KC_SLASH, S(KC_SLASH)
 #define SYM_R_HOME S(KC_1), S(KC_SCLN), MK_HASH, S(KC_GRAVE), S(KC_BSLS)
 #define SYM_R_BOT S(KC_COMMA), S(KC_DOT), MK_ARROW
 #define SYM_R_THUMB KC_TRNS, KC_TRNS
 
 // sym2 (lighter layer that eases rolls for home row)
-//     ┌───┬───┬───┐
-//     │ @ │ £ │ $ │
-// ┌───┼───┼───┼───┼───┐
-// │ * │░R░│ = │ " │ % │
-// └───┤ r ├───┼───┼───┘
-//     │ + │ & │ ` │
-//     └───┴───┼───┼───┐
-//             │   │SPC│
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │ @  │ £  │ $  │                    │ \  │ /  │ ?  │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │ *  │░░R░│ =  │ "  │ %  │          │ !  │ :  │ a  │░░E░│ |  │
+// └────┼─r──┼────┼────┼────┘          └────┼────┼────┼─e──┼────┘
+//      │ +  │ &  │ `  │                    │ <  │ >  │ -> │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │    │Spc │    │    │    │
+//                └────┴────┘    └────┴────┘
 #define SYM2_L_TOP SYM_L_TOP
 #define SYM2_L_HOME S(KC_8), KC_R, KC_EQUAL, S(KC_QUOTE), S(KC_5)
 #define SYM2_L_BOT SYM_L_BOT
 #define SYM2_L_THUMB SYM_L_THUMB
-//     ┌───┬───┬───┐
-//     │ \ │ / │ ? │
-// ┌───┼───┼───┼───┼───┐
-// │ ! │ : │ A │░E░│ | │
-// └───┼───┼───┤ e ├───┘
-//     │ < │ > │-> │
-// ┌───┼───┼───┴───┘
-// │   │   │
-// └───┴───┘
 #define SYM2_R_TOP SYM_R_TOP
 #define SYM2_R_HOME S(KC_1), S(KC_SCLN), KC_A, KC_E, S(KC_BSLS)
 #define SYM2_R_BOT SYM_R_BOT
 #define SYM2_R_THUMB SYM_R_THUMB
 
 // nav
-//     ┌───┬───┬───┐
-//     │   │   │   │
-// ┌───┼───┼───┼───┼───┐
-// │END│   │NV2│   │   │
-// └───┼───┼───┼───┼───┘
-//     │   │   │   │
-//     └───┴───┼───┼───┐
-//             │MB2│MB1│
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │    │    │    │                    │ {  │ }  │    │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │End │    │NAV2│░░S░│    │          │ ←  │ ↓  │ ↑  │ →  │Home│
+// └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
+//      │    │    │    │                    │ [  │ ]  │    │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │ M2 │ M1 │    │Bsp │Del │
+//                └────┴────┘    └────┴────┘
 #define NAV_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV_L_HOME KC_END, KC_TRNS, MO(NAV2), KC_TRNS, KC_TRNS
 #define NAV_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV_L_THUMB KC_BTN2, KC_BTN1
-//     ┌───┬───┬───┐
-//     │ { │ } │   │
-// ┌───┼───┼───┼───┼───┐
-// │ ← │ ↓ │ ↑ │ → │HOM│
-// └───┼───┼───┼───┼───┘
-//     │ [ │ ] │   │
-// ┌───┼───┼───┴───┘
-// │BSP│DEL│
-// └───┴───┘
 #define NAV_R_TOP S(KC_LBRC), S(KC_RBRC), KC_TRNS
 #define NAV_R_HOME KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_HOME
 #define NAV_R_BOT KC_LBRC, KC_RBRC, KC_TRNS
 #define NAV_R_THUMB KC_BSPC, KC_DEL
 
 // nav2
-//     ┌───┬───┬───┐
-//     │   │   │   │
-// ┌───┼───┼───┼───┼───┐
-// │   │   │   │   │   │
-// └───┼───┼───┼───┼───┘
-//     │   │   │   │
-//     └───┴───┼───┼───┐
-//             │   │   │
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │    │    │    │                    │    │    │    │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │    │    │░░░░│░░S░│    │          │ ←W │SelB│SelF│ →W │    │
+// └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
+//      │    │    │    │                    │Sel │    │    │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │    │    │    │BsW │DeW │
+//                └────┴────┘    └────┴────┘
 #define NAV2_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV2_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV2_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV2_L_THUMB KC_TRNS, KC_TRNS
-//     ┌───┬───┬───┐
-//     │   │   │   │
-// ┌───┼───┼───┼───┼───┐
-// │←W │SEL│SEL│W→ │   │
-// └───┼───┼───┼───┼───┘
-//     │LIN│   │   │
-// ┌───┼───┼───┴───┘
-// │BSW│DEW│
-// └───┴───┘
 #define NAV2_R_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV2_R_HOME OS_L_W, MK_SEL_BACK, MK_SEL_FWD, OS_R_W, KC_TRNS
 #define NAV2_R_BOT MK_SEL_LINE, KC_TRNS, KC_TRNS
 #define NAV2_R_THUMB OS_BSPC_W, OS_DEL_W
 
 // edit
-//     ┌───┬───┬───┐
-//     │F← │FND│F→ │
-// ┌───┼───┼───┼───┼───┐
-// │ALL│CUT│CPY│PST│   │
-// └───┼───┼───┼───┼───┘
-//     │   │UND│RED│
-//     └───┴───┼───┼───┐
-//             │   │   │
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │ F← │Find│ F→ │                    │ {  │ }  │    │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │All │Cut │Copy│Pste│    │          │ ←  │ ↓  │ ↑  │ →  │    │
+// └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
+//      │    │Undo│Redo│                    │ [  │ ]  │    │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │░░░░│    │    │Bsp │Del │
+//                └────┴────┘    └────┴────┘
 #define EDIT_L_TOP OS_F_PREV, OS_FIND, OS_F_NEXT
 #define EDIT_L_HOME OS_ALL, OS_CUT, OS_COPY, OS_PASTE, KC_TRNS
 #define EDIT_L_BOT KC_TRNS, OS_UNDO, OS_REDO
 #define EDIT_L_THUMB KC_TRNS, KC_TRNS
-//     ┌───┬───┬───┐
-//     │ { │ } │   │
-// ┌───┼───┼───┼───┼───┐
-// │ ← │ ↓ │ ↑ │ → │   │
-// └───┼───┼───┼───┼───┘
-//     │ [ │ ] │   │
-// ┌───┼───┼───┴───┘
-// │BSP│DEL│
-// └───┴───┘
 #define EDIT_R_TOP S(KC_LBRC), S(KC_RBRC), KC_TRNS
 #define EDIT_R_HOME KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_TRNS
 #define EDIT_R_BOT KC_LBRC, KC_RBRC, KC_TRNS
 #define EDIT_R_THUMB KC_BSPC, KC_DEL
 
 // fun
-//     ┌───┬───┬───┐
-//     │   │   │   │
-// ┌───┼───┼───┼───┼───┐
-// │   │   │   │   │   │
-// └───┼───┼───┼───┼───┘
-//     │   │   │   │
-//     └───┴───┼───┼───┐
-//             │   │   │
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │    │    │    │                    │ F7 │ F8 │ F9 │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │    │    │    │    │    │          │    │ F4 │ F5 │ F6 │    │
+// └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
+//      │    │    │    │                    │ F1 │ F2 │ F3 │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │    │░░░░│    │BsW │DeW │
+//                └────┴────┘    └────┴────┘
 #define FUN_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define FUN_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define FUN_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define FUN_L_THUMB KC_TRNS, KC_TRNS
-//     ┌───┬───┬───┐
-//     │F7 │F8 │F9 │
-// ┌───┼───┼───┼───┼───┐
-// │   │F4 │F5 │F6 │   │
-// └───┼───┼───┼───┼───┘
-//     │F1 │F2 │F3 │
-// ┌───┼───┼───┴───┘
-// │BSW│DEW│
-// └───┴───┘
 #define FUN_R_TOP KC_F7, KC_F8, KC_F9
 #define FUN_R_HOME KC_TRNS, KC_F4, KC_F5, KC_F6, KC_TRNS
 #define FUN_R_BOT KC_F1, KC_F2, KC_F3
 #define FUN_R_THUMB OS_BSPC_W, OS_DEL_W
 
 // sys
-//     ┌───┬───┬───┐
-//     │PLY│MB4│MB5│
-// ┌───┼───┼───┼───┼───┐
-// │END│WH→│WH↑│WH↓│WH←│
-// └───┼───┼───┼───┼───┘
-//     │MCT│BR-│BR+│
-//     └───┴───┼───┼───┐
-//             │MB2│MB1│
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │Play│ M4 │ M5 │                    │Mute│Vol-│Vol+│
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │End │Wh→ │Wh↑ │Wh↓ │Wh← │          │Ms← │░░N░│Ms↑ │Ms→ │Home│
+// └────┼────┼────┼────┼────┘          └────┼Ms↓─┼────┼────┼────┘
+//      │Mctl│Bri-│Bri+│                    │RGB │Zm- │Zm+ │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │ M2 │ M1 │    │░░░░│    │
+//                └────┴────┘    └────┴────┘
 #define SYS_L_TOP KC_MPLY, KC_BTN4, KC_BTN5
 #define SYS_L_HOME KC_END, KC_WH_R, KC_WH_U, KC_WH_D, KC_WH_L
 #define SYS_L_BOT KC_MCTL, KC_BRID, KC_BRIU
 #define SYS_L_THUMB KC_BTN2, KC_BTN1
-//     ┌───┬───┬───┐
-//     │MUT│VL-│VL+│
-// ┌───┼───┼───┼───┼───┐
-// │MS←│░N░│MS↑│MS→│HOM│
-// └───┤MS↓├───┼───┼───┘
-//     │RGB│ZM-│ZM+│
-// ┌───┼───┼───┴───┘
-// │░░░│   │
-// └Bsp┴───┘
 #define SYS_R_TOP KC_MUTE, KC_VOLD, KC_VOLU
 #define SYS_R_HOME KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_HOME
 #define SYS_R_BOT RGB_TOG, OS_ZOOM_OUT, OS_ZOOM_IN
 #define SYS_R_THUMB KC_TRNS, KC_TRNS
 
 // ros (ros2 teleop)
-//     ┌───┬───┬───┐
-//     │   │   │   │
-// ┌───┼───┼───┼───┼───┐
-// │   │   │   │   │   │
-// └───┼───┼───┼───┼───┘
-//     │   │   │   │
-//     └───┴───┼───┼───┐
-//             │   │   │
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │    │    │    │                    │ U  │ I  │ O  │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │    │    │    │    │░░G░│          │    │ J  │ K  │ L  │    │
+// └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
+//      │    │    │    │                    │ M  │ ,  │ .  │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │    │    │    │    │    │
+//                └────┴────┘    └────┴────┘
 #define ROS_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
 #define ROS_L_HOME KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define ROS_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define ROS_L_THUMB KC_TRNS, KC_TRNS
-//     ┌───┬───┬───┐
-//     │ U │ I │ O │
-// ┌───┼───┼───┼───┼───┐
-// │   │ J │ K │ L │   │
-// └───┼───┼───┼───┼───┘
-//     │ M │ , │ . │
-// ┌───┼───┼───┴───┘
-// │   │   │
-// └───┴───┘
 #define ROS_R_TOP KC_U, KC_I, KC_O
 #define ROS_R_HOME KC_TRNS, KC_J, KC_K, KC_L, KC_TRNS
 #define ROS_R_BOT KC_M, KC_COMMA, KC_DOT
 #define ROS_R_THUMB KC_TRNS, KC_TRNS
 
 // uni (unicode)
-//     ┌───┬───┬───┐
-//     │ ë │ ï │   │
-// ┌───┼───┼───┼───┼───┐
-// │ « │ » │   │   │   │
-// └───┼───┼───┼───┼───┘
-//     │   │   │   │
-//     └───┴───┼───┼───┐
-//             │   │   │
-//             └───┴───┘
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │ ë  │ ï  │░░P░│                    │ ê  │ â  │ û  │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │ «  │ »  │    │    │    │          │ ù  │ è  │ à  │ é  │ ç  │
+// └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
+//      │    │    │    │                    │ ô  │ î  │ œ  │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │    │    │    │    │    │
+//                └────┴────┘    └────┴────┘
 #define UNI_L_TOP UM(UN_E_DIAERESIS), UM(UN_I_DIAERESIS), KC_TRNS
 #define UNI_L_HOME UM(UN_GUILL_L), UM(UN_GUILL_R), KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define UNI_L_THUMB KC_TRNS, KC_TRNS
-//     ┌───┬───┬───┐
-//     │ ê │ â │ û │
-// ┌───┼───┼───┼───┼───┐
-// │ ù │ è │ à │ é │ ç │
-// └───┼───┼───┼───┼───┘
-//     │ ô │ î │ œ │
-// ┌───┼───┼───┴───┘
-// │   │   │
-// └───┴───┘
 #define UNI_R_TOP UM(UN_E_CIRCUMFLEX), UM(UN_A_CIRCUMFLEX), UM(UN_U_CIRCUMFLEX)
 #define UNI_R_HOME UM(UN_U_GRAVE), UM(UN_E_GRAVE), UM(UN_A_GRAVE), UM(UN_E_ACUTE), UM(UN_C_CEDILLA)
 #define UNI_R_BOT UM(UN_O_CIRCUMFLEX), UM(UN_I_CIRCUMFLEX), UM(UN_OE_LIGATURE)
