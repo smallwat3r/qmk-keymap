@@ -44,6 +44,8 @@ enum custom_keycodes {
     MK_EURO,
     MK_POUND,
     MK_HASH,
+    MK_RTS,
+    MK_RS,
 };
 
 enum unicode_names {
@@ -386,7 +388,7 @@ bool process_detected_host_os_kb(os_variant_t detected_os) {
 #ifdef COMBO_TERM_PER_COMBO
 uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     switch (combo_index) {
-        case C_BL_SH:
+        case C_BL_RS:
         case C_BL_WH:
         case C_BR_UNDS:
         case C_BR_DASH:
@@ -398,6 +400,14 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     return COMBO_TERM;
 }
 #endif
+
+// Tracks state for custom tap-hold keys. On press, store the keycode and
+// time. On release, check if keycode matches and if elapsed time is within
+// TAPPING_TERM to distinguish tap from hold.
+static struct {
+    uint16_t keycode;
+    uint16_t time;
+} tap_hold_state = {0};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef OS_KEYS_ENABLE
@@ -426,6 +436,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
         }
 #endif
+        if (tap_hold_state.keycode && tap_hold_state.keycode == keycode) {
+            bool is_tap = TIMER_DIFF_16(record->event.time, tap_hold_state.time) < TAPPING_TERM;
+            switch (keycode) {
+                case MK_RTS:
+                    unregister_mods(MOD_BIT(KC_LSFT) | MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI));
+                    if (is_tap) set_oneshot_mods(MOD_BIT(KC_LSFT));
+                    break;
+                case MK_RS:
+                    unregister_mods(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI));
+                    if (is_tap) SEND_STRING("sh");
+                    break;
+            }
+            tap_hold_state.keycode = 0;
+            return false;
+        }
         return true;
     }
 
@@ -457,6 +482,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MK_HASH:
             register_unicodemap(UN_HASH);
+            return false;
+        case MK_RTS:
+            tap_hold_state.keycode = keycode;
+            tap_hold_state.time    = record->event.time;
+            register_mods(MOD_BIT(KC_LSFT) | MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI));
+            return false;
+        case MK_RS:
+            tap_hold_state.keycode = keycode;
+            tap_hold_state.time    = record->event.time;
+            register_mods(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI));
             return false;
     }
     return true;

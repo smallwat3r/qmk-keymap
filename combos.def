@@ -11,10 +11,10 @@ COMB(C_BL_LBRC,   KC_LBRC,        K_LT1, K_LT3)
 COMB(C_BL_LPRN,   KC_LPRN,        K_LB1, K_LB3)
 
 // BASE layer - left hand (modifiers)
-COMB(C_BL_OSM_S,  OSM(MOD_LSFT),  K_LH2, K_LH3, K_LH4)
+COMB(C_BL_RTS,    MK_RTS,         K_LH2, K_LH3, K_LH4)  // tap: OSM Sft, hold: Sft+Ctl+Gui
+COMB(C_BL_RS,     MK_RS,          K_LH2, K_LH4)         // tap: "sh", hold: Ctl+Gui
 
 // BASE layer - left hand (text)
-SUBS(C_BL_SH,     "sh",           K_LH2, K_LH4)
 SUBS(C_BL_TH,     "th",           K_LH3, K_LH4)
 SUBS(C_BL_WH,     "wh",           K_LH1, K_LH4)
 SUBS(C_BL_WC,     ".com",         K_LH1, K_LB3)

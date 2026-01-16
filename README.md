@@ -40,7 +40,9 @@ BASE
   Combos (left):
     L+D+P = Z    D+P = Q      L+P = [      K+C = (
     R+T = B      K+M = X      M+C = J      T+C = V
-    R+S = "sh"   T+S = "th"   W+S = "wh"   R+T+S = OSM Sft
+    T+S = "th"   W+S = "wh"
+    R+S tap = "sh"      R+S hold = Ctl+Gui
+    R+T+S tap = OSM Sft R+T+S hold = Sft+Ctl+Gui
     W+C = ".com"              W+G = "smallwat3r"
 
   Combos (right):
