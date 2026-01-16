@@ -89,6 +89,8 @@ SYM2 (hold R or E) - symbols with home row passthrough for rolls
                │    │Spc │    │    │    │
                └────┴────┘    └────┴────┘
 
+  Combos: £+$ = €    =+" = \"\"\"    &+` = ```    *+Spc = indent
+
 NAV (hold S) - navigation and brackets
      ┌────┬────┬────┐                    ┌────┬────┬────┐
      │    │    │    │                    │ {  │ }  │    │
