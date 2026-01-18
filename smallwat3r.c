@@ -35,18 +35,23 @@ enum layers {
 };
 
 enum custom_keycodes {
+    // macros
     MK_ARROW = USER_SAFE_RANGE, // types "->"
-    MK_000,       // types "000"
-    MK_SEL_BACK,  // select word backward
-    MK_SEL_FWD,   // select word forward
-    MK_SEL_LINE,  // select entire line
-    MK_EURO,      // types € (unicode)
-    MK_POUND,     // types £ (unicode)
-    MK_HASH,      // types # (unicode, layout-safe)
-    MK_RTS,       // tap: OSM Shift, hold: Shift+Ctrl+Gui
-    MK_RS,        // tap: "sh", hold: Ctrl+Gui
+    MK_000,                     // types "000"
+    // selection
+    MK_SEL_BACK, // select word backward
+    MK_SEL_FWD,  // select word forward
+    MK_SEL_LINE, // select entire line
+    // unicode
+    MK_EURO,  // types € (unicode)
+    MK_POUND, // types £ (unicode)
+    MK_HASH,  // types # (unicode, layout-safe)
+    // tap-hold
+    MK_RTS, // tap: OSM Shift, hold: Shift+Ctrl+Gui
+    MK_RS,  // tap: "sh", hold: Ctrl+Gui
+    // toggles
 #ifdef SENTENCE_CASE_ENABLE
-    MK_SC_TOGG,   // toggle sentence case
+    MK_SC_TOGG, // toggle sentence case
 #endif
 };
 
@@ -416,6 +421,17 @@ typedef struct {
 
 static tap_hold_state_t tap_hold_state = {0};
 
+#if defined(LED_INDICATOR_ENABLE) || defined(RGB_INDICATOR_ENABLE)
+static void flash_indicator(uint8_t count) {
+#    ifdef LED_INDICATOR_ENABLE
+    led_indicator_flash(count);
+#    endif
+#    ifdef RGB_INDICATOR_ENABLE
+    rgb_indicator_flash(count);
+#    endif
+}
+#endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef OS_KEYS_ENABLE
     if (!process_os_keys(keycode, record)) {
@@ -500,33 +516,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_hold_state.time    = record->event.time;
             register_mods(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI));
             return false;
-#if defined(LED_INDICATOR_ENABLE) || defined(RGB_INDICATOR_ENABLE)
-#    ifdef AUTOCORRECT_ENABLE
-        case AC_TOGG: {
+#if defined(AUTOCORRECT_ENABLE) && \
+    (defined(LED_INDICATOR_ENABLE) || defined(RGB_INDICATOR_ENABLE))
+        case AC_TOGG:
             // flash 1 = turning ON, flash 2 = turning OFF
-            uint8_t flashes = autocorrect_is_enabled() ? 2 : 1;
-#        ifdef LED_INDICATOR_ENABLE
-            led_indicator_flash(flashes);
-#        endif
-#        ifdef RGB_INDICATOR_ENABLE
-            rgb_indicator_flash(flashes);
-#        endif
+            flash_indicator(autocorrect_is_enabled() ? 2 : 1);
             return true;
-        }
+#endif
+#ifdef SENTENCE_CASE_ENABLE
+        case MK_SC_TOGG:
+#    if defined(LED_INDICATOR_ENABLE) || defined(RGB_INDICATOR_ENABLE)
+            flash_indicator(is_sentence_case_on() ? 2 : 1);
 #    endif
-#    ifdef SENTENCE_CASE_ENABLE
-        case MK_SC_TOGG: {
-            uint8_t flashes = is_sentence_case_on() ? 2 : 1;
-#        ifdef LED_INDICATOR_ENABLE
-            led_indicator_flash(flashes);
-#        endif
-#        ifdef RGB_INDICATOR_ENABLE
-            rgb_indicator_flash(flashes);
-#        endif
             sentence_case_toggle();
             return false;
-        }
-#    endif
 #endif
     }
     return true;
