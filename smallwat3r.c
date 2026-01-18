@@ -216,11 +216,11 @@ const uint32_t PROGMEM unicode_map[] = {
 //                │ M2 │ M1 │    │Bsp │Del │
 //                └────┴────┘    └────┴────┘
 #define NAV_L_TOP KC_TRNS, KC_TRNS, KC_TRNS
-#define NAV_L_HOME KC_END, KC_TRNS, MO(NAV2), KC_TRNS, KC_TRNS
+#define NAV_L_HOME OS_END, KC_TRNS, MO(NAV2), KC_TRNS, KC_TRNS
 #define NAV_L_BOT KC_TRNS, KC_TRNS, KC_TRNS
 #define NAV_L_THUMB KC_BTN2, KC_BTN1
 #define NAV_R_TOP S(KC_LBRC), S(KC_RBRC), KC_TRNS
-#define NAV_R_HOME KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_HOME
+#define NAV_R_HOME KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, OS_HOME
 #define NAV_R_BOT KC_LBRC, KC_RBRC, KC_TRNS
 #define NAV_R_THUMB KC_BSPC, KC_DEL
 
@@ -296,11 +296,11 @@ const uint32_t PROGMEM unicode_map[] = {
 //                │ M2 │ M1 │    │░░░░│    │
 //                └────┴────┘    └────┴────┘
 #define SYS_L_TOP KC_MPLY, KC_BTN4, KC_BTN5
-#define SYS_L_HOME KC_END, KC_WH_R, KC_WH_U, KC_WH_D, KC_WH_L
+#define SYS_L_HOME OS_END, KC_WH_R, KC_WH_U, KC_WH_D, KC_WH_L
 #define SYS_L_BOT KC_MCTL, KC_BRID, KC_BRIU
 #define SYS_L_THUMB KC_BTN2, KC_BTN1
 #define SYS_R_TOP KC_MUTE, KC_VOLD, KC_VOLU
-#define SYS_R_HOME KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_HOME
+#define SYS_R_HOME KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, OS_HOME
 #define SYS_R_BOT RGB_TOG, OS_ZOOM_OUT, OS_ZOOM_IN
 #define SYS_R_THUMB KC_TRNS, KC_TRNS
 
