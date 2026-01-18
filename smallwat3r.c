@@ -395,6 +395,9 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
         case C_BL_B:
             return COMBO_TERM_RELAXED;
         case C_BL_LBRC:
+        case C_BR_RBRC:
+        case C_BL_LPRN:
+        case C_BR_RPRN:
             return COMBO_TERM_TIGHT;
     }
     return COMBO_TERM;
@@ -404,10 +407,12 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
 // Tracks state for custom tap-hold keys. On press, store the keycode and
 // time. On release, check if keycode matches and if elapsed time is within
 // TAPPING_TERM to distinguish tap from hold.
-static struct {
+typedef struct {
     uint16_t keycode;
     uint16_t time;
-} tap_hold_state = {0};
+} tap_hold_state_t;
+
+static tap_hold_state_t tap_hold_state = {0};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef OS_KEYS_ENABLE

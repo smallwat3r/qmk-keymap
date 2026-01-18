@@ -5,7 +5,16 @@
 #include "os_keys.h"
 #include "os_detection.h"
 
-#define OS_TAP(mac_key, other_key) tap_code16(detected_host_os() == OS_MACOS ? (mac_key) : (other_key))
+static os_variant_t cached_os = OS_UNSURE;
+
+static inline os_variant_t get_os(void) {
+    if (cached_os == OS_UNSURE) {
+        cached_os = detected_host_os();
+    }
+    return cached_os;
+}
+
+#define OS_TAP(mac_key, other_key) tap_code16(get_os() == OS_MACOS ? (mac_key) : (other_key))
 
 bool process_os_keys(uint16_t keycode, keyrecord_t *record) {
     if (!record->event.pressed) {
