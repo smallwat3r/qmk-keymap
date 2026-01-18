@@ -14,7 +14,7 @@ const rgblight_segment_t PROGMEM flash_layer[]     = RGBLIGHT_LAYER_SEGMENTS({0,
 const rgblight_segment_t *const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(default_layer, capslock_layer, osm_shift_layer, flash_layer);
 
 #define RGB_FLASH_LAYER 3
-#define RGB_FLASH_INTERVAL_MS 100
+#define RGB_FLASH_INTERVAL_MS 250
 
 static void rgb_set_caps_lock(bool enabled) {
     rgblight_set_layer_state(1, enabled);
