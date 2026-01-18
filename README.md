@@ -41,9 +41,9 @@ BASE
     L+D+P = Z     D+P = Q     L+P = [      K+C = (
     R+T = B       R+C = "br"  K+M = X      M+C = J      T+C = V
     T+S = "th"    W+S = "wh"
-    R+S tap = "sh"      R+S hold = Ctl+Gui
-    R+T+S tap = OSM Sft R+T+S hold = Sft+Ctl+Gui
-    W+C = ".com"              W+G = "smallwat3r"
+    R+S tap = "sh"       R+S hold = Ctl+Gui
+    R+T+S tap = OSM Sft  R+T+S hold = Sft+Ctl+Gui
+    W+C = ".com"         W+G = "smallwat3r"
 
   Combos (right):
     N+A+E = Esc  N+E = '      F+U = ]      H+. = )
