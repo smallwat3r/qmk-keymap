@@ -41,6 +41,13 @@ ifeq ($(strip $(RGB_INDICATOR_ENABLE)), yes)
 	SRC += features/rgb_indicator.c
 endif
 
+# Prevent enabling both LED and RGB indicators simultaneously
+ifeq ($(strip $(LED_INDICATOR_ENABLE)), yes)
+ifeq ($(strip $(RGB_INDICATOR_ENABLE)), yes)
+    $(error LED_INDICATOR_ENABLE and RGB_INDICATOR_ENABLE cannot both be enabled)
+endif
+endif
+
 OS_KEYS_ENABLE ?= yes
 ifeq ($(strip $(OS_KEYS_ENABLE)), yes)
 	OPT_DEFS += -DOS_KEYS_ENABLE

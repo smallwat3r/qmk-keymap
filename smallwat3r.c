@@ -18,36 +18,36 @@
 #endif
 
 enum layers {
-    BASE,
-    NUM,
-    SYM,
-    SYM2, // lighter symbol layer for home row rolls
-    NAV,
-    NAV2,
-    EDIT,
-    FUN,
-    SYS,
-    ROS, // ROS2 teleop
-    UNI, // unicode
+    BASE,  // default layout
+    NUM,   // number pad (right side)
+    SYM,   // symbols
+    SYM2,  // lighter symbols, home row passthrough for rolls
+    NAV,   // navigation, arrows, brackets
+    NAV2,  // word navigation, selection
+    EDIT,  // clipboard, find operations
+    FUN,   // function keys
+    SYS,   // system (mouse, media, brightness, RGB)
+    ROS,   // ROS2 teleop_twist_keyboard
+    UNI,   // unicode (French accents)
 };
 
 enum custom_keycodes {
 #ifdef OS_KEYS_ENABLE
-    MK_ARROW = OS_KEYS_SAFE_RANGE,
+    MK_ARROW = OS_KEYS_SAFE_RANGE, // types "->"
 #else
-    MK_ARROW = SAFE_RANGE,
+    MK_ARROW = SAFE_RANGE,         // types "->"
 #endif
-    MK_000,
-    MK_SEL_BACK,
-    MK_SEL_FWD,
-    MK_SEL_LINE,
-    MK_EURO,
-    MK_POUND,
-    MK_HASH,
-    MK_RTS,
-    MK_RS,
+    MK_000,       // types "000"
+    MK_SEL_BACK,  // select word backward
+    MK_SEL_FWD,   // select word forward
+    MK_SEL_LINE,  // select entire line
+    MK_EURO,      // types € (unicode)
+    MK_POUND,     // types £ (unicode)
+    MK_HASH,      // types # (unicode, layout-safe)
+    MK_RTS,       // tap: OSM Shift, hold: Shift+Ctrl+Gui
+    MK_RS,        // tap: "sh", hold: Ctrl+Gui
 #ifdef SENTENCE_CASE_ENABLE
-    MK_SC_TOGG,
+    MK_SC_TOGG,   // toggle sentence case
 #endif
 };
 
