@@ -15,6 +15,9 @@
 #endif
 #ifdef OS_KEYS_ENABLE
 #    include "features/os_keys.h"
+#    define USER_SAFE_RANGE OS_KEYS_SAFE_RANGE
+#else
+#    define USER_SAFE_RANGE SAFE_RANGE
 #endif
 
 enum layers {
@@ -32,11 +35,7 @@ enum layers {
 };
 
 enum custom_keycodes {
-#ifdef OS_KEYS_ENABLE
-    MK_ARROW = OS_KEYS_SAFE_RANGE, // types "->"
-#else
-    MK_ARROW = SAFE_RANGE,         // types "->"
-#endif
+    MK_ARROW = USER_SAFE_RANGE, // types "->"
     MK_000,       // types "000"
     MK_SEL_BACK,  // select word backward
     MK_SEL_FWD,   // select word forward
