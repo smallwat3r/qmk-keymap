@@ -165,8 +165,8 @@ SYS (hold N or Bsp) - system, mouse, media
 
   Combos:
     Wh↑+Wh↓ = Accel 1         Wh→+Wh↑+Wh↓ = Accel 0
-    Play+M4+M5 = Autocorrect On
-    Mctl+Bri-+Bri+ = Autocorrect Off
+    Play+M4+M5 = Toggle Autocorrect
+    Mctl+Bri-+Bri+ = Toggle Sentence Case
 
 ROS (hold G) - ROS2 teleop_twist_keyboard
      ┌────┬────┬────┐                    ┌────┬────┬────┐

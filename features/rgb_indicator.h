@@ -6,3 +6,4 @@
 void rgb_indicator_init(void);
 void rgb_indicator_set_base_layer(bool is_base);
 void rgb_indicator_oneshot_mods(uint8_t mods);
+void rgb_indicator_flash(uint8_t count);

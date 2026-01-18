@@ -46,6 +46,9 @@ enum custom_keycodes {
     MK_HASH,
     MK_RTS,
     MK_RS,
+#ifdef SENTENCE_CASE_ENABLE
+    MK_SC_TOGG,
+#endif
 };
 
 enum unicode_names {
@@ -498,6 +501,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_hold_state.time    = record->event.time;
             register_mods(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI));
             return false;
+#if defined(LED_INDICATOR_ENABLE) || defined(RGB_INDICATOR_ENABLE)
+#    ifdef AUTOCORRECT_ENABLE
+        case AC_TOGG: {
+            // flash 1 = turning ON, flash 2 = turning OFF
+            uint8_t flashes = autocorrect_is_enabled() ? 2 : 1;
+#        ifdef LED_INDICATOR_ENABLE
+            led_indicator_flash(flashes);
+#        endif
+#        ifdef RGB_INDICATOR_ENABLE
+            rgb_indicator_flash(flashes);
+#        endif
+            return true;
+        }
+#    endif
+#    ifdef SENTENCE_CASE_ENABLE
+        case MK_SC_TOGG: {
+            uint8_t flashes = is_sentence_case_on() ? 2 : 1;
+#        ifdef LED_INDICATOR_ENABLE
+            led_indicator_flash(flashes);
+#        endif
+#        ifdef RGB_INDICATOR_ENABLE
+            rgb_indicator_flash(flashes);
+#        endif
+            sentence_case_toggle();
+            return false;
+        }
+#    endif
+#endif
     }
     return true;
 }

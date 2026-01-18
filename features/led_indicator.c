@@ -1,7 +1,9 @@
 // LED indicator
 // Caps Word: solid on
 // OSM Shift: slow blink
-// Autocorrect: quick double flash
+// Autocorrect applied: double flash
+// Toggle ON: single flash
+// Toggle OFF: double flash
 
 #include QMK_KEYBOARD_H
 
@@ -12,6 +14,7 @@ static bool           osm_active       = false;
 static bool           caps_word_active = false;
 static bool           blink_state      = false;
 static uint8_t        flash_count      = 0;
+static uint8_t        flash_target     = 0;
 static deferred_token blink_token      = INVALID_DEFERRED_TOKEN;
 static deferred_token flash_token      = INVALID_DEFERRED_TOKEN;
 
@@ -27,8 +30,9 @@ static void cancel_blink(void) {
 static void cancel_flash(void) {
     if (flash_token != INVALID_DEFERRED_TOKEN) {
         cancel_deferred_exec(flash_token);
-        flash_token = INVALID_DEFERRED_TOKEN;
-        flash_count = 0;
+        flash_token  = INVALID_DEFERRED_TOKEN;
+        flash_count  = 0;
+        flash_target = 0;
     }
 }
 
@@ -61,21 +65,32 @@ static uint32_t blink_callback(uint32_t trigger_time, void *cb_arg) {
 
 static uint32_t flash_callback(uint32_t trigger_time, void *cb_arg) {
     flash_count++;
-    if (flash_count <= 4) {
+    if (flash_count <= flash_target) {
         indicator_set(flash_count % 2 == 1);
         return LED_FLASH_INTERVAL_MS;
     }
-    flash_count = 0;
-    flash_token = INVALID_DEFERRED_TOKEN;
+    flash_count  = 0;
+    flash_target = 0;
+    flash_token  = INVALID_DEFERRED_TOKEN;
     restore_indicator_state();
     return 0;
 }
 
-#if defined(AUTOCORRECT_ENABLE) && !defined(RGBLIGHT_ENABLE)
-bool apply_autocorrect(uint8_t backspaces, const char *str, char *typo, char *correct) {
+static void start_flash(uint8_t count) {
+    if (count == 0) return;
     cancel_blink();
     cancel_flash();
-    flash_token = defer_exec(1, flash_callback, NULL);
+    flash_target = count * 2; // each flash = on + off
+    flash_token  = defer_exec(1, flash_callback, NULL);
+}
+
+void led_indicator_flash(uint8_t count) {
+    start_flash(count);
+}
+
+#if defined(AUTOCORRECT_ENABLE) && !defined(RGBLIGHT_ENABLE)
+bool apply_autocorrect(uint8_t backspaces, const char *str, char *typo, char *correct) {
+    start_flash(2);
     return true;
 }
 #endif
