@@ -14,9 +14,58 @@ static inline os_variant_t get_os(void) {
     return cached_os;
 }
 
-#define OS_TAP(mac_key, other_key) tap_code16(get_os() == OS_MACOS ? (mac_key) : (other_key))
+#define OS_KEY(mac_key, other_key) (get_os() == OS_MACOS ? (mac_key) : (other_key))
+#define OS_TAP(mac_key, other_key) tap_code16(OS_KEY(mac_key, other_key))
+
+// Helper for keys that should repeat when held
+#define OS_REPEAT(mac_key, other_key)              \
+    do {                                           \
+        uint16_t key = OS_KEY(mac_key, other_key); \
+        if (record->event.pressed) {               \
+            register_code16(key);                  \
+        } else {                                   \
+            unregister_code16(key);                \
+        }                                          \
+    } while (0)
 
 bool process_os_keys(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // cursor navigation (repeatable)
+        case OS_L_W:
+            OS_REPEAT(A(KC_LEFT), C(KC_LEFT));
+            return false;
+        case OS_R_W:
+            OS_REPEAT(A(KC_RIGHT), C(KC_RIGHT));
+            return false;
+        case OS_HOME:
+            OS_REPEAT(G(KC_LEFT), KC_HOME);
+            return false;
+        case OS_END:
+            OS_REPEAT(G(KC_RIGHT), KC_END);
+            return false;
+        case OS_TOP:
+            OS_REPEAT(G(KC_UP), C(KC_HOME));
+            return false;
+        case OS_BOTTOM:
+            OS_REPEAT(G(KC_DOWN), C(KC_END));
+            return false;
+        // word delete (repeatable)
+        case OS_BSPC_W:
+            OS_REPEAT(A(KC_BSPC), C(KC_BSPC));
+            return false;
+        case OS_DEL_W:
+            OS_REPEAT(A(KC_DEL), C(KC_DEL));
+            return false;
+        // zoom (repeatable)
+        case OS_ZOOM_IN:
+            OS_REPEAT(G(KC_EQUAL), C(KC_EQUAL));
+            return false;
+        case OS_ZOOM_OUT:
+            OS_REPEAT(G(KC_MINUS), C(KC_MINUS));
+            return false;
+    }
+
+    // Non-repeatable keys only fire on press
     if (!record->event.pressed) {
         return true;
     }
@@ -74,32 +123,6 @@ bool process_os_keys(uint16_t keycode, keyrecord_t *record) {
         case OS_ITALIC:
             OS_TAP(G(KC_I), C(KC_I));
             return false;
-        // cursor navigation
-        case OS_L_W:
-            OS_TAP(A(KC_LEFT), C(KC_LEFT));
-            return false;
-        case OS_R_W:
-            OS_TAP(A(KC_RIGHT), C(KC_RIGHT));
-            return false;
-        case OS_HOME:
-            OS_TAP(G(KC_LEFT), KC_HOME);
-            return false;
-        case OS_END:
-            OS_TAP(G(KC_RIGHT), KC_END);
-            return false;
-        case OS_TOP:
-            OS_TAP(G(KC_UP), C(KC_HOME));
-            return false;
-        case OS_BOTTOM:
-            OS_TAP(G(KC_DOWN), C(KC_END));
-            return false;
-        // word delete
-        case OS_BSPC_W:
-            OS_TAP(A(KC_BSPC), C(KC_BSPC));
-            return false;
-        case OS_DEL_W:
-            OS_TAP(A(KC_DEL), C(KC_DEL));
-            return false;
         // browser/tabs
         case OS_RELOAD:
             OS_TAP(G(KC_R), C(KC_R));
@@ -109,12 +132,6 @@ bool process_os_keys(uint16_t keycode, keyrecord_t *record) {
             return false;
         case OS_TAB_P:
             OS_TAP(SGUI(KC_LBRC), C(S(KC_TAB)));
-            return false;
-        case OS_ZOOM_IN:
-            OS_TAP(G(KC_EQUAL), C(KC_EQUAL));
-            return false;
-        case OS_ZOOM_OUT:
-            OS_TAP(G(KC_MINUS), C(KC_MINUS));
             return false;
         // system
         case OS_SCRN:
