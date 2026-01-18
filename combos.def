@@ -2,6 +2,7 @@
 COMB(C_BL_Z,      KC_Z,           K_LT1, K_LT2, K_LT3)
 COMB(C_BL_Q,      KC_Q,           K_LT2, K_LT3)
 COMB(C_BL_B,      KC_B,           K_LH2, K_LH3)
+SUBS(C_BL_BR,     "br",           K_LH2, K_LB3)
 COMB(C_BL_X,      KC_X,           K_LB1, K_LB2)
 COMB(C_BL_V,      KC_V,           K_LH3, K_LB3)
 COMB(C_BL_J,      KC_J,           K_LB2, K_LB3)
