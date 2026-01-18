@@ -5,6 +5,8 @@
 #include "os_keys.h"
 #include "os_detection.h"
 
+// Cache the detected OS to avoid repeated detection calls on every keypress.
+// OS detection only runs once on first use, then returns the cached result.
 static os_variant_t cached_os = OS_UNSURE;
 
 static inline os_variant_t get_os(void) {

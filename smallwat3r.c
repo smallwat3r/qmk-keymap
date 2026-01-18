@@ -21,17 +21,17 @@
 #endif
 
 enum layers {
-    BASE,  // default layout
-    NUM,   // number pad (right side)
-    SYM,   // symbols
-    SYM2,  // lighter symbols, home row passthrough for rolls
-    NAV,   // navigation, arrows, brackets
-    NAV2,  // word navigation, selection
-    EDIT,  // clipboard, find operations
-    FUN,   // function keys
-    SYS,   // system (mouse, media, brightness, RGB)
-    ROS,   // ROS2 teleop_twist_keyboard
-    UNI,   // unicode (French accents)
+    BASE, // default layout
+    NUM,  // number pad (right side)
+    SYM,  // symbols
+    SYM2, // lighter symbols, home row passthrough for rolls
+    NAV,  // navigation, arrows, brackets
+    NAV2, // word navigation, selection
+    EDIT, // clipboard, find operations
+    FUN,  // function keys
+    SYS,  // system (mouse, media, brightness, RGB)
+    ROS,  // ROS2 teleop_twist_keyboard
+    UNI,  // unicode (French accents)
 };
 
 enum custom_keycodes {
@@ -49,8 +49,8 @@ enum custom_keycodes {
     // tap-hold
     MK_RTS, // tap: OSM Shift, hold: Shift+Ctrl+Gui
     MK_RS,  // tap: "sh", hold: Ctrl+Gui
-    // toggles
 #ifdef SENTENCE_CASE_ENABLE
+    // toggles
     MK_SC_TOGG, // toggle sentence case
 #endif
 };
@@ -516,8 +516,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_hold_state.time    = record->event.time;
             register_mods(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI));
             return false;
-#if defined(AUTOCORRECT_ENABLE) && \
-    (defined(LED_INDICATOR_ENABLE) || defined(RGB_INDICATOR_ENABLE))
+#if defined(AUTOCORRECT_ENABLE) && (defined(LED_INDICATOR_ENABLE) || defined(RGB_INDICATOR_ENABLE))
         case AC_TOGG:
             // flash 1 = turning ON, flash 2 = turning OFF
             flash_indicator(autocorrect_is_enabled() ? 2 : 1);
