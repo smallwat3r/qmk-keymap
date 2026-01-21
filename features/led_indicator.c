@@ -15,6 +15,7 @@ static bool           caps_word_active = false;
 static bool           blink_state      = false;
 static uint8_t        flash_count      = 0;
 static uint8_t        flash_target     = 0;
+static uint32_t       flash_interval   = LED_FLASH_INTERVAL_MS;
 static deferred_token blink_token      = INVALID_DEFERRED_TOKEN;
 static deferred_token flash_token      = INVALID_DEFERRED_TOKEN;
 
@@ -46,7 +47,10 @@ static void restore_indicator_state(void) {
     } else if (osm_active) {
         blink_state = false;
         if (blink_token == INVALID_DEFERRED_TOKEN) {
-            blink_token = defer_exec(1, blink_callback, NULL);
+            deferred_token t = defer_exec(1, blink_callback, NULL);
+            if (t != INVALID_DEFERRED_TOKEN) {
+                blink_token = t;
+            }
         }
     } else {
         indicator_set(false);
@@ -67,24 +71,33 @@ static uint32_t flash_callback(uint32_t trigger_time, void *cb_arg) {
     flash_count++;
     if (flash_count <= flash_target) {
         indicator_set(flash_count % 2 == 1);
-        return LED_FLASH_INTERVAL_MS;
+        return flash_interval;
     }
-    flash_count  = 0;
-    flash_target = 0;
-    flash_token  = INVALID_DEFERRED_TOKEN;
+    flash_count    = 0;
+    flash_target   = 0;
+    flash_interval = LED_FLASH_INTERVAL_MS;
+    flash_token    = INVALID_DEFERRED_TOKEN;
     restore_indicator_state();
     return 0;
 }
 
 static void start_flash(uint8_t count) {
-    if (count == 0) return;
+    if (count == 0 || count > 127) return; // guard against uint8_t overflow
     cancel_blink();
     cancel_flash();
-    flash_target = count * 2; // each flash = on + off
-    flash_token  = defer_exec(1, flash_callback, NULL);
+    flash_target     = count * 2; // each flash = on + off
+    deferred_token t = defer_exec(1, flash_callback, NULL);
+    if (t != INVALID_DEFERRED_TOKEN) {
+        flash_token = t;
+    }
 }
 
 void led_indicator_flash(uint8_t count) {
+    start_flash(count);
+}
+
+void led_indicator_startup_flash(uint8_t count) {
+    flash_interval = LED_BLINK_INTERVAL_MS;
     start_flash(count);
 }
 
@@ -117,7 +130,10 @@ void led_indicator_oneshot_mods(uint8_t mods) {
     if (mods & MOD_MASK_SHIFT) {
         osm_active = true;
         if (!caps_word_active && blink_token == INVALID_DEFERRED_TOKEN && flash_token == INVALID_DEFERRED_TOKEN) {
-            blink_token = defer_exec(1, blink_callback, NULL);
+            deferred_token t = defer_exec(1, blink_callback, NULL);
+            if (t != INVALID_DEFERRED_TOKEN) {
+                blink_token = t;
+            }
         }
     } else if (!mods) {
         osm_active = false;

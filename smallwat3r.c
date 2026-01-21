@@ -556,6 +556,7 @@ void keyboard_post_init_user(void) {
 #endif
 #ifdef LED_INDICATOR_ENABLE
     led_indicator_init();
+    led_indicator_startup_flash(3); // blink 3 times to indicate connection
 #endif
 #ifdef AUTOCORRECT_ENABLE
     if (!autocorrect_is_enabled()) autocorrect_enable();
