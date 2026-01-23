@@ -19,7 +19,7 @@ COMB(C_BL_RS,           MK_RS,        K_LH2, K_LH4)         // tap: "sh", hold: 
 SUBS(C_BL_TH,           "th",         K_LH3, K_LH4)
 SUBS(C_BL_WH,           "wh",         K_LH1, K_LH4)
 SUBS(C_BL_WC,           ".com",       K_LH1, K_LB3)
-SUBS(C_BL_WP,           "gmail.com",  K_LH1, K_LT3)
+SUBS(C_BL_WP,           "@gmail.com", K_LH1, K_LT3)
 SUBS(C_BL_WG,           "smallwat3r", K_LH1, K_LH5)
 
 // BASE layer - right hand (symbols)
