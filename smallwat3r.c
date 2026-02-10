@@ -374,10 +374,7 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
 // clang-format on
 
 #ifdef OS_DETECTION_ENABLE
-bool process_detected_host_os_kb(os_variant_t detected_os) {
-    if (!process_detected_host_os_user(detected_os)) {
-        return false;
-    }
+bool process_detected_host_os_user(os_variant_t detected_os) {
     switch (detected_os) {
         case OS_MACOS:
             set_unicode_input_mode(UNICODE_MODE_MACOS);

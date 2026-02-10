@@ -11,7 +11,11 @@ static os_variant_t cached_os = OS_UNSURE;
 
 static inline os_variant_t get_os(void) {
     if (cached_os == OS_UNSURE) {
-        cached_os = detected_host_os();
+        os_variant_t os = detected_host_os();
+        if (os != OS_UNSURE) {
+            cached_os = os;
+        }
+        return os;
     }
     return cached_os;
 }
