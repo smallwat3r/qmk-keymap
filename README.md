@@ -15,6 +15,7 @@ make flash-26    # Flash smallcat/26
 make flash-uni   # Flash smallcat/uni
 make format      # Format code with clang-format
 make autocorrect # Generate autocorrect data from dictionary
+make copy-boards # Copy board files to qmk_firmware
 make clean       # Clean build artifacts
 ```
 

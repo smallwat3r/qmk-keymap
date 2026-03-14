@@ -1,5 +1,5 @@
 .SILENT:
-.PHONY: help all 26 uni flash-26 flash-uni clean format autocorrect
+.PHONY: help all 26 uni flash-26 flash-uni clean format autocorrect copy-boards
 .DEFAULT_GOAL := help
 
 QMK_USERSPACE := $(patsubst %/,%,$(dir $(shell realpath "$(lastword $(MAKEFILE_LIST))")))
@@ -34,6 +34,10 @@ format:
 	clang-format -i keyboards/smallcat/*/keymaps/default/*.c
 	clang-format -i keyboards/smallcat/*/keymaps/default/*.h 2>/dev/null || true
 
+copy-boards:
+	rm -rf ~/qmk_firmware/keyboards/smallcat/
+	cp -r ./keyboards/smallcat ~/qmk_firmware/keyboards/smallcat
+
 autocorrect:
 	qmk generate-autocorrect-data $(QMK_USERSPACE)/autocorrection_dict.txt -o $(QMK_USERSPACE)/autocorrect_data.h
 
@@ -53,4 +57,5 @@ help:
 	@echo "  clean         Clean build artifacts"
 	@echo "  format        Format C code with clang-format"
 	@echo "  autocorrect   Generate autocorrect data from dictionary"
+	@echo "  copy-boards   Copy board files to qmk_firmware"
 	@echo "  help          Show this help message"
