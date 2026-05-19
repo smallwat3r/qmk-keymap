@@ -334,22 +334,22 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // gam (gaming layer)
 //      ┌────┬────┬────┐                    ┌────┬────┬────┐
-//      │ Q  │ W  │ E  │                    │ 7  │ 8  │ 9  │
+//      │ Q  │ W  │ E  │                    │ F1 │ F2 │ F5 │
 // ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
 // │Shft│ A  │ S  │ D  │ R  │          │ B  │ 4  │ 5  │ 6  │ G  │
 // └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
-//      │Ctrl│ F  │ V  │                    │ 1  │ 2  │ 3  │
+//      │Ctrl│ 1  │ 2  │                    │ Y  │ U  │ `  │
 //      └────┴────┴────┘                    └────┴────┴────┘
 //                ┌────┬────┐    ┌────┬────┐
 //                │Tab │Spc │    │TOGG│Ent │
 //                └────┴────┘    └────┴────┘
 #define GAM_L_TOP KC_Q, KC_W, KC_E
 #define GAM_L_HOME KC_LSFT, KC_A, KC_S, KC_D, KC_R
-#define GAM_L_BOT KC_LCTL, KC_F, KC_V
+#define GAM_L_BOT KC_LCTL, KC_1, KC_2
 #define GAM_L_THUMB KC_TAB, KC_SPC
-#define GAM_R_TOP KC_7, KC_8, KC_9
+#define GAM_R_TOP KC_F1, KC_F2, KC_F5
 #define GAM_R_HOME KC_B, KC_4, KC_5, KC_6, KC_G
-#define GAM_R_BOT KC_1, KC_2, KC_3
+#define GAM_R_BOT KC_Y, KC_U, KC_GRAVE
 #define GAM_R_THUMB TG(GAM), KC_ENT
 
 // uni (unicode)
@@ -430,15 +430,13 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
 #endif
 
 // Restrict GAM combos that use keycodes also present on other layers.
-// 4/5/6 share the NUM home row, and 7/8/9 share the NUM top row, so without
+// 1/2 share the NUM bottom row and 4/5/6 share the NUM home row, so without
 // this guard a fast roll on NUM could spuriously fire these combos.
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode,
                           keyrecord_t *record) {
     switch (combo_index) {
         case C_GAM_ESC:
-        case C_GAM_YCHAT:
-        case C_GAM_UCHAT:
-        case C_GAM_CONSOLE:
+        case C_GAM_G:
             return IS_LAYER_ON(GAM);
     }
     return true;
