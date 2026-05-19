@@ -15,4 +15,5 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [SYS]  = LAYER_DEF(SYS),
     [ROS]  = LAYER_DEF(ROS),
     [UNI]  = LAYER_DEF(UNI),
+    [GAM]  = LAYER_DEF(GAM),
 };

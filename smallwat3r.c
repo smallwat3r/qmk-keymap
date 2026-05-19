@@ -32,6 +32,7 @@ enum layers {
     SYS,  // system (mouse, media, brightness, RGB)
     ROS,  // ROS2 teleop_twist_keyboard
     UNI,  // unicode (French accents)
+    GAM,  // gaming (FPS, e.g. Counter-Strike)
 };
 
 enum custom_keycodes {
@@ -331,6 +332,26 @@ const uint32_t PROGMEM unicode_map[] = {
 #define ROS_R_BOT KC_M, KC_COMMA, KC_DOT
 #define ROS_R_THUMB KC_TRNS, KC_TRNS
 
+// gam (gaming layer)
+//      ┌────┬────┬────┐                    ┌────┬────┬────┐
+//      │ Q  │ W  │ E  │                    │ 7  │ 8  │ 9  │
+// ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
+// │Shft│ A  │ S  │ D  │ R  │          │ B  │ 4  │ 5  │ 6  │ G  │
+// └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
+//      │Ctrl│ F  │ V  │                    │ 1  │ 2  │ 3  │
+//      └────┴────┴────┘                    └────┴────┴────┘
+//                ┌────┬────┐    ┌────┬────┐
+//                │Tab │Spc │    │TOGG│Ent │
+//                └────┴────┘    └────┴────┘
+#define GAM_L_TOP KC_Q, KC_W, KC_E
+#define GAM_L_HOME KC_LSFT, KC_A, KC_S, KC_D, KC_R
+#define GAM_L_BOT KC_LCTL, KC_F, KC_V
+#define GAM_L_THUMB KC_TAB, KC_SPC
+#define GAM_R_TOP KC_7, KC_8, KC_9
+#define GAM_R_HOME KC_B, KC_4, KC_5, KC_6, KC_G
+#define GAM_R_BOT KC_1, KC_2, KC_3
+#define GAM_R_THUMB TG(GAM), KC_ENT
+
 // uni (unicode)
 //      ┌────┬────┬────┐                    ┌────┬────┬────┐
 //      │ ë  │ ï  │░░P░│                    │ ê  │ â  │ û  │
@@ -407,6 +428,21 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
     return COMBO_TERM;
 }
 #endif
+
+// Restrict GAM combos that use keycodes also present on other layers.
+// 4/5/6 share the NUM home row, and 7/8/9 share the NUM top row, so without
+// this guard a fast roll on NUM could spuriously fire these combos.
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode,
+                          keyrecord_t *record) {
+    switch (combo_index) {
+        case C_GAM_ESC:
+        case C_GAM_YCHAT:
+        case C_GAM_UCHAT:
+        case C_GAM_CONSOLE:
+            return IS_LAYER_ON(GAM);
+    }
+    return true;
+}
 
 // Tracks state for custom tap-hold keys. On press, store the keycode and
 // time. On release, check if keycode matches and if elapsed time is within
@@ -535,6 +571,38 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 #ifdef RGB_INDICATOR_ENABLE
     rgb_indicator_set_base_layer(layer_state_cmp(state, BASE));
 #endif
+    return state;
+}
+
+// Auto-suspend text features on the gaming layer. Remember the prior state so
+// toggling out of GAM restores whatever the user had enabled manually.
+layer_state_t layer_state_set_user(layer_state_t state) {
+    static bool gam_was_active = false;
+#ifdef AUTOCORRECT_ENABLE
+    static bool ac_was_on = true;
+#endif
+#ifdef SENTENCE_CASE_ENABLE
+    static bool sc_was_on = false;
+#endif
+    bool gam_active = IS_LAYER_ON_STATE(state, GAM);
+    if (gam_active && !gam_was_active) {
+#ifdef AUTOCORRECT_ENABLE
+        ac_was_on = autocorrect_is_enabled();
+        if (ac_was_on) autocorrect_disable();
+#endif
+#ifdef SENTENCE_CASE_ENABLE
+        sc_was_on = is_sentence_case_on();
+        if (sc_was_on) sentence_case_off();
+#endif
+    } else if (!gam_active && gam_was_active) {
+#ifdef AUTOCORRECT_ENABLE
+        if (ac_was_on) autocorrect_enable();
+#endif
+#ifdef SENTENCE_CASE_ENABLE
+        if (sc_was_on) sentence_case_on();
+#endif
+    }
+    gam_was_active = gam_active;
     return state;
 }
 

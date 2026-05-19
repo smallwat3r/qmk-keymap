@@ -41,6 +41,14 @@ SUBS(C_BR_ING,          "ing",        K_RH2, K_RH5)
 // BASE layer - both hands
 COMB(C_BB_CAPS,         CW_TOGG,      K_LH4, K_RH2)
 COMB(C_BB_PSCRN,        OS_SCRN,      K_LH5, K_RH1)
+COMB(C_BB_GAM,          TG(GAM),      K_LH5, K_RH5)  // toggle gaming layer
+
+// GAM layer
+COMB(C_GAM_ESC,         KC_ESC,       KC_4, KC_5, KC_6)  // mirrors BASE N+A+E
+COMB(C_GAM_YCHAT,       KC_Y,         KC_7, KC_8)
+COMB(C_GAM_UCHAT,       KC_U,         KC_8, KC_9)
+COMB(C_GAM_CONSOLE,     KC_GRAVE,     KC_7, KC_9)
+COMB(C_GAM_MAP,         KC_M,         KC_F, KC_V)
 
 // SYM layer - left
 COMB(C_SL_EURO,         MK_EURO,      MK_POUND, S(KC_4))
