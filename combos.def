@@ -45,8 +45,6 @@ COMB(C_BB_GAM,          TG(GAM),      K_LH5, K_RH5)  // toggle gaming layer
 
 // GAM layer
 COMB(C_GAM_ESC,         KC_ESC,       KC_4, KC_5, KC_6)  // mirrors BASE N+A+E
-COMB(C_GAM_3,           KC_3,         KC_Q, KC_E)
-COMB(C_GAM_G,           KC_G,         KC_1, KC_2)
 
 // SYM layer - left
 COMB(C_SL_EURO,         MK_EURO,      MK_POUND, S(KC_4))
