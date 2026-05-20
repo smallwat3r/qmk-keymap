@@ -202,14 +202,14 @@ GAM (toggle with G+I combo) - gaming layer, one-handed (right hand on board)
 ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
 │Shft│ A  │ S  │ D  │ R  │          │ Y  │ 4  │ 5  │ 6  │ G  │
 └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
-     │Ctrl│ B  │Esc │                    │ 1  │ 2  │ 3  │
+     │Tab │ B  │Esc │                    │ 1  │ 2  │ 3  │
      └────┴────┴────┘                    └────┴────┴────┘
                ┌────┬────┐    ┌────┬────┐
-               │Tab │Spc │    │TOGG│Ent │
+               │Ctrl│Spc │    │TOGG│Ent │
                └────┴────┘    └────┴────┘
 
   TOGG = TG(GAM) toggles back to BASE
 
   Combos:
-    4+5+6 = Esc
+    4+5+6 = Esc    B+Esc = X
 ```
