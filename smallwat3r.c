@@ -338,15 +338,15 @@ const uint32_t PROGMEM unicode_map[] = {
 // ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
 // │Shft│ A  │ S  │ D  │ R  │          │ Y  │ 4  │ 5  │ 6  │ G  │
 // └────┼────┼────┼────┼────┘          └────┼────┼────┼────┼────┘
-//      │Tab │ B  │ X  │                    │ 1  │ 2  │ 3  │
+//      │Ctrl│ B  │ X  │                    │ 1  │ 2  │ 3  │
 //      └────┴────┴────┘                    └────┴────┴────┘
 //                ┌────┬────┐    ┌────┬────┐
-//                │Ctrl│Spc │    │TOGG│Ent │
+//                │Tab │Spc │    │TOGG│Ent │
 //                └────┴────┘    └────┴────┘
 #define GAM_L_TOP KC_Q, KC_W, KC_E
 #define GAM_L_HOME KC_LSFT, KC_A, KC_S, KC_D, KC_R
-#define GAM_L_BOT KC_TAB, KC_B, KC_X
-#define GAM_L_THUMB KC_LCTL, KC_SPC
+#define GAM_L_BOT KC_LCTL, KC_B, KC_X
+#define GAM_L_THUMB KC_TAB, KC_SPC
 #define GAM_R_TOP KC_F1, KC_F2, KC_F5
 #define GAM_R_HOME KC_Y, KC_4, KC_5, KC_6, KC_G
 #define GAM_R_BOT KC_1, KC_2, KC_3
