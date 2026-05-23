@@ -196,7 +196,7 @@ UNI (hold P) - French unicode characters
                │    │    │    │    │    │
                └────┴────┘    └────┴────┘
 
-GAM (toggle with G+I combo) - gaming layer, one-handed (right hand on board)
+GAM (toggle with G+I combo) - gaming layer
      ┌────┬────┬────┐                    ┌────┬────┬────┐
      │ Q  │ W  │ E  │                    │ F1 │ F2 │ F5 │
 ┌────┼────┼────┼────┼────┐          ┌────┼────┼────┼────┼────┐
@@ -211,5 +211,5 @@ GAM (toggle with G+I combo) - gaming layer, one-handed (right hand on board)
   TOGG = TG(GAM) toggles back to BASE
 
   Combos:
-    4+5+6 = Esc
+    4+5+6 = Esc    B+X = `
 ```
