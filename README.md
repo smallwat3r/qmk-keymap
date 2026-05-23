@@ -211,5 +211,5 @@ GAM (toggle with G+I combo) - gaming layer
   TOGG = TG(GAM) toggles back to BASE
 
   Combos:
-    4+5+6 = Esc    B+X = `
+    4+5+6 = Esc    B+X = `    F1+F2 = F3
 ```

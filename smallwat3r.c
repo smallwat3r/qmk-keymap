@@ -429,13 +429,13 @@ uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
 }
 #endif
 
-// Restrict GAM combos that use keycodes also present on other layers.
-// 4/5/6 share the NUM home row, so without this guard a fast roll on NUM
-// could spuriously fire this combo.
+// Restrict GAM combos whose keycodes also appear on other layers, so a
+// fast roll on those layers cannot spuriously fire them.
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode,
                           keyrecord_t *record) {
     switch (combo_index) {
         case C_GAM_ESC:
+        case C_GAM_F3:
             return IS_LAYER_ON(GAM);
     }
     return true;
