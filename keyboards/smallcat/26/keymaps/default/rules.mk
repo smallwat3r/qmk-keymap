@@ -1,7 +1,6 @@
 RGB_INDICATOR_ENABLE = yes
 
-ROOT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
-include ${ROOT_DIR}../../../../../rules.mk
+include $(QMK_USERSPACE)/rules.mk
 
 RGBLIGHT_ENABLE = yes
 WS2812_DRIVER = vendor
